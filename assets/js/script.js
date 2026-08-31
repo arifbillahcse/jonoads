@@ -249,15 +249,16 @@ function initHeroCanvas() {
   }
 }
 
-/* ---------- Animated counters (hero stats + pedigree) ---------- */
+/* ---------- Animated counters (hero stats + pedigree + case studies) ---------- */
 function initCounters() {
-  const counters = document.querySelectorAll('.stat-number, .pedigree-number');
+  const counters = document.querySelectorAll('.stat-number, .pedigree-number, .case-stat-number');
   if (!counters.length) return;
 
   const animate = (el) => {
     const target = parseFloat(el.dataset.target || '0');
     const prefix = el.dataset.prefix || '';
     const suffix = el.dataset.suffix || '';
+    const decimals = parseInt(el.dataset.decimals || '0', 10);
     const duration = 1400;
     let startTime = null;
 
@@ -265,7 +266,7 @@ function initCounters() {
       if (startTime === null) startTime = now;
       const t = Math.min((now - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - t, 3);
-      const value = Math.round(target * eased);
+      const value = (target * eased).toFixed(decimals);
       el.textContent = `${prefix}${value}${suffix}`;
       if (t < 1) requestAnimationFrame(step);
     }
