@@ -385,7 +385,8 @@ button {
   gap: 4px;
 }
 
-.stat-number {
+.stat-number,
+.stat-number-static {
   font-family: var(--font-display);
   font-size: clamp(1.5rem, 2.4vw, 2rem);
   font-weight: 600;
@@ -1066,6 +1067,49 @@ button {
 }
 
 /* ============================================================
+   CONTACT QUICK LINKS (contact page)
+   ============================================================ */
+.contact-quick {
+  background: var(--black);
+  border-bottom: 1px solid var(--line-soft);
+  padding-top: 0;
+}
+
+.contact-quick .section-inner {
+  padding-top: 0;
+  padding-bottom: 96px;
+}
+
+.contact-quick-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.contact-quick-card {
+  display: block;
+  background: var(--surface);
+  border: 1px solid var(--line-soft);
+  border-radius: 4px;
+  padding: 28px;
+  transition: border-color 0.3s var(--ease);
+}
+
+.contact-quick-card:hover {
+  border-color: var(--cyan);
+}
+
+.contact-quick-card h3 {
+  margin-bottom: 0.3em;
+}
+
+.contact-quick-card p {
+  color: var(--muted);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+/* ============================================================
    FEATURED CASE (work page)
    ============================================================ */
 .featured-case {
@@ -1578,7 +1622,8 @@ button {
   .partner-grid,
   .pedigree-grid,
   .engine-detail-grid,
-  .services-detail-grid {
+  .services-detail-grid,
+  .contact-quick-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1661,7 +1706,8 @@ button {
   .partner-grid,
   .locations-grid,
   .engine-detail-grid,
-  .services-detail-grid {
+  .services-detail-grid,
+  .contact-quick-grid {
     grid-template-columns: 1fr;
   }
 
