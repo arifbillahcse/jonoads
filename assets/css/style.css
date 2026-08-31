@@ -549,12 +549,9 @@ button {
 }
 
 .roas-step-index {
-  font-family: var(--font-display);
-  font-size: 1.1rem;
-  font-weight: 600;
   color: var(--muted);
-  width: 32px;
-  height: 32px;
+  width: 40px;
+  height: 40px;
   flex-shrink: 0;
   border: 1px solid var(--line);
   border-radius: 50%;
@@ -562,6 +559,11 @@ button {
   align-items: center;
   justify-content: center;
   transition: color 0.3s var(--ease), border-color 0.3s var(--ease), background 0.3s var(--ease);
+}
+
+.roas-step-index svg {
+  width: 18px;
+  height: 18px;
 }
 
 .roas-step.is-active .roas-step-index {
@@ -581,25 +583,25 @@ button {
 }
 
 .roas-diagram-wrap {
+  position: relative;
   display: flex;
   justify-content: center;
 }
 
+.roas-diagram-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  background: radial-gradient(circle, var(--cyan-dim), transparent 70%);
+  filter: blur(20px);
+  z-index: 0;
+}
+
 .roas-diagram {
+  position: relative;
+  z-index: 1;
   width: 100%;
   max-width: 420px;
-  animation: roasSpin 60s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .roas-diagram {
-    animation: none;
-  }
-}
-
-@keyframes roasSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
 }
 
 .roas-ring-track {
@@ -610,7 +612,7 @@ button {
 
 .roas-arc {
   fill: none;
-  stroke: var(--surface-2);
+  stroke: rgba(255, 255, 255, 0.14);
   stroke-width: 18;
   stroke-linecap: round;
   transition: stroke 0.4s var(--ease), stroke-width 0.4s var(--ease);
@@ -619,6 +621,7 @@ button {
 .roas-arc.is-active {
   stroke: var(--cyan);
   stroke-width: 22;
+  filter: drop-shadow(0 0 10px var(--cyan-glow));
 }
 
 .roas-center-label {
@@ -626,7 +629,6 @@ button {
   font-size: 22px;
   font-weight: 600;
   fill: var(--white);
-  animation: counterSpin 60s linear infinite reverse;
 }
 
 .roas-center-sub {
@@ -634,18 +636,15 @@ button {
   font-size: 11px;
   letter-spacing: 0.08em;
   fill: var(--muted);
-  animation: counterSpin 60s linear infinite reverse;
 }
 
-@keyframes counterSpin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(-360deg); }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .roas-center-label, .roas-center-sub {
-    animation: none;
-  }
+.roas-center-step {
+  font-family: var(--font-body);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  fill: var(--cyan);
+  transition: opacity 0.3s var(--ease);
 }
 
 /* ============================================================
@@ -856,12 +855,35 @@ button {
 
 .founder-photo,
 .team-photo {
+  position: relative;
   aspect-ratio: 1 / 1;
   border-radius: 4px;
   background:
     radial-gradient(circle at 30% 20%, rgba(53, 193, 241, 0.35), transparent 55%),
     var(--surface-2);
   border: 1px solid var(--line-soft);
+  overflow: hidden;
+}
+
+.founder-photo::after,
+.team-photo::after {
+  content: attr(data-initials);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.18);
+}
+
+.founder-photo::after {
+  font-size: 4.5rem;
+}
+
+.team-photo::after {
+  font-size: 2.75rem;
 }
 
 .founder-copy h2 {

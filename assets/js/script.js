@@ -329,6 +329,8 @@ function initRoasEngine() {
 
   let autoAdvance = null;
   let currentStep = 1;
+  const centerStep = document.getElementById('roasCenterStep');
+  const stepNames = { 1: 'REVIEW', 2: 'OPERATE', 3: 'IMPROVE' };
 
   function setActiveStep(stepNum) {
     currentStep = stepNum;
@@ -340,6 +342,9 @@ function initRoasEngine() {
       const isActive = Number(key) === stepNum;
       arcs[key].classList.toggle('is-active', isActive);
     });
+    if (centerStep) {
+      centerStep.textContent = `0${stepNum} · ${stepNames[stepNum]}`;
+    }
   }
 
   steps.forEach((li) => {
