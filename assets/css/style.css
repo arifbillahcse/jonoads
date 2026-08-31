@@ -582,6 +582,10 @@ button {
   margin: 0;
 }
 
+.roas-more-link {
+  margin-top: 2rem;
+}
+
 .roas-diagram-wrap {
   position: relative;
   display: flex;
@@ -1342,6 +1346,135 @@ button {
 }
 
 /* ============================================================
+   ENGINE PAGE — HERO
+   ============================================================ */
+.engine-hero {
+  background:
+    radial-gradient(ellipse 60% 50% at 85% 10%, rgba(53, 193, 241, 0.12), transparent 60%),
+    var(--black);
+  padding-top: 160px;
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.engine-hero-inner {
+  padding-bottom: 96px;
+}
+
+.engine-hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.6rem);
+  max-width: 20ch;
+  margin-bottom: 0.5em;
+}
+
+.engine-hero-sub {
+  color: var(--muted);
+  font-size: clamp(1.02rem, 1.4vw, 1.15rem);
+  max-width: 62ch;
+  margin-bottom: 2.2em;
+}
+
+.engine-hero .hero-actions {
+  margin-bottom: 3.5rem;
+}
+
+.engine-hero .hero-stats {
+  max-width: 720px;
+}
+
+/* ============================================================
+   ENGINE PAGE — STAGE BREAKDOWN
+   ============================================================ */
+.engine-detail {
+  background: var(--off-white);
+  color: var(--black);
+}
+
+.engine-detail h2 {
+  color: var(--black);
+}
+
+.engine-detail-sub {
+  color: var(--muted-on-light);
+  margin-bottom: 3rem;
+}
+
+.engine-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.engine-detail-card {
+  background: var(--white);
+  border: 1px solid var(--off-white-line);
+  border-radius: 4px;
+  padding: 32px;
+}
+
+.engine-detail-num {
+  display: block;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  font-weight: 300;
+  color: var(--cyan);
+  margin-bottom: 0.6em;
+}
+
+.engine-detail-card h3 {
+  color: var(--black);
+}
+
+.engine-detail-card > p {
+  color: var(--muted-on-light);
+  font-size: 0.92rem;
+  margin-bottom: 1.4em;
+}
+
+.engine-detail-card .checklist {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  max-width: none;
+}
+
+.engine-detail-card .checklist li {
+  color: var(--muted-on-light);
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   ENGINE PAGE — PROOF STRIP
+   ============================================================ */
+.engine-proof {
+  background: var(--near-black);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.engine-proof-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.engine-proof-inner > div:first-child p {
+  color: var(--muted);
+  margin: 0 0 1.5em;
+  max-width: 42ch;
+}
+
+.engine-proof-stats {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.engine-proof-stats .case-stat-label {
+  color: var(--muted);
+}
+
+/* ============================================================
    RESPONSIVE
    ============================================================ */
 @media (max-width: 980px) {
@@ -1360,7 +1493,8 @@ button {
   .case-grid,
   .engagement-grid,
   .partner-grid,
-  .pedigree-grid {
+  .pedigree-grid,
+  .engine-detail-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 
@@ -1441,8 +1575,18 @@ button {
   .case-grid,
   .engagement-grid,
   .partner-grid,
-  .locations-grid {
+  .locations-grid,
+  .engine-detail-grid {
     grid-template-columns: 1fr;
+  }
+
+  .engine-proof-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .engine-hero {
+    padding-top: 120px;
   }
 
   .service-row {
