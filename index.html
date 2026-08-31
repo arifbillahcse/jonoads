@@ -17,6 +17,13 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <div class="bg-orbs" aria-hidden="true">
+      <span class="orb orb-1" data-parallax="22"></span>
+      <span class="orb orb-2" data-parallax="16"></span>
+      <span class="orb orb-3" data-parallax="10"></span>
+      <span class="grid-fade"></span>
+    </div>
+
     <header class="site-header" id="top">
       <div class="container nav-wrap">
         <a href="#top" class="logo">Jono<span>Ads</span></a>
@@ -36,7 +43,7 @@
     </header>
 
     <main>
-      <section class="hero">
+      <section class="hero section reveal">
         <div class="container hero-grid">
           <div>
             <p class="eyebrow">Premier Performance Advertising Agency</p>
@@ -49,8 +56,13 @@
               <a class="btn" href="#contact">Schedule a Meeting</a>
               <a class="btn btn-ghost" href="#smb">SMB Solutions</a>
             </div>
+            <div class="hero-badges">
+              <span>$750M+ Generated</span>
+              <span>40+ Brands Scaled</span>
+              <span>Kaizen Optimization</span>
+            </div>
           </div>
-          <div class="hero-video">
+          <div class="hero-video glow-frame" data-parallax="12">
             <iframe
               src="https://www.youtube.com/embed/dQw4w9WgXcQ"
               title="Jono Ads Intro"
@@ -62,7 +74,7 @@
         </div>
       </section>
 
-      <section class="logo-ticker" aria-label="Client logos">
+      <section class="logo-ticker reveal" aria-label="Client logos">
         <div class="ticker-track">
           <span>Beachbody</span><span>Les Mills</span><span>GM</span><span>Lexus</span><span>StubHub</span>
           <span>InMobi</span><span>AOL</span><span>Gen</span><span>Beachbody</span><span>Les Mills</span>
@@ -70,17 +82,17 @@
         </div>
       </section>
 
-      <section class="stats section">
+      <section class="stats section reveal">
         <div class="container stats-grid">
-          <article><h3>$225M</h3><p>Media managed</p></article>
-          <article><h3>$750M+</h3><p>Revenue generated</p></article>
-          <article><h3>7</h3><p>Billion-dollar brand clients</p></article>
-          <article><h3>100+ yrs</h3><p>Combined team experience</p></article>
-          <article><h3>40+</h3><p>Brands scaled</p></article>
+          <article class="glow-frame"><h3>$225M</h3><p>Media managed</p></article>
+          <article class="glow-frame"><h3>$750M+</h3><p>Revenue generated</p></article>
+          <article class="glow-frame"><h3>7</h3><p>Billion-dollar brand clients</p></article>
+          <article class="glow-frame"><h3>100+ yrs</h3><p>Combined team experience</p></article>
+          <article class="glow-frame"><h3>40+</h3><p>Brands scaled</p></article>
         </div>
       </section>
 
-      <section class="section" id="roas">
+      <section class="section reveal" id="roas">
         <div class="container split">
           <div>
             <p class="eyebrow">ROAS Engine™</p>
@@ -96,7 +108,7 @@
             </ul>
             <a class="btn btn-sm" href="#contact">Book a Growth Review</a>
           </div>
-          <div class="roas-wheel" aria-hidden="true">
+          <div class="roas-wheel glow-frame" aria-hidden="true" data-parallax="14">
             <div>Review</div>
             <div>Operate</div>
             <div>Improve</div>
@@ -105,26 +117,26 @@
         </div>
       </section>
 
-      <section class="section" id="services">
+      <section class="section reveal" id="services">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Services</p>
             <h2>Full-Funnel Execution for Revenue Growth</h2>
           </div>
           <div class="cards">
-            <article class="card">
+            <article class="card glow-frame">
               <h3>Digital Advertising</h3>
               <p>Paid social, paid search, YouTube, display, and app acquisition with ROAS accountability.</p>
             </article>
-            <article class="card">
+            <article class="card glow-frame">
               <h3>Creative Services</h3>
               <p>Performance creative strategy, testing frameworks, and ad content production workflows.</p>
             </article>
-            <article class="card">
+            <article class="card glow-frame">
               <h3>CMO Advisory</h3>
               <p>Executive-level guidance for growth planning, KPI architecture, and budget governance.</p>
             </article>
-            <article class="card">
+            <article class="card glow-frame">
               <h3>CRM Strategy</h3>
               <p>Email/SMS lifecycle strategy, retention playbooks, and lifecycle monetization initiatives.</p>
             </article>
@@ -133,22 +145,22 @@
         </div>
       </section>
 
-      <section class="section section-dark" id="testimonials">
+      <section class="section section-dark reveal" id="testimonials">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Client Testimonials</p>
             <h2>Trusted by Founders and Marketing Leaders</h2>
           </div>
           <div class="cards">
-            <blockquote class="card quote">
+            <blockquote class="card quote glow-frame">
               “Jono built a media engine that outperformed two prior agencies in 90 days.”
               <cite>— VP Growth, DTC Wellness Brand</cite>
             </blockquote>
-            <blockquote class="card quote">
+            <blockquote class="card quote glow-frame">
               “They act like owners, not vendors. Clear strategy, clear accountability.”
               <cite>— CEO, Consumer App</cite>
             </blockquote>
-            <blockquote class="card quote">
+            <blockquote class="card quote glow-frame">
               “Our CAC improved while scale increased. That’s rare.”
               <cite>— CMO, Fitness Subscription Brand</cite>
             </blockquote>
@@ -156,44 +168,44 @@
         </div>
       </section>
 
-      <section class="section" id="team">
+      <section class="section reveal" id="team">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Founder & Dream Team</p>
             <h2>Operator Talent Across Media, Creative, and CRM</h2>
           </div>
           <div class="cards team-grid">
-            <article class="card"><h3>Joseph (Founder/CEO)</h3><p>Leads strategy, growth architecture, and executive client direction.</p></article>
-            <article class="card"><h3>Mike Smart</h3><p>Senior media specialist focused on profitable scale and channel efficiency.</p></article>
-            <article class="card"><h3>Phil Irvine</h3><p>Creative and positioning lead for high-performing ad narratives.</p></article>
-            <article class="card"><h3>Nicole Hidalgo</h3><p>Account operations and execution quality across delivery teams.</p></article>
-            <article class="card"><h3>Tom Pelligrino</h3><p>Performance systems and campaign process optimization.</p></article>
-            <article class="card"><h3>Bill Bradford</h3><p>Strategic growth support for enterprise-level initiatives.</p></article>
-            <article class="card"><h3>Nicole Dunn</h3><p>CRM and lifecycle monetization strategy for retention-first growth.</p></article>
+            <article class="card glow-frame"><h3>Joseph (Founder/CEO)</h3><p>Leads strategy, growth architecture, and executive client direction.</p></article>
+            <article class="card glow-frame"><h3>Mike Smart</h3><p>Senior media specialist focused on profitable scale and channel efficiency.</p></article>
+            <article class="card glow-frame"><h3>Phil Irvine</h3><p>Creative and positioning lead for high-performing ad narratives.</p></article>
+            <article class="card glow-frame"><h3>Nicole Hidalgo</h3><p>Account operations and execution quality across delivery teams.</p></article>
+            <article class="card glow-frame"><h3>Tom Pelligrino</h3><p>Performance systems and campaign process optimization.</p></article>
+            <article class="card glow-frame"><h3>Bill Bradford</h3><p>Strategic growth support for enterprise-level initiatives.</p></article>
+            <article class="card glow-frame"><h3>Nicole Dunn</h3><p>CRM and lifecycle monetization strategy for retention-first growth.</p></article>
           </div>
           <a class="inline-cta" href="#contact">Meet the Team</a>
         </div>
       </section>
 
-      <section class="section" id="cases">
+      <section class="section reveal" id="cases">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Case Studies</p>
             <h2>6 Growth Stories Across DTC and Apps</h2>
           </div>
           <div class="cards">
-            <article class="card"><h3>Sunglasses Co.</h3><p>Scaled spend 3.4x while preserving target ROAS via creative iteration.</p></article>
-            <article class="card"><h3>Lenses Brand</h3><p>Improved conversion economics with blended paid search + social approach.</p></article>
-            <article class="card"><h3>Global App (Lead Gen)</h3><p>Reduced cost per qualified lead through channel mix rebalancing.</p></article>
-            <article class="card"><h3>Supplement Co.</h3><p>Grew revenue with retention-backed acquisition architecture.</p></article>
-            <article class="card"><h3>Non-Alcoholic Whiskey</h3><p>Launched aggressive testing model to unlock profitable cold traffic.</p></article>
-            <article class="card"><h3>Fitness App</h3><p>Lifted paid subscriber volume with improved creative sequencing.</p></article>
+            <article class="card glow-frame"><h3>Sunglasses Co.</h3><p>Scaled spend 3.4x while preserving target ROAS via creative iteration.</p></article>
+            <article class="card glow-frame"><h3>Lenses Brand</h3><p>Improved conversion economics with blended paid search + social approach.</p></article>
+            <article class="card glow-frame"><h3>Global App (Lead Gen)</h3><p>Reduced cost per qualified lead through channel mix rebalancing.</p></article>
+            <article class="card glow-frame"><h3>Supplement Co.</h3><p>Grew revenue with retention-backed acquisition architecture.</p></article>
+            <article class="card glow-frame"><h3>Non-Alcoholic Whiskey</h3><p>Launched aggressive testing model to unlock profitable cold traffic.</p></article>
+            <article class="card glow-frame"><h3>Fitness App</h3><p>Lifted paid subscriber volume with improved creative sequencing.</p></article>
           </div>
           <a class="inline-cta" href="#contact">Request Full Case Deck</a>
         </div>
       </section>
 
-      <section class="section section-dark" id="partners">
+      <section class="section section-dark reveal" id="partners">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Partner Network</p>
@@ -206,18 +218,18 @@
         </div>
       </section>
 
-      <section class="section" id="models">
+      <section class="section reveal" id="models">
         <div class="container">
           <div class="section-head">
             <p class="eyebrow">Engagement Models</p>
             <h2>Flexible Support Based on Stage and Team Need</h2>
           </div>
           <div class="cards">
-            <article class="card"><h3>Media Management</h3><p>Full ownership of paid media strategy, execution, and weekly optimization.</p></article>
-            <article class="card"><h3>Team Augment</h3><p>Embedded specialist support to strengthen your internal marketing function.</p></article>
-            <article class="card"><h3>Media Audit</h3><p>Deep diagnostic review with actionable roadmap for immediate performance lifts.</p></article>
+            <article class="card glow-frame"><h3>Media Management</h3><p>Full ownership of paid media strategy, execution, and weekly optimization.</p></article>
+            <article class="card glow-frame"><h3>Team Augment</h3><p>Embedded specialist support to strengthen your internal marketing function.</p></article>
+            <article class="card glow-frame"><h3>Media Audit</h3><p>Deep diagnostic review with actionable roadmap for immediate performance lifts.</p></article>
           </div>
-          <div class="compare">
+          <div class="compare glow-frame">
             <h3>Jono vs Average Agency</h3>
             <div class="compare-grid">
               <p><strong>Jono:</strong> Operator-led, KPI-obsessed, iteration-heavy</p>
@@ -227,7 +239,7 @@
         </div>
       </section>
 
-      <section class="section" id="smb">
+      <section class="section reveal" id="smb">
         <div class="container split">
           <div>
             <p class="eyebrow">SMB Growth Track</p>
@@ -237,7 +249,7 @@
             </p>
             <a class="btn" href="#contact">Go to SMB Program</a>
           </div>
-          <aside class="card aside-links">
+          <aside class="card aside-links glow-frame">
             <h3>Community & Content</h3>
             <a href="#contact">Newsletter Signup</a>
             <a href="#contact">Skool Group</a>
@@ -247,7 +259,7 @@
         </div>
       </section>
 
-      <section class="section section-dark" id="contact">
+      <section class="section section-dark reveal" id="contact">
         <div class="container contact-wrap">
           <div>
             <p class="eyebrow">Get in Touch</p>
@@ -263,7 +275,7 @@
               <li>Bay Area (CRM/Media)</li>
             </ul>
           </div>
-          <form id="lead-form" class="lead-form" novalidate>
+          <form id="lead-form" class="lead-form glow-frame" novalidate>
             <label>
               Full Name
               <input type="text" name="name" required />

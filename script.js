@@ -4,6 +4,8 @@ const navLinks = document.querySelectorAll('#site-nav a');
 const leadForm = document.querySelector('#lead-form');
 const formMessage = document.querySelector('.form-message');
 const yearEl = document.querySelector('#year');
+const revealItems = document.querySelectorAll('.reveal');
+const parallaxItems = document.querySelectorAll('[data-parallax]');
 
 if (yearEl) {
   yearEl.textContent = new Date().getFullYear();
@@ -21,6 +23,41 @@ if (menuToggle && siteNav) {
         siteNav.classList.remove('open');
         menuToggle.setAttribute('aria-expanded', 'false');
       }
+    });
+  });
+}
+
+if (revealItems.length) {
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting) {
+          return;
+        }
+
+        entry.target.classList.add('in-view');
+        obs.unobserve(entry.target);
+      });
+    },
+    {
+      threshold: 0.14,
+      rootMargin: '0px 0px -30px 0px',
+    },
+  );
+
+  revealItems.forEach((item) => observer.observe(item));
+}
+
+if (parallaxItems.length && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+  window.addEventListener('pointermove', (event) => {
+    const ratioX = event.clientX / window.innerWidth - 0.5;
+    const ratioY = event.clientY / window.innerHeight - 0.5;
+
+    parallaxItems.forEach((item) => {
+      const strength = Number(item.dataset.parallax) || 0;
+      const x = ratioX * strength;
+      const y = ratioY * strength;
+      item.style.transform = `translate3d(${x}px, ${y}px, 0)`;
     });
   });
 }
