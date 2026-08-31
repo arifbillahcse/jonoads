@@ -706,6 +706,147 @@ p {
   font-weight: 700;
 }
 
+.team-constellation {
+  display: grid;
+  grid-template-columns: 0.95fr 1.25fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) + 2px);
+  background: linear-gradient(145deg, rgba(8, 14, 20, 0.8), rgba(11, 10, 16, 0.88));
+}
+
+.founder-focus {
+  border-radius: 14px;
+  padding: 1.2rem;
+  background: radial-gradient(circle at 20% 10%, rgba(53, 193, 241, 0.25), rgba(53, 193, 241, 0) 60%),
+    rgba(10, 16, 22, 0.86);
+}
+
+.team-role {
+  display: inline-block;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent);
+  margin-bottom: 0.6rem;
+}
+
+.team-orbit {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.orbit-member {
+  border-radius: 12px;
+  padding: 0.95rem;
+  background: rgba(10, 13, 19, 0.84);
+}
+
+.orbit-member h3 {
+  font-size: 1.08rem;
+  margin-bottom: 0.45rem;
+}
+
+.partner-matrix {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.85rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) + 2px);
+  background: linear-gradient(155deg, rgba(9, 14, 20, 0.9), rgba(8, 10, 14, 0.82));
+}
+
+.partner-cell {
+  border-radius: 12px;
+  padding: 1rem;
+  background: rgba(10, 14, 19, 0.9);
+}
+
+.partner-cell span {
+  display: inline-flex;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 50%;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(53, 193, 241, 0.48);
+  color: var(--accent);
+  font-size: 0.74rem;
+  margin-bottom: 0.55rem;
+}
+
+.partner-cell h3 {
+  margin: 0;
+  font-size: 1.03rem;
+}
+
+.model-arc {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.model-step {
+  position: relative;
+  border-radius: 14px;
+  padding: 1rem;
+  background: linear-gradient(165deg, rgba(11, 15, 20, 0.9), rgba(8, 10, 14, 0.84));
+}
+
+.model-step span {
+  position: absolute;
+  top: -0.6rem;
+  right: 0.75rem;
+  display: inline-flex;
+  min-width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 999px;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.74rem;
+  color: #03151d;
+  font-weight: 700;
+  background: linear-gradient(120deg, #35c1f1, #88e8ff);
+}
+
+.smb-stage {
+  display: grid;
+  grid-template-columns: 1.02fr 1.2fr;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: calc(var(--radius) + 2px);
+  background: linear-gradient(145deg, rgba(10, 14, 19, 0.92), rgba(9, 9, 12, 0.86));
+}
+
+.smb-primary {
+  border-radius: 12px;
+  padding: 1rem;
+  background: rgba(12, 16, 22, 0.78);
+}
+
+.smb-lanes {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.smb-lane,
+.smb-links {
+  border-radius: 12px;
+  padding: 0.95rem;
+  background: rgba(9, 14, 20, 0.84);
+}
+
+.smb-links {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.smb-links a {
+  color: var(--accent);
+  font-size: 0.93rem;
+}
+
 .pill-list {
   display: flex;
   flex-wrap: wrap;
@@ -839,6 +980,20 @@ p {
     grid-template-columns: 1fr;
   }
 
+  .team-constellation,
+  .smb-stage {
+    grid-template-columns: 1fr;
+  }
+
+  .team-orbit {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .partner-matrix,
+  .model-arc {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .case-journey::before {
     left: 0.65rem;
   }
@@ -898,6 +1053,12 @@ p {
   .stats-grid,
   .cards,
   .compare-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-orbit,
+  .partner-matrix,
+  .model-arc {
     grid-template-columns: 1fr;
   }
 
