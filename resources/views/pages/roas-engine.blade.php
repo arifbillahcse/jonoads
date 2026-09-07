@@ -1,37 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>The ROAS Engine™ — Jono Advertising's media buying system</title>
-<meta name="description" content="Inside the ROAS Engine™: the three-stage Review, Operate, Improve cycle Jono Advertising runs on every account, built from eight consecutive years undefeated against top ad network marketing science teams.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+@extends('layouts.app')
 
-<!-- ============ NAV ============ -->
-<header class="site-header" id="siteHeader">
-  <div class="header-inner">
-    <a href="index.html#top" class="logo">Jono<span class="logo-dot">.</span></a>
+@section('title', "The ROAS Engine™ — Jono Advertising's media buying system")
+@section('description', 'Inside the ROAS Engine™: the three-stage Review, Operate, Improve cycle Jono Advertising runs on every account, built from eight consecutive years undefeated against top ad network marketing science teams.')
 
-    <nav class="main-nav" id="mainNav">
-      <a href="#top">ROAS Engine</a>
-      <a href="services.html">Services</a>
-      <a href="work.html">Work</a>
-      <a href="team.html">Team</a>
-      <a href="index.html#partners">Partners</a>
-      <a href="contact.html" class="nav-cta">Schedule a call</a>
-    </nav>
-
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
+@section('content')
 <!-- ============ ENGINE HERO ============ -->
 <section class="engine-hero" id="top">
   <div class="section-inner engine-hero-inner">
@@ -44,7 +16,7 @@
       at the top ad networks for eight consecutive years: nineteen pitches, zero losses.
     </p>
     <div class="hero-actions reveal">
-      <a href="contact.html" class="btn btn-primary">Schedule a call</a>
+      <a href="{{ route('contact') }}" class="btn btn-primary">Schedule a call</a>
       <a href="#diagram" class="btn btn-ghost">See how it works</a>
     </div>
 
@@ -184,7 +156,7 @@
     <div>
       <h2 class="reveal">The Engine, in results.</h2>
       <p class="reveal">A sample of what running through Review, Operate, Improve does to an account.</p>
-      <a href="work.html" class="btn btn-ghost reveal">See the full case studies</a>
+      <a href="{{ route('work') }}" class="btn btn-ghost reveal">See the full case studies</a>
     </div>
     <div class="engine-proof-stats">
       <div class="case-stat reveal">
@@ -208,47 +180,7 @@
   <div class="section-inner contact-inner">
     <h2 class="reveal">Ready to put your account through the Engine?</h2>
     <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
-    <a href="contact.html" class="btn btn-primary btn-large reveal">Schedule a call</a>
+    <a href="{{ route('contact') }}" class="btn btn-primary btn-large reveal">Schedule a call</a>
   </div>
 </section>
-
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="section-inner footer-inner">
-    <div class="footer-brand">
-      <a href="index.html#top" class="logo">Jono<span class="logo-dot">.</span></a>
-      <p>jonoads.com · info@jonoadvertising.com</p>
-    </div>
-
-    <div class="footer-cols">
-      <div class="footer-col">
-        <h4>Site</h4>
-        <a href="#top">ROAS Engine</a>
-        <a href="services.html">Services</a>
-        <a href="work.html">Work</a>
-        <a href="team.html">Team</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="index.html#partners">Partners</a>
-        <a href="index.html#locations">Locations</a>
-        <a href="/smb.html">SMB program</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>More</h4>
-        <a href="index.html#newsletter">Newsletter</a>
-        <a href="https://www.skool.com" target="_blank" rel="noopener">Skool community</a>
-        <a href="index.html#podcast">Podcast</a>
-        <a href="/merch.html">Merch</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© <span id="year"></span> Jono Advertising. All rights reserved.</p>
-  </div>
-</footer>
-
-<script src="assets/js/script.js"></script>
-</body>
-</html>
+@endsection

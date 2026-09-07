@@ -1,37 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jono Advertising — Performance advertising, engineered to win.</title>
-<meta name="description" content="Jono Advertising manages $225M+ in media, has generated $750M+ in client revenue, and runs the ROAS Engine — a media buying system built for billion-dollar brands.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/css/style.css">
-</head>
-<body>
+@extends('layouts.app')
 
-<!-- ============ NAV ============ -->
-<header class="site-header" id="siteHeader">
-  <div class="header-inner">
-    <a href="#top" class="logo">Jono<span class="logo-dot">.</span></a>
+@section('title', "Jono Advertising — Performance advertising, engineered to win.")
+@section('description', 'Jono Advertising manages $225M+ in media, has generated $750M+ in client revenue, and runs the ROAS Engine — a media buying system built for billion-dollar brands.')
 
-    <nav class="main-nav" id="mainNav">
-      <a href="roas-engine.html">ROAS Engine</a>
-      <a href="services.html">Services</a>
-      <a href="work.html">Work</a>
-      <a href="team.html">Team</a>
-      <a href="#partners">Partners</a>
-      <a href="contact.html" class="nav-cta">Schedule a call</a>
-    </nav>
-
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">
-      <span></span><span></span><span></span>
-    </button>
-  </div>
-</header>
-
+@section('content')
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
   <canvas id="heroCanvas" class="hero-canvas"></canvas>
@@ -47,8 +19,8 @@
       Eight years running.
     </p>
     <div class="hero-actions">
-      <a href="contact.html" class="btn btn-primary">Schedule a call</a>
-      <a href="roas-engine.html" class="btn btn-ghost">See the ROAS Engine</a>
+      <a href="{{ route('contact') }}" class="btn btn-primary">Schedule a call</a>
+      <a href="{{ route('roas-engine') }}" class="btn btn-ghost">See the ROAS Engine</a>
     </div>
 
     <div class="hero-stats" id="heroStats">
@@ -181,7 +153,7 @@
         </li>
       </ol>
 
-      <a href="roas-engine.html" class="btn btn-ghost reveal roas-more-link">Read the full breakdown</a>
+      <a href="{{ route('roas-engine') }}" class="btn btn-ghost reveal roas-more-link">Read the full breakdown</a>
     </div>
 
     <div class="roas-diagram-wrap reveal">
@@ -235,7 +207,7 @@
       </div>
     </div>
 
-    <a href="services.html" class="btn btn-ghost reveal section-more-link">See all services</a>
+    <a href="{{ route('services') }}" class="btn btn-ghost reveal section-more-link">See all services</a>
   </div>
 </section>
 
@@ -438,7 +410,7 @@
       </div>
     </div>
 
-    <a href="work.html" class="btn btn-ghost reveal section-more-link">See all case studies</a>
+    <a href="{{ route('work') }}" class="btn btn-ghost reveal section-more-link">See all case studies</a>
   </div>
 </section>
 
@@ -552,7 +524,7 @@
       <h2>Running a local or regional business?</h2>
       <p>HVAC, electricians, construction, lawn care, interior design, med spas, pest control, private schools — we run a dedicated program built for your budget and your market.</p>
     </div>
-    <a href="/smb.html" class="btn btn-primary">See the SMB program</a>
+    <a href="{{ route('smb') }}" class="btn btn-primary">See the SMB program</a>
   </div>
 </section>
 
@@ -567,7 +539,7 @@
       <a href="#newsletter">Newsletter</a>
       <a href="https://www.skool.com" target="_blank" rel="noopener">Skool community</a>
       <a href="#podcast">Podcast</a>
-      <a href="/merch.html">Merch</a>
+      <a href="{{ route('home') }}#merch">Merch</a>
     </div>
   </div>
 </section>
@@ -586,44 +558,4 @@
     <p class="newsletter-success" id="newsletterSuccess" role="status">You're in. Check your inbox to confirm.</p>
   </div>
 </section>
-
-<!-- ============ FOOTER ============ -->
-<footer class="site-footer">
-  <div class="section-inner footer-inner">
-    <div class="footer-brand">
-      <a href="#top" class="logo">Jono<span class="logo-dot">.</span></a>
-      <p>jonoads.com · info@jonoadvertising.com</p>
-    </div>
-
-    <div class="footer-cols">
-      <div class="footer-col">
-        <h4>Site</h4>
-        <a href="roas-engine.html">ROAS Engine</a>
-        <a href="services.html">Services</a>
-        <a href="work.html">Work</a>
-        <a href="team.html">Team</a>
-      </div>
-      <div class="footer-col">
-        <h4>Company</h4>
-        <a href="#partners">Partners</a>
-        <a href="#locations">Locations</a>
-        <a href="/smb.html">SMB program</a>
-        <a href="contact.html">Contact</a>
-      </div>
-      <div class="footer-col">
-        <h4>More</h4>
-        <a href="#newsletter">Newsletter</a>
-        <a href="https://www.skool.com" target="_blank" rel="noopener">Skool community</a>
-        <a href="#podcast">Podcast</a>
-        <a href="/merch.html">Merch</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer-bottom">
-    <p>© <span id="year"></span> Jono Advertising. All rights reserved.</p>
-  </div>
-</footer>
-
-<script src="assets/js/script.js"></script>
-</body>
-</html>
+@endsection

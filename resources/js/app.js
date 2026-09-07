@@ -3,7 +3,6 @@
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  setYear();
   initHeader();
   initHamburger();
   initSmoothScroll();
@@ -15,12 +14,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initBarCharts();
   initNewsletterForm();
 });
-
-/* ---------- Footer year ---------- */
-function setYear() {
-  const el = document.getElementById('year');
-  if (el) el.textContent = new Date().getFullYear();
-}
 
 /* ---------- Sticky header shrink on scroll ---------- */
 function initHeader() {
