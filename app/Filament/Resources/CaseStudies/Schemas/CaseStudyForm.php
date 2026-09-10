@@ -49,6 +49,10 @@ class CaseStudyForm
                                     ->required()
                                     ->maxLength(255)
                                     ->columnSpan(2),
+                                Toggle::make('is_headline')
+                                    ->label('Headline result')
+                                    ->helperText('On a featured case study this drives the section heading and the before/after chart.')
+                                    ->columnSpan(1),
                                 TextInput::make('value')->numeric()->required(),
                                 TextInput::make('prefix')->maxLength(10)->placeholder('$'),
                                 TextInput::make('suffix')->maxLength(10)->placeholder('x'),

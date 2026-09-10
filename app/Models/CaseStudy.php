@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\FlushesSiteContentCache;
 use App\Models\Concerns\Publishable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,7 +13,7 @@ use Illuminate\Support\Str;
 
 class CaseStudy extends Model
 {
-    use HasFactory, Publishable, SoftDeletes;
+    use FlushesSiteContentCache, HasFactory, Publishable, SoftDeletes;
 
     protected $fillable = [
         'client',
@@ -44,6 +45,20 @@ class CaseStudy extends Model
     public function stats(): HasMany
     {
         return $this->hasMany(CaseStudyStat::class)->orderBy('sort_order');
+    }
+
+    /** Detail copy is stored newline-separated and rendered as paragraphs. */
+    public function detailParagraphs(): array
+    {
+        $parts = preg_split('/\n+/', (string) $this->detail) ?: [];
+
+        return array_values(array_filter(array_map('trim', $parts), 'strlen'));
+    }
+
+    /** The standout result, used for the featured heading and chart. */
+    public function headlineStat(): ?CaseStudyStat
+    {
+        return $this->stats->firstWhere('is_headline', true) ?? $this->stats->last();
     }
 
     public function scopeFeatured(Builder $query): Builder

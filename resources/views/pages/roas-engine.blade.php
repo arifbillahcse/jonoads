@@ -20,24 +20,7 @@
       <a href="#diagram" class="btn btn-ghost">See how it works</a>
     </div>
 
-    <div class="hero-stats reveal">
-      <div class="hero-stat">
-        <span class="stat-number" data-target="13" data-suffix="">0</span>
-        <span class="stat-label">Point audit in Review</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-number" data-target="225" data-prefix="$" data-suffix="M">0</span>
-        <span class="stat-label">Media run through the Engine</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-number" data-target="8" data-suffix="">0</span>
-        <span class="stat-label">Years undefeated</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-number" data-target="19" data-suffix="">0</span>
-        <span class="stat-label">Pitches, zero losses</span>
-      </div>
-    </div>
+    <x-section.hero-stats group="engine_hero" class="reveal" />
   </div>
 </section>
 
@@ -52,48 +35,10 @@
         feeds the next. Click a step to see how it fits.
       </p>
 
-      <ol class="roas-steps" id="roasSteps">
-        <li class="roas-step is-active" data-step="1">
-          <span class="roas-step-index">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M20 20l-4.8-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-          <div>
-            <h3>Review</h3>
-            <p>A 13-step audit of media, ad tech, creative, and business priorities before we touch a single dollar.</p>
-          </div>
-        </li>
-        <li class="roas-step" data-step="2">
-          <span class="roas-step-index">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h4M16 12h4M12 4v4M12 16v4M6.3 6.3l2.8 2.8M14.9 14.9l2.8 2.8M17.7 6.3l-2.8 2.8M9.1 14.9l-2.8 2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
-          </span>
-          <div>
-            <h3>Operate</h3>
-            <p>Active ads management — ad units, audiences, copy, visuals, and budgets adjusted daily, not monthly.</p>
-          </div>
-        </li>
-        <li class="roas-step" data-step="3">
-          <span class="roas-step-index">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16l5-5.5 3.5 3 6.5-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6h4v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <div>
-            <h3>Improve</h3>
-            <p>Kaizen. Constant measurement, creative testing, attribution, and planning feed back into Review.</p>
-          </div>
-        </li>
-      </ol>
+      <x-section.roas-steps />
     </div>
 
-    <div class="roas-diagram-wrap reveal">
-      <svg class="roas-diagram" id="roasDiagram" viewBox="0 0 400 400" role="img" aria-label="The ROAS Engine cycle: Review, Operate, Improve">
-        <circle class="roas-ring-track" cx="200" cy="200" r="160" />
-        <path class="roas-arc roas-arc-1" data-step="1" d="" />
-        <path class="roas-arc roas-arc-2" data-step="2" d="" />
-        <path class="roas-arc roas-arc-3" data-step="3" d="" />
-        <text class="roas-center-label" x="200" y="188" text-anchor="middle">ROAS</text>
-        <text class="roas-center-sub" x="200" y="210" text-anchor="middle">ENGINE™</text>
-        <text class="roas-center-step" id="roasCenterStep" x="200" y="234" text-anchor="middle">01 · REVIEW</text>
-      </svg>
-    </div>
+    <x-section.roas-diagram />
   </div>
 </section>
 
@@ -104,49 +49,7 @@
     <h2 class="reveal">What actually happens at each step.</h2>
     <p class="engine-detail-sub reveal">A closer look at the work behind each third of the cycle.</p>
 
-    <div class="engine-detail-grid">
-      <div class="engine-detail-card reveal">
-        <span class="engine-detail-num">01</span>
-        <h3>Review</h3>
-        <p>Before we touch a dollar of spend, we audit the account end to end. A few of the areas the 13-point audit covers:</p>
-        <ul class="checklist">
-          <li>Account &amp; campaign architecture</li>
-          <li>Ad tech and tracking health</li>
-          <li>Creative inventory and performance</li>
-          <li>Audience and targeting strategy</li>
-          <li>Attribution and measurement setup</li>
-          <li>Business priorities and margin targets</li>
-        </ul>
-      </div>
-
-      <div class="engine-detail-card reveal">
-        <span class="engine-detail-num">02</span>
-        <h3>Operate</h3>
-        <p>Active management, not a monthly check-in. This is where the account is actually run:</p>
-        <ul class="checklist">
-          <li>Daily budget and bid adjustments</li>
-          <li>Audience refresh and expansion</li>
-          <li>Creative rotation and copy testing</li>
-          <li>Sunsetting underperforming ad units</li>
-          <li>Cross-channel budget reallocation</li>
-          <li>Weekly performance reporting</li>
-        </ul>
-      </div>
-
-      <div class="engine-detail-card reveal">
-        <span class="engine-detail-num">03</span>
-        <h3>Improve</h3>
-        <p>Kaizen — constant, incremental improvement that feeds straight back into the next Review:</p>
-        <ul class="checklist">
-          <li>Creative testing cadence and learnings</li>
-          <li>Attribution and incrementality checks</li>
-          <li>Retrospective performance analysis</li>
-          <li>Forward budget forecasting</li>
-          <li>Quarterly strategy planning</li>
-          <li>Findings routed back into Review</li>
-        </ul>
-      </div>
-    </div>
+    <x-section.engine-detail />
   </div>
 </section>
 

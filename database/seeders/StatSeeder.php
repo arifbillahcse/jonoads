@@ -206,7 +206,7 @@ class StatSeeder extends Seeder
                 'decimals' => 0,
                 'is_static' => false,
                 'static_value' => null,
-                'sort_order' => 1,
+                'sort_order' => 2,
             ],
             [
                 'group' => 'engine_proof',
@@ -250,7 +250,7 @@ class StatSeeder extends Seeder
                 'decimals' => 0,
                 'is_static' => true,
                 'static_value' => '24/7',
-                'sort_order' => 2,
+                'sort_order' => 1,
             ],
         ] as $row) {
             Stat::create($row);

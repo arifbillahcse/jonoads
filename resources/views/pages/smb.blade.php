@@ -4,17 +4,14 @@
 @section('description', 'A dedicated paid media program for local and regional businesses — HVAC, electrical, construction, lawn care, interior design, med spas, pest control, and private schools.')
 
 @section('content')
+@php($smb = \App\Support\SiteContent::smb())
 
 <!-- ============ SMB HERO ============ -->
 <section class="engine-hero" id="top">
   <div class="section-inner engine-hero-inner">
-    <p class="eyebrow-free-label reveal">SMB program</p>
-    <h1 class="reveal">Enterprise media buying, sized for your market.</h1>
-    <p class="engine-hero-sub reveal">
-      The same buyers who run nine-figure budgets for billion-dollar brands, on a
-      program built for a local and regional budget. One market, one team, and
-      the same daily management the enterprise accounts get.
-    </p>
+    <p class="eyebrow-free-label reveal">{{ $smb?->eyebrow }}</p>
+    <h1 class="reveal">{{ $smb?->headline }}</h1>
+    <p class="engine-hero-sub reveal">{{ $smb?->intro }}</p>
     <div class="hero-actions reveal">
       <a href="{{ route('contact') }}" class="btn btn-primary">Schedule a call</a>
       <a href="#industries" class="btn btn-ghost">See who this is for</a>
@@ -26,42 +23,9 @@
 <section class="partners" id="industries">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">Who this is for</p>
-    <h2 class="reveal">Built around how local demand actually works.</h2>
+    <h2 class="reveal">{{ $smb?->industries_heading }}</h2>
 
-    <div class="partner-grid">
-      <div class="partner-item reveal">
-        <span class="partner-name">HVAC</span>
-        <span class="partner-role">Seasonal demand, emergency intent</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Electrical</span>
-        <span class="partner-role">Service calls and project work</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Construction</span>
-        <span class="partner-role">Long consideration, high ticket</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Lawn Care</span>
-        <span class="partner-role">Recurring contracts, route density</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Interior Design</span>
-        <span class="partner-role">Portfolio-led, referral heavy</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Med Spas</span>
-        <span class="partner-role">Repeat treatment, local competition</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Pest Control</span>
-        <span class="partner-role">Urgent intent, subscription upsell</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Private Schools</span>
-        <span class="partner-role">Enrolment windows, parent targeting</span>
-      </div>
-    </div>
+    <x-section.industries />
   </div>
 </section>
 
@@ -69,7 +33,7 @@
 <section class="services" id="approach">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">What's different</p>
-    <h2 class="reveal">What a local budget usually buys, and what it buys here.</h2>
+    <h2 class="reveal">{{ $smb?->approach_heading }}</h2>
 
     <div class="services-detail-grid">
       <div class="service-detail-card reveal">
@@ -121,8 +85,8 @@
 <!-- ============ CONTACT / CTA ============ -->
 <section class="contact" id="contact">
   <div class="section-inner contact-inner">
-    <h2 class="reveal">Let's look at your market.</h2>
-    <p class="reveal">Tell us your service area and what you're spending now. We'll tell you what we'd change first.</p>
+    <h2 class="reveal">{{ $smb?->cta_heading }}</h2>
+    <p class="reveal">{{ $smb?->cta_body }}</p>
     <a href="{{ route('contact') }}" class="btn btn-primary btn-large reveal">Schedule a call</a>
   </div>
 </section>

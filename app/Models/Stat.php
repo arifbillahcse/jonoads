@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\FlushesSiteContentCache;
 use App\Models\Concerns\Publishable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Stat extends Model
 {
-    use HasFactory, Publishable, SoftDeletes;
+    use FlushesSiteContentCache, HasFactory, Publishable, SoftDeletes;
 
     /** The strips a stat can belong to. */
     public const GROUPS = [
@@ -61,5 +62,24 @@ class Stat extends Model
         }
 
         return $this->prefix . number_format((float) $this->value, $this->decimals) . $this->suffix;
+    }
+
+    /**
+     * The number the counter counts up to. Stored as a decimal, but trailing
+     * zeros would render "225.00" in the markup, so trim to what is meant.
+     */
+    public function animationTarget(): string
+    {
+        $value = (float) $this->value;
+
+        return $this->decimals > 0
+            ? number_format($value, $this->decimals, '.', '')
+            : (string) (int) round($value);
+    }
+
+    /** What shows before the counter starts, and if JavaScript never runs. */
+    public function zeroState(): string
+    {
+        return $this->prefix . number_format(0, $this->decimals) . $this->suffix;
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\FlushesSiteContentCache;
 use App\Models\Concerns\Publishable;
 use Illuminate\Database\Eloquent\Model;
 
 class ComparisonCheck extends Model
 {
-    use Publishable;
-
+    use FlushesSiteContentCache, Publishable;
 
     protected $fillable = [
         'text',

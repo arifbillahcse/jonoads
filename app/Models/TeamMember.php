@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\FlushesSiteContentCache;
 use App\Models\Concerns\Publishable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -11,7 +12,7 @@ use Illuminate\Support\Str;
 
 class TeamMember extends Model
 {
-    use HasFactory, Publishable, SoftDeletes;
+    use FlushesSiteContentCache, HasFactory, Publishable, SoftDeletes;
 
     protected $fillable = [
         'name',
@@ -44,7 +45,9 @@ class TeamMember extends Model
     /** Bio is stored newline-separated and rendered as paragraphs. */
     public function bioParagraphs(): array
     {
-        return preg_split('/\n+/', trim((string) $this->bio)) ?: [];
+        $parts = preg_split('/\n+/', (string) $this->bio) ?: [];
+
+        return array_values(array_filter(array_map('trim', $parts), 'strlen'));
     }
 
     public function deriveInitials(): string

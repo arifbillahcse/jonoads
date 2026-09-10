@@ -6,17 +6,17 @@ developer.
 
 ## Status
 
-Phases 1–3 of 6 are complete. The site renders from Blade through Laravel, every
-piece of copy that used to be hardcoded has a table and a seeder, and there is a
-Filament admin panel to edit it. The public views still print inline markup; they
-start reading from the database in Phase 4.
+Phases 1–4 of 6 are complete. The public site now renders entirely from the
+database — editing a stat, case study or team bio in the admin panel changes the
+live page. What remains is real form handling (Phase 5) and the launch pass
+(Phase 6).
 
 | Phase | Scope | State |
 |-------|-------|-------|
 | 1 | Foundation — app skeleton, Vite, shared layout, routes | Done |
 | 2 | Data layer — migrations, models, content seeders | Done |
 | 3 | Filament admin panel — 16 resources, roles, settings | Done |
-| 4 | Blade port — sections read from the database | Not started |
+| 4 | Blade port — sections read from the database | Done |
 | 5 | Forms & lead capture | Not started |
 | 6 | QA, hardening, launch prep | Not started |
 
@@ -118,6 +118,26 @@ Notes on how it behaves:
   health panel flagging missing headshots, a thin testimonial section, and
   anything left unpublished.
 
+## How a page is built
+
+Each page view is mostly layout; the content comes from section components in
+`resources/views/components/section/`, which read through `App\Support\SiteContent`:
+
+```
+resources/views/pages/home.blade.php     headings, CTAs, section scaffolding
+  └── <x-section.case-grid />            queries + renders the case studies
+        └── <x-stat-number :stat="…" />  the animated counter markup
+app/Support/SiteContent.php              every public query, cached
+```
+
+`SiteContent` caches each query indefinitely. The `FlushesSiteContentCache`
+trait clears that cache whenever any content model is saved, deleted or
+restored — including child records, so editing one repeater item is enough.
+
+The counters, ROAS ring, comparison bars and scroll reveals are unchanged: the
+JavaScript still reads the same `data-target` / `data-prefix` / `data-suffix`
+attributes, which are now printed from database values rather than typed by hand.
+
 ## Data model
 
 21 tables hold the content that was previously hardcoded in HTML. Child tables
@@ -165,6 +185,10 @@ models (11 features), 3 ROAS steps (18 features), 6 case studies (11 stats),
   has at most one image, so the extra tables would not earn their keep.
 - Team initials are derived from the name on save when no headshot exists, so a
   member never renders as an empty box.
+- Bios and case-study detail copy are stored newline-separated and split into
+  paragraphs on render, so an editor gets paragraphs without writing HTML.
+- One result per case study can be flagged as the headline. On the featured case
+  study that flag drives both the section heading and the before/after chart.
 
 ## Configuration
 
@@ -181,3 +205,4 @@ Values surfaced in the site come from config rather than hardcoded markup:
   both depend on add-ons that are not in the core scope.
 - Team cards show initials rather than headshots — real photos are still needed.
 - No favicon yet (Phase 6).
+- The contact and newsletter forms still do not submit anywhere — Phase 5.

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\Concerns\FlushesSiteContentCache;
 use App\Models\Concerns\Publishable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -9,8 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Testimonial extends Model
 {
-    use HasFactory, Publishable, SoftDeletes;
-
+    use FlushesSiteContentCache, HasFactory, Publishable, SoftDeletes;
 
     protected $fillable = [
         'quote',

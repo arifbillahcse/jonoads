@@ -18,16 +18,7 @@
       <a href="#locations" class="btn btn-ghost">Our locations</a>
     </div>
 
-    <div class="hero-stats reveal">
-      <div class="hero-stat">
-        <span class="stat-number-static">24/7</span>
-        <span class="stat-label">Access to your team</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-number" data-target="5" data-suffix="">0</span>
-        <span class="stat-label">Offices, one team</span>
-      </div>
-    </div>
+    <x-section.hero-stats group="contact_hero" class="reveal" />
   </div>
 </section>
 
@@ -61,28 +52,7 @@
     <p class="eyebrow-free-label reveal">Small team. Big impact.</p>
     <h2 class="reveal">Cross cultures and time zones. We understand people.</h2>
 
-    <div class="locations-grid">
-      <div class="location-item reveal">
-        <h3>Miami <span>HQ</span></h3>
-        <p>Media Buying</p>
-      </div>
-      <div class="location-item reveal">
-        <h3>New York</h3>
-        <p>Creative</p>
-      </div>
-      <div class="location-item reveal">
-        <h3>Dallas</h3>
-        <p>CRM</p>
-      </div>
-      <div class="location-item reveal">
-        <h3>Los Angeles</h3>
-        <p>Accounts</p>
-      </div>
-      <div class="location-item reveal">
-        <h3>Bay Area</h3>
-        <p>CRM / Media</p>
-      </div>
-    </div>
+    <x-section.locations />
   </div>
 </section>
 

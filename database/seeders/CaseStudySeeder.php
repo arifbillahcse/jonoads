@@ -65,6 +65,9 @@ class CaseStudySeeder extends Seeder
             ],
             [
                 'client' => 'Supplement Co.',
+                'is_featured' => true,
+                'detail' => 'The incumbent agency — a top-10 US shop — had the account on a monthly optimization cadence with a single stale campaign structure. We rebuilt the Meta and Google account architecture from scratch, moved to daily active management, and shipped all-new creative and a rebuilt landing page in the first two weeks.
+                    Budget scaled 3x and ROAS tripled inside 45 days, outperforming the prior team\'s best month on record.',
                 'summary' => 'Outperformed the incumbent top US agency. New Meta and Google structure, active management, all-new creative and landing page.',
                 'stats' => [
                     [
@@ -76,6 +79,7 @@ class CaseStudySeeder extends Seeder
                     ],
                     [
                         'label' => 'ROAS in 45 days',
+                        'is_headline' => true,
                         'value' => 3.0,
                         'prefix' => '',
                         'suffix' => 'x',

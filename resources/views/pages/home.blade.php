@@ -23,24 +23,7 @@
       <a href="{{ route('roas-engine') }}" class="btn btn-ghost">See the ROAS Engine</a>
     </div>
 
-    <div class="hero-stats" id="heroStats">
-      <div class="hero-stat">
-        <span class="stat-number" data-target="225" data-prefix="$" data-suffix="M">0</span>
-        <span class="stat-label">Media managed</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-number" data-target="750" data-prefix="$" data-suffix="M+">0</span>
-        <span class="stat-label">Revenue generated</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-number" data-target="7" data-suffix="">0</span>
-        <span class="stat-label">Billion-dollar clients</span>
-      </div>
-      <div class="hero-stat">
-        <span class="stat-number" data-target="40" data-suffix="+">0</span>
-        <span class="stat-label">Brands scaled</span>
-      </div>
-    </div>
+    <x-section.hero-stats group="home_hero" id="heroStats" />
   </div>
 
   <div class="scroll-cue" aria-hidden="true">
@@ -50,28 +33,7 @@
 
 <!-- ============ LOGO MARQUEE ============ -->
 <section class="marquee-section" aria-label="Brands we've worked with">
-  <div class="marquee-track" id="marqueeTrack">
-    <div class="marquee-group" id="marqueeGroup">
-      <span>GM</span>
-      <span>Lexus</span>
-      <span>StubHub</span>
-      <span>Beachbody</span>
-      <span>Les Mills</span>
-      <span>Crexi</span>
-      <span>Fuse Lenses</span>
-      <span>Pvolve</span>
-      <span>Aarmy</span>
-      <span>InMobi</span>
-      <span>SideChef</span>
-      <span>Stickybeak</span>
-      <span>Muse</span>
-      <span>Verdanté</span>
-      <span>MRM</span>
-      <span>AOL</span>
-      <span>Gen</span>
-      <span>The Bouqs Co.</span>
-    </div>
-  </div>
+  <x-section.marquee />
 </section>
 
 <!-- ============ PEDIGREE STATS ============ -->
@@ -82,32 +44,7 @@
       Every media buyer on our team has run ads for brands most agencies only dream of pitching.
     </p>
 
-    <div class="pedigree-grid">
-      <div class="pedigree-item reveal">
-        <span class="pedigree-number" data-target="225" data-prefix="$" data-suffix="M">0</span>
-        <span class="pedigree-label">Media managed</span>
-      </div>
-      <div class="pedigree-item reveal">
-        <span class="pedigree-number" data-target="750" data-prefix="$" data-suffix="M+">0</span>
-        <span class="pedigree-label">Revenue generated</span>
-      </div>
-      <div class="pedigree-item reveal">
-        <span class="pedigree-number" data-target="7" data-suffix="">0</span>
-        <span class="pedigree-label">Billion-dollar brand clients</span>
-      </div>
-      <div class="pedigree-item reveal">
-        <span class="pedigree-number" data-target="100" data-suffix="+">0</span>
-        <span class="pedigree-label">Combined years at mega brands</span>
-      </div>
-      <div class="pedigree-item reveal">
-        <span class="pedigree-number" data-target="40" data-suffix="+">0</span>
-        <span class="pedigree-label">Brands scaled</span>
-      </div>
-      <div class="pedigree-item reveal">
-        <span class="pedigree-number" data-target="100" data-suffix="%">0</span>
-        <span class="pedigree-label">Outperformed client's prior team</span>
-      </div>
-    </div>
+    <x-section.pedigree />
   </div>
 </section>
 
@@ -123,50 +60,12 @@
         eight consecutive years — nineteen pitches, zero losses.
       </p>
 
-      <ol class="roas-steps" id="roasSteps">
-        <li class="roas-step is-active" data-step="1">
-          <span class="roas-step-index">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.6"/><path d="M20 20l-4.8-4.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
-          </span>
-          <div>
-            <h3>Review</h3>
-            <p>A 13-step audit of media, ad tech, creative, and business priorities before we touch a single dollar.</p>
-          </div>
-        </li>
-        <li class="roas-step" data-step="2">
-          <span class="roas-step-index">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 12h4M16 12h4M12 4v4M12 16v4M6.3 6.3l2.8 2.8M14.9 14.9l2.8 2.8M17.7 6.3l-2.8 2.8M9.1 14.9l-2.8 2.8" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.6"/></svg>
-          </span>
-          <div>
-            <h3>Operate</h3>
-            <p>Active ads management — ad units, audiences, copy, visuals, and budgets adjusted daily, not monthly.</p>
-          </div>
-        </li>
-        <li class="roas-step" data-step="3">
-          <span class="roas-step-index">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 16l5-5.5 3.5 3 6.5-7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M15 6h4v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-          <div>
-            <h3>Improve</h3>
-            <p>Kaizen. Constant measurement, creative testing, attribution, and planning feed back into Review.</p>
-          </div>
-        </li>
-      </ol>
+      <x-section.roas-steps />
 
       <a href="{{ route('roas-engine') }}" class="btn btn-ghost reveal roas-more-link">Read the full breakdown</a>
     </div>
 
-    <div class="roas-diagram-wrap reveal">
-      <svg class="roas-diagram" id="roasDiagram" viewBox="0 0 400 400" role="img" aria-label="The ROAS Engine cycle: Review, Operate, Improve">
-        <circle class="roas-ring-track" cx="200" cy="200" r="160" />
-        <path class="roas-arc roas-arc-1" data-step="1" d="" />
-        <path class="roas-arc roas-arc-2" data-step="2" d="" />
-        <path class="roas-arc roas-arc-3" data-step="3" d="" />
-        <text class="roas-center-label" x="200" y="188" text-anchor="middle">ROAS</text>
-        <text class="roas-center-sub" x="200" y="210" text-anchor="middle">ENGINE™</text>
-        <text class="roas-center-step" id="roasCenterStep" x="200" y="234" text-anchor="middle">01 · REVIEW</text>
-      </svg>
-    </div>
+    <x-section.roas-diagram />
   </div>
 </section>
 
@@ -176,36 +75,7 @@
     <p class="eyebrow-free-label reveal">What we do</p>
     <h2 class="reveal">Four services. One team, no handoffs.</h2>
 
-    <div class="services-list">
-      <div class="service-row reveal">
-        <span class="service-num">01</span>
-        <div class="service-body">
-          <h3>Digital Advertising</h3>
-          <p>Media planning, optimization, and attribution across Meta, Google, TikTok, X, Reddit, CTV, podcasts, and Pinterest — run by buyers who've managed nine figures in spend.</p>
-        </div>
-      </div>
-      <div class="service-row reveal">
-        <span class="service-num">02</span>
-        <div class="service-body">
-          <h3>Creative Services</h3>
-          <p>Concept to production. We write the brief, build the asset, and integrate directly with your internal team — then feed performance data straight back into the next round.</p>
-        </div>
-      </div>
-      <div class="service-row reveal">
-        <span class="service-num">03</span>
-        <div class="service-body">
-          <h3>CMO Advisory</h3>
-          <p>Business alignment, competitive intelligence, and operational improvements — the full-funnel best practices we've used to future-proof media programs at billion-dollar brands.</p>
-        </div>
-      </div>
-      <div class="service-row reveal">
-        <span class="service-num">04</span>
-        <div class="service-body">
-          <h3>CRM Strategy</h3>
-          <p>Email and SMS optimization, database monetization, and customer journey mapping — plus the creative production to actually ship the campaigns.</p>
-        </div>
-      </div>
-    </div>
+    <x-section.services-list />
 
     <a href="{{ route('services') }}" class="btn btn-ghost reveal section-more-link">See all services</a>
   </div>
@@ -217,106 +87,24 @@
     <h2 class="reveal">Jono vs. the average agency.</h2>
     <p class="comparison-sub reveal">There's no comparison. We check every box.</p>
 
-    <div class="comparison-grid">
-      <div class="comparison-card reveal">
-        <p class="comparison-title">Outperformed client's previous team</p>
-        <div class="bar-chart" data-values="33,100" data-labels="Avg agency,Jono" data-suffix="%"></div>
-      </div>
-      <div class="comparison-card reveal">
-        <p class="comparison-title">Clients whose ROAS we increased 25%+</p>
-        <div class="bar-chart" data-values="25,99" data-labels="Avg agency,Jono" data-suffix="%"></div>
-      </div>
-      <div class="comparison-card reveal">
-        <p class="comparison-title">Career ad spend managed by your buyer ($M)</p>
-        <div class="bar-chart" data-values="2,250" data-labels="Avg agency,Jono" data-suffix="M"></div>
-      </div>
-      <div class="comparison-card reveal">
-        <p class="comparison-title">Years experience of your media buyer</p>
-        <div class="bar-chart" data-values="4,28" data-labels="Avg agency,Jono" data-suffix=""></div>
-      </div>
-    </div>
-
-    <ul class="checklist reveal">
-      <li>Only world-class talent</li>
-      <li>10x the experience of a typical agency team</li>
-      <li>A-list partner network</li>
-      <li>Transparency is our standard</li>
-      <li>All-inclusive pricing — you win, we win</li>
-      <li>24/7 access</li>
-    </ul>
+    <x-section.comparison />
   </div>
 </section>
 
-<!-- ============ TESTIMONIAL ============ -->
-<section class="testimonial" id="testimonial">
-  <div class="section-inner">
-    <blockquote class="reveal">
-      <p>"Their digital ads expertise is superior. They have integrity, always
-      transparent. Jono is fully invested in our success. I don't have to
-      worry about our digital ads anymore — I don't have to worry about ads
-      performance anymore."</p>
-      <footer>Client feedback</footer>
-    </blockquote>
-  </div>
-</section>
+<x-section.testimonial />
 
 <!-- ============ TEAM ============ -->
 <section class="team" id="team">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">Founder &amp; CEO</p>
 
-    <div class="founder reveal">
-      <div class="founder-photo" data-initials="J" aria-hidden="true"></div>
-      <div class="founder-copy">
-        <h2>Joseph</h2>
-        <p>Among the world's most experienced digital advertising professionals, with $250M in media managed, ~$750M in revenue generated, and over 150,000 ads launched. He's scaled 30+ brands, managed media for seven billion-dollar companies, and worked with 70+ brands total.</p>
-        <p>Acclaimed for paid social advertising, Joseph has doubled client ROAS and monthly budget more than twenty times, and is undefeated against the marketing science teams at the top ad networks for eight consecutive years — nineteen pitches, zero losses.</p>
-        <p>He spent roughly 14 years at billion-dollar brands and is the first two-time recipient of the Brand Innovator Top 40 Under 40 Award. Joseph has spoken at Dreamforce, Spreadfast Summit, Social Loco, Mobile Loco, and the Corporate Social Media Summit, and regularly lectures in MBA programs at USC, Columbia, and George Washington University.</p>
-      </div>
-    </div>
+    <x-section.founder />
 
     <p class="eyebrow-free-label reveal team-heading-spacer">Dream team</p>
     <h2 class="reveal">Industry leaders in every domain.</h2>
     <p class="team-sub reveal">Trusted by startups and mega brands. Collectively scaled over 100 brands.</p>
 
-    <div class="team-grid">
-      <div class="team-card reveal">
-        <div class="team-photo" data-initials="MS" aria-hidden="true"></div>
-        <h3>Mike Smart</h3>
-        <p class="team-role">Head of Client Success</p>
-        <p>Go-to-market expert with two decades launching the world's most popular consumer electronics and Apple ecosystem brands. Deep manufacturer and retailer relationships across the US and Southeast Asia.</p>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-photo" data-initials="PI" aria-hidden="true"></div>
-        <h3>Phil Irvine</h3>
-        <p class="team-role">CRM + Lifecycle</p>
-        <p>Transformational marketing executive with two decades driving DTC and omni-channel growth from early stage to $1B+ organizations. Named one of Business Insider's "42 Rising Stars in Adtech."</p>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-photo" data-initials="NH" aria-hidden="true"></div>
-        <h3>Nicole Hidalgo</h3>
-        <p class="team-role">Social Media + Content</p>
-        <p>Founder of 197, a strategy-first creative growth agency aligning positioning, messaging, creative, and performance into one operating system built for scale.</p>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-photo" data-initials="TP" aria-hidden="true"></div>
-        <h3>Tom Pelligrino</h3>
-        <p class="team-role">Creative Engineer</p>
-        <p>A decade at premier brand-creative agencies, transforming messaging and identity for national clients. Two-plus years at the forefront of AI for creative strategy and performance advertising.</p>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-photo" data-initials="BB" aria-hidden="true"></div>
-        <h3>Bill Bradford</h3>
-        <p class="team-role">Advisor + Executive Leadership</p>
-        <p>Recognized executive leader in eCommerce and digital transformation, having led large, profitable digital divisions at Fox, Beachbody, AOL, Yahoo!, Oracle, and Wondr Health.</p>
-      </div>
-      <div class="team-card reveal">
-        <div class="team-photo" data-initials="ND" aria-hidden="true"></div>
-        <h3>Nicole Dunn</h3>
-        <p class="team-role">Public Relations, CEO of DPM PR</p>
-        <p>Founded DPM PR to bring positive health coverage to media. The firm elevates brands, experts, and healthcare providers in health, wellness, and lifestyle — and regularly contributes to Forbes.</p>
-      </div>
-    </div>
+    <x-section.team-grid />
   </div>
 </section>
 
@@ -327,88 +115,7 @@
     <h2 class="reveal">Case studies, by request.</h2>
     <p class="case-sub reveal">A sample of what changing the account architecture, creative, and management model actually does to the numbers.</p>
 
-    <div class="case-grid">
-      <div class="case-card reveal">
-        <h3>Sunglasses Co.</h3>
-        <div class="case-stats">
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="7.5" data-decimals="1" data-suffix="x">0x</span>
-            <span class="case-stat-label">Monthly budget</span>
-          </div>
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="40" data-prefix="+" data-suffix="%">0%</span>
-            <span class="case-stat-label">ROAS in 4 months</span>
-          </div>
-        </div>
-        <p>Rebuilt Meta audiences and campaign architecture, then switched to active ads management.</p>
-      </div>
-      <div class="case-card reveal">
-        <h3>Lenses Brand</h3>
-        <div class="case-stats">
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="4" data-suffix="x">0x</span>
-            <span class="case-stat-label">Monthly budget</span>
-          </div>
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="30" data-prefix="+" data-suffix="%">0%</span>
-            <span class="case-stat-label">ROAS</span>
-          </div>
-        </div>
-        <p>Reduced campaign overlap, rebuilt audiences, added active ads management and a creative testing pipeline. Revenue up +30% YoY.</p>
-      </div>
-      <div class="case-card reveal">
-        <h3>Global App (Lead Gen)</h3>
-        <div class="case-stats">
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="20" data-prefix="$" data-suffix="">$0</span>
-            <span class="case-stat-label">Cost per lead, down from ~$385</span>
-          </div>
-        </div>
-        <p>Updated the lead page, added martech, new Meta and Google creative and campaigns, sunset underperforming display ads.</p>
-      </div>
-      <div class="case-card reveal">
-        <h3>Supplement Co.</h3>
-        <div class="case-stats">
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="3" data-suffix="x">0x</span>
-            <span class="case-stat-label">Budget</span>
-          </div>
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="3" data-suffix="x">0x</span>
-            <span class="case-stat-label">ROAS in 45 days</span>
-          </div>
-        </div>
-        <p>Outperformed the incumbent top US agency. New Meta and Google structure, active management, all-new creative and landing page.</p>
-      </div>
-      <div class="case-card reveal">
-        <h3>Non-Alcoholic Whiskey</h3>
-        <div class="case-stats">
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="18" data-suffix="x">0x</span>
-            <span class="case-stat-label">Monthly budget</span>
-          </div>
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="2" data-suffix="x">0x</span>
-            <span class="case-stat-label">ROAS</span>
-          </div>
-        </div>
-        <p>Beat a global top Google ads agency by 70% on ROAS with new campaign structure, creative, and active management.</p>
-      </div>
-      <div class="case-card reveal">
-        <h3>Fitness App</h3>
-        <div class="case-stats">
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="3" data-suffix="x">0x</span>
-            <span class="case-stat-label">ROAS</span>
-          </div>
-          <div class="case-stat">
-            <span class="case-stat-number" data-target="2" data-suffix="x">0x</span>
-            <span class="case-stat-label">Monthly budget</span>
-          </div>
-        </div>
-        <p>Displaced a large incumbent US agency. New campaign structures, landing pages, 100% new creative, active management.</p>
-      </div>
-    </div>
+    <x-section.case-grid />
 
     <a href="{{ route('work') }}" class="btn btn-ghost reveal section-more-link">See all case studies</a>
   </div>
@@ -420,34 +127,7 @@
     <p class="eyebrow-free-label reveal">How we work together</p>
     <h2 class="reveal">Three ways in. Pick what fits.</h2>
 
-    <div class="engagement-grid">
-      <div class="engagement-card reveal">
-        <h3>Media Management</h3>
-        <ul>
-          <li>Omni-channel media buying — planning, daily optimization</li>
-          <li>Performance reporting across media and creative</li>
-          <li>Creative strategy and production with your team</li>
-          <li>Weekly meetings, historical review, forward planning</li>
-        </ul>
-      </div>
-      <div class="engagement-card reveal">
-        <h3>Team Augment</h3>
-        <ul>
-          <li>Fixed term, side-by-side training</li>
-          <li>Knowledge exchange on media, creative, attribution</li>
-          <li>Enhanced reporting and stakeholder management</li>
-          <li>Creative development support</li>
-        </ul>
-      </div>
-      <div class="engagement-card reveal">
-        <h3>Media Audit</h3>
-        <ul>
-          <li>360-degree review of every paid media channel</li>
-          <li>Ad tech, account architecture, creative, attribution</li>
-          <li>Findings plus a plan of actionable next steps</li>
-        </ul>
-      </div>
-    </div>
+    <x-section.engagement />
   </div>
 </section>
 
@@ -457,32 +137,7 @@
     <p class="eyebrow-free-label reveal">World-class partner network</p>
     <h2 class="reveal">We don't do everything. We know who does.</h2>
 
-    <div class="partner-grid">
-      <div class="partner-item reveal">
-        <span class="partner-name">197</span>
-        <span class="partner-role">Social Media + Content</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">DPM PR</span>
-        <span class="partner-role">Public Relations</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Stickybeak</span>
-        <span class="partner-role">Research</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Databox</span>
-        <span class="partner-role">Measurement</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Studio X</span>
-        <span class="partner-role">Web Development</span>
-      </div>
-      <div class="partner-item reveal">
-        <span class="partner-name">Catalyst Consulting</span>
-        <span class="partner-role">Product Dev + GTM</span>
-      </div>
-    </div>
+    <x-section.partner-grid />
   </div>
 </section>
 
@@ -492,28 +147,7 @@
     <p class="eyebrow-free-label reveal">Small team. Big impact.</p>
     <h2 class="reveal">Cross cultures and time zones. We understand people.</h2>
 
-    <div class="locations-grid">
-      <div class="location-item reveal">
-        <h3>Miami <span>HQ</span></h3>
-        <p>Media Buying</p>
-      </div>
-      <div class="location-item reveal">
-        <h3>New York</h3>
-        <p>Creative</p>
-      </div>
-      <div class="location-item reveal">
-        <h3>Dallas</h3>
-        <p>CRM</p>
-      </div>
-      <div class="location-item reveal">
-        <h3>Los Angeles</h3>
-        <p>Accounts</p>
-      </div>
-      <div class="location-item reveal">
-        <h3>Bay Area</h3>
-        <p>CRM / Media</p>
-      </div>
-    </div>
+    <x-section.locations />
   </div>
 </section>
 
