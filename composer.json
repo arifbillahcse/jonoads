@@ -1,13 +1,17 @@
 {
     "name": "jonoads/website",
     "type": "project",
-    "description": "Jono Advertising — marketing site on Laravel with a Filament admin panel.",
-    "keywords": ["laravel", "filament"],
+    "description": "Jono Advertising \u2014 marketing site on Laravel with a Filament admin panel.",
+    "keywords": [
+        "laravel",
+        "filament"
+    ],
     "license": "proprietary",
     "require": {
         "php": "^8.2",
         "laravel/framework": "^12.0",
-        "laravel/tinker": "^2.10"
+        "laravel/tinker": "^2.10",
+        "filament/filament": "^4.0"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

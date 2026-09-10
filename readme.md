@@ -6,15 +6,16 @@ developer.
 
 ## Status
 
-Phases 1–2 of 6 are complete. The site renders from Blade through Laravel, and
-every piece of copy that used to be hardcoded now has a table and a seeder. The
-views still print inline markup; they start reading from the database in Phase 4.
+Phases 1–3 of 6 are complete. The site renders from Blade through Laravel, every
+piece of copy that used to be hardcoded has a table and a seeder, and there is a
+Filament admin panel to edit it. The public views still print inline markup; they
+start reading from the database in Phase 4.
 
 | Phase | Scope | State |
 |-------|-------|-------|
 | 1 | Foundation — app skeleton, Vite, shared layout, routes | Done |
 | 2 | Data layer — migrations, models, content seeders | Done |
-| 3 | Filament admin panel — 15 resources, roles, settings | Not started |
+| 3 | Filament admin panel — 16 resources, roles, settings | Done |
 | 4 | Blade port — sections read from the database | Not started |
 | 5 | Forms & lead capture | Not started |
 | 6 | QA, hardening, launch prep | Not started |
@@ -83,11 +84,45 @@ the same behaviour the static build maintained by hand in six separate copies.
 Adding a page means adding a route plus one entry in
 `resources/views/partials/header.blade.php`.
 
+## Admin panel
+
+The panel is at `/admin`. Sign in with the account created by `AdminUserSeeder`
+— set `ADMIN_EMAIL` and `ADMIN_PASSWORD` in `.env` before seeding, or it falls
+back to `admin@jonoads.com` / `password` for local work.
+
+Navigation is grouped so the panel maps onto the site rather than the schema:
+
+| Group | Screens |
+|-------|---------|
+| Homepage | Stats, Brand logos |
+| Content | Services, ROAS Engine, Case studies, Testimonials, Comparison metrics, Comparison checklist, SMB industries, Engagement models, SMB page |
+| People | Team members, Partners, Locations |
+| Leads | Enquiries, Subscribers |
+| Settings | Site settings, Panel users |
+
+Notes on how it behaves:
+
+- **Roles.** `admin` sees everything; `editor` sees content but not Settings or
+  Panel users. The role lives on the user record — no permissions package.
+- **Nested content edits inline.** Service capabilities, ROAS step checklists,
+  engagement items and case-study results are repeaters on their parent record,
+  so there are 16 screens for 21 tables.
+- **Ordering is drag-and-drop** wherever the site renders a hand-ordered list,
+  writing to `sort_order`.
+- **The ROAS Engine has no create button** — the diagram is a fixed three-stage
+  cycle, so a fourth step would break it.
+- **Enquiries and subscribers are read-mostly**: they arrive from the site, so
+  neither has a create action. Enquiries carry a status workflow, internal notes,
+  and a navigation badge counting anything still marked new.
+- **Dashboard** shows unhandled enquiries and subscriber counts, plus a content
+  health panel flagging missing headshots, a thin testimonial section, and
+  anything left unpublished.
+
 ## Data model
 
 21 tables hold the content that was previously hardcoded in HTML. Child tables
 are edited inline on their parent in the admin panel, which is why 21 tables
-become roughly 15 admin screens.
+become 16 admin screens.
 
 | Table(s) | Holds |
 |----------|-------|
