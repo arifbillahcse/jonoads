@@ -1067,6 +1067,76 @@ button {
 }
 
 /* ============================================================
+   ACCESSIBILITY
+   ============================================================ */
+/* Visible only once focused, so keyboard users can jump past the nav. */
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  transform: translate(-50%, -120%);
+  z-index: 200;
+  background: var(--cyan);
+  color: var(--black);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 10px 20px;
+  border-radius: 0 0 4px 4px;
+  transition: transform 0.2s var(--ease);
+}
+
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+/* The skip target should not draw a focus ring when jumped to. */
+main:focus {
+  outline: none;
+}
+
+/* ============================================================
+   ERROR PAGES
+   ============================================================ */
+.error-page {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 10%, rgba(53, 193, 241, 0.12), transparent 60%),
+    var(--black);
+}
+
+.error-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.error-code {
+  font-family: var(--font-mono, var(--font-body));
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: var(--cyan);
+  margin: 0 0 0.5em;
+}
+
+.error-page h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+  max-width: 18ch;
+  margin-bottom: 0.4em;
+}
+
+.error-body {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 48ch;
+  margin-bottom: 2rem;
+}
+
+/* ============================================================
    ENQUIRY FORM
    ============================================================ */
 .enquiry {

@@ -3,6 +3,7 @@
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\NewsletterController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\SeoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,19 @@ Route::get('/work', [PageController::class, 'work'])->name('work');
 Route::get('/team', [PageController::class, 'team'])->name('team');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/smb', [PageController::class, 'smb'])->name('smb');
+
+/*
+|--------------------------------------------------------------------------
+| Crawlers
+|--------------------------------------------------------------------------
+|
+| Served from routes rather than static files so the sitemap carries absolute
+| URLs for whichever domain the app is running on.
+|
+*/
+
+Route::get('/sitemap.xml', [SeoController::class, 'sitemap'])->name('sitemap');
+Route::get('/robots.txt', [SeoController::class, 'robots'])->name('robots');
 
 /*
 |--------------------------------------------------------------------------

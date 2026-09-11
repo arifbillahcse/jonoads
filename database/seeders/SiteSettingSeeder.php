@@ -49,6 +49,13 @@ class SiteSettingSeeder extends Seeder
                 'type' => 'url',
             ],
             [
+                'key' => 'share_image',
+                'value' => '',
+                'group' => 'general',
+                'label' => 'Social share image',
+                'type' => 'text',
+            ],
+            [
                 'key' => 'footer_note',
                 'value' => 'Jono Advertising. All rights reserved.',
                 'group' => 'general',
