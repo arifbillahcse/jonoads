@@ -14,8 +14,8 @@
       we'd change first — email is the fastest way to reach us.
     </p>
     <div class="hero-actions reveal">
-      <a href="mailto:info@jonoadvertising.com" class="btn btn-primary">Email info@jonoadvertising.com</a>
-      <a href="#locations" class="btn btn-ghost">Our locations</a>
+      <a href="#enquiry" class="btn btn-primary">Send an enquiry</a>
+      <a href="mailto:{{ \App\Models\SiteSetting::get('contact_email') }}" class="btn btn-ghost">Or email us directly</a>
     </div>
 
     <x-section.hero-stats group="contact_hero" class="reveal" />
@@ -46,6 +46,20 @@
   </div>
 </section>
 
+<!-- ============ ENQUIRY FORM ============ -->
+<section class="enquiry" id="enquiry">
+  <div class="section-inner enquiry-inner">
+    <div class="enquiry-intro">
+      <p class="eyebrow-free-label reveal">Send an enquiry</p>
+      <h2 class="reveal">Tell us what you're running.</h2>
+      <p class="reveal">The more you tell us about the account, the more specific we can be about what we'd change first.</p>
+    </div>
+    <div class="reveal">
+      <x-form.contact />
+    </div>
+  </div>
+</section>
+
 <!-- ============ LOCATIONS ============ -->
 <section class="locations" id="locations">
   <div class="section-inner">
@@ -63,11 +77,7 @@
       <h2>Media buying notes, monthly.</h2>
       <p>What's working on Meta, Google, and CTV right now — no fluff, straight from the people running the accounts.</p>
     </div>
-    <form class="newsletter-form" id="newsletterForm">
-      <input type="email" name="email" placeholder="you@company.com" required aria-label="Email address">
-      <button type="submit" class="btn btn-primary">Subscribe</button>
-    </form>
-    <p class="newsletter-success" id="newsletterSuccess" role="status">You're in. Check your inbox to confirm.</p>
+    <x-form.newsletter />
   </div>
 </section>
 @endsection

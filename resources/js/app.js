@@ -12,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initRoasEngine();
   initBarCharts();
-  initNewsletterForm();
 });
 
 /* ---------- Sticky header shrink on scroll ---------- */
@@ -442,23 +441,6 @@ function initBarCharts() {
   );
 
   charts.forEach((chart) => observer.observe(chart));
-}
-
-/* ---------- Newsletter form (front-end only) ---------- */
-function initNewsletterForm() {
-  const form = document.getElementById('newsletterForm');
-  const success = document.getElementById('newsletterSuccess');
-  if (!form || !success) return;
-
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const emailInput = form.querySelector('input[type="email"]');
-    if (!emailInput || !emailInput.value) return;
-
-    form.classList.add('is-submitted');
-    success.classList.add('is-visible');
-    emailInput.value = '';
-  });
 }
 
 /* ---------- Utils ---------- */

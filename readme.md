@@ -6,10 +6,10 @@ developer.
 
 ## Status
 
-Phases 1–4 of 6 are complete. The public site now renders entirely from the
-database — editing a stat, case study or team bio in the admin panel changes the
-live page. What remains is real form handling (Phase 5) and the launch pass
-(Phase 6).
+Phases 1–5 of 6 are complete. The public site renders entirely from the
+database, and both forms now work for real: enquiries land in the panel and are
+emailed to the team, and newsletter signups go through double opt-in. What
+remains is the launch pass (Phase 6).
 
 | Phase | Scope | State |
 |-------|-------|-------|
@@ -17,7 +17,7 @@ live page. What remains is real form handling (Phase 5) and the launch pass
 | 2 | Data layer — migrations, models, content seeders | Done |
 | 3 | Filament admin panel — 16 resources, roles, settings | Done |
 | 4 | Blade port — sections read from the database | Done |
-| 5 | Forms & lead capture | Not started |
+| 5 | Forms & lead capture | Done |
 | 6 | QA, hardening, launch prep | Not started |
 
 ## Requirements
@@ -138,6 +138,38 @@ The counters, ROAS ring, comparison bars and scroll reveals are unchanged: the
 JavaScript still reads the same `data-target` / `data-prefix` / `data-suffix`
 attributes, which are now printed from database values rather than typed by hand.
 
+## Forms
+
+Both public forms post to the application and persist. Nothing is faked.
+
+| Route | Does |
+|-------|------|
+| `POST /contact` | Validates, stores a `ContactLead`, emails the team |
+| `POST /newsletter` | Stores a pending subscriber, sends a confirmation link |
+| `GET /newsletter/confirm/{token}` | Confirms, then burns the token so the link works once |
+| `GET /newsletter/unsubscribe/{subscriber}` | Signed link; marks the subscriber unsubscribed |
+
+**Spam handling.** Each form carries a honeypot field and an encrypted
+timestamp; a filled honeypot or a submission faster than two seconds is
+rejected. The timestamp is encrypted so it cannot be replayed or back-dated.
+Both routes are rate limited per IP. There is deliberately no CAPTCHA — these
+checks cost a real prospect nothing.
+
+**Failure handling.** The enquiry is written to the database before the
+notification is attempted, so an SMTP outage never loses a lead or shows the
+sender an error; the failure is logged and the lead still appears in the panel.
+
+**Export.** Both lead lists have an Export CSV button that streams whatever the
+current filter and search show. Filament ships a queue-backed exporter, but it
+needs three extra tables and a running worker — for lists this size a
+synchronous stream is the better trade.
+
+Run the tests with:
+
+```bash
+composer test
+```
+
 ## Data model
 
 21 tables hold the content that was previously hardcoded in HTML. Child tables
@@ -205,4 +237,5 @@ Values surfaced in the site come from config rather than hardcoded markup:
   both depend on add-ons that are not in the core scope.
 - Team cards show initials rather than headshots — real photos are still needed.
 - No favicon yet (Phase 6).
-- The contact and newsletter forms still do not submit anywhere — Phase 5.
+- Sending the newsletter itself is not built; the signup list is exportable for
+  whatever platform sends it. Connecting an ESP is a priced add-on.

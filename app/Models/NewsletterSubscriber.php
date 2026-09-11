@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\URL;
 
 class NewsletterSubscriber extends Model
 {
@@ -36,6 +37,12 @@ class NewsletterSubscriber extends Model
             'confirmed_at' => 'datetime',
             'unsubscribed_at' => 'datetime',
         ];
+    }
+
+    /** Signed so the link cannot be forged for somebody else's address. */
+    public function unsubscribeUrl(): string
+    {
+        return URL::signedRoute('newsletter.unsubscribe', ['subscriber' => $this->getKey()]);
     }
 
     public function scopeConfirmed(Builder $query): Builder

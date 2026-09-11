@@ -3,9 +3,12 @@
 namespace App\Filament\Resources\NewsletterSubscribers\Tables;
 
 use App\Models\NewsletterSubscriber;
+use App\Support\CsvExport;
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteBulkAction;
 use Filament\Tables\Columns\TextColumn;
+use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Filters\SelectFilter;
 use Filament\Tables\Table;
 
@@ -33,6 +36,22 @@ class NewsletterSubscribersTable
                 SelectFilter::make('status')->options(NewsletterSubscriber::STATUSES),
             ])
             ->defaultSort('created_at', 'desc')
+            ->headerActions([
+                Action::make('export')
+                    ->label('Export CSV')
+                    ->icon(Heroicon::ArrowDownTray)
+                    ->action(fn (Table $table) => CsvExport::stream(
+                        $table->getQuery(),
+                        [
+                            'email' => 'Email',
+                            'status' => 'Status',
+                            'created_at' => 'Signed up',
+                            'confirmed_at' => 'Confirmed',
+                            'source_page' => 'Source page',
+                        ],
+                        'subscribers-' . now()->format('Y-m-d') . '.csv',
+                    )),
+            ])
             ->toolbarActions([
                 BulkActionGroup::make([
                     DeleteBulkAction::make(),
