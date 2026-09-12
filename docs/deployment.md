@@ -160,6 +160,21 @@ npm ci && npm run build
 Then zip the project *including* `vendor/` and `public/build/`, and upload it
 through cPanel → File Manager.
 
+**No machine with PHP/Node either?** Use the `Build upload-ready release`
+GitHub Actions workflow (`.github/workflows/build-release.yml`). Open the
+repo's **Actions** tab → select it → **Run workflow**. It installs Composer
+and npm dependencies in CI, builds the assets, and uploads a
+`jonoads-release.zip` to the finished run's **Artifacts** section — download
+that and upload it straight through cPanel File Manager (extract it into the
+project root, replacing/merging with what's already there). It also runs
+automatically on every push to `claude/project-structure-assets-h4hobt`, so a
+fresh zip is always waiting after a deploy.
+
+Until `vendor/autoload.php` and `public/build/manifest.json` both exist on the
+server, `install.php` shows those two checks in red and keeps the submit
+button disabled — that's the installer refusing to run against an incomplete
+upload, not a bug.
+
 **Point the domain at `public/`**, not the project root — cPanel → Domains →
 Document Root. Serving the project root exposes `.env` to the web. The installer
 checks this and warns you.

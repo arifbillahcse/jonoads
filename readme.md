@@ -265,8 +265,10 @@ backup script, and a go-live checklist.
 **No shell access?** `install.php` in the project root is a one-time browser
 installer for cPanel-style hosting: it checks requirements, takes the database
 and admin details, then writes `.env`, migrates, seeds and caches. It cannot run
-Composer, so upload `vendor/` and `public/build/` with the files. It locks and
-deletes itself when finished — see the cPanel section of the deployment doc.
+Composer, so upload `vendor/` and `public/build/` with the files — no local PHP
+or Node either? The **Build upload-ready release** GitHub Actions workflow
+builds both in CI and hands you a ready-to-upload zip. It locks and deletes
+itself when finished — see the cPanel section of the deployment doc.
 
 ## Known gaps
 
