@@ -1,0 +1,19 @@
+---
+# Runs automatically when you click "Deploy HEAD Commit" in cPanel's
+# Git Version Control UI. Tasks execute in the repository's own directory
+# (the same folder whose public/ subfolder is the domain's document root),
+# so no rsync/DEPLOYPATH step is needed here.
+#
+# This builds PHP dependencies (Composer is available on this host). Node.js
+# is not available on this host, so public/build/ still has to arrive another
+# way — see docs/deployment.md, "Installing without shell access (cPanel)" /
+# the GitHub Actions release workflow.
+#
+# If a task fails, the failure output shows in the Git Version Control UI
+# right after you click Deploy. The most common failure here is the Composer
+# path below not matching this host — cPanel → Software → Composer shows the
+# exact binary path for this account if /opt/cpanel/composer/bin/composer
+# turns out to be wrong; swap it in below and redeploy.
+deployment:
+  tasks:
+    - export COMPOSER_BIN=$(command -v composer || echo /opt/cpanel/composer/bin/composer); $COMPOSER_BIN install --no-dev --optimize-autoloader --no-interaction

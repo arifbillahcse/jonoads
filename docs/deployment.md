@@ -175,6 +175,37 @@ server, `install.php` shows those two checks in red and keeps the submit
 button disabled — that's the installer refusing to run against an incomplete
 upload, not a bug.
 
+### Deploying via cPanel's Git Version Control instead
+
+If you're pulling the repo straight from GitHub with cPanel's **Git™ Version
+Control** feature rather than uploading a zip, point the repository at this
+project as usual, and set the domain/subdomain's **Document Root** to the
+repo's `public/` subfolder (e.g.
+`/home/USER/repositories/jonoads/public`) — not the repo root. That keeps
+`.env` and the application code outside the web root, the same as the zip
+upload path above.
+
+A `.cpanel.yml` at the project root runs automatically whenever you click
+**Deploy HEAD Commit** in the Git Version Control UI. It runs
+`composer install --no-dev` in place, so `vendor/` is rebuilt on every deploy
+without needing a zip or a shell — this only works because Composer happens
+to be available on this host (check cPanel → Software → Composer); if it
+isn't, skip straight to the zip-upload steps above instead.
+
+Node.js is a separate matter: most shared hosts don't offer it, so
+`public/build/` still won't exist after a Git deploy. Build it once with the
+**Build upload-ready release** GitHub Actions workflow (see above), then from
+the downloaded `jonoads-release.zip` extract just the `public/build/` folder
+and upload it into the cloned repo's `public/build/` via File Manager — you
+don't need the rest of the zip, since Git and `.cpanel.yml` already handle
+the code and `vendor/`. Re-do this only when front-end assets change; a plain
+code deploy doesn't touch `public/build/`.
+
+If a deploy task fails, cPanel shows the task output right in the Git Version
+Control UI after you click Deploy — the likeliest failure is the Composer
+binary path in `.cpanel.yml` not matching this host; cPanel → Software →
+Composer names the correct path to swap in.
+
 **Point the domain at `public/`**, not the project root — cPanel → Domains →
 Document Root. Serving the project root exposes `.env` to the web. The installer
 checks this and warns you.
