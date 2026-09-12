@@ -5,6 +5,8 @@
 /public/hot
 /public/storage
 /storage/*.key
+/storage/installed.lock
+/storage/app/install-token.txt
 /storage/pail
 /vendor
 .env

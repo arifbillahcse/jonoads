@@ -262,6 +262,12 @@ See [docs/deployment.md](docs/deployment.md) for the server requirements, the
 first and subsequent deploy steps, the queue worker and scheduler config, a
 backup script, and a go-live checklist.
 
+**No shell access?** `install.php` in the project root is a one-time browser
+installer for cPanel-style hosting: it checks requirements, takes the database
+and admin details, then writes `.env`, migrates, seeds and caches. It cannot run
+Composer, so upload `vendor/` and `public/build/` with the files. It locks and
+deletes itself when finished — see the cPanel section of the deployment doc.
+
 ## Known gaps
 
 - The `Podcast` and `Merch` footer links point at anchors that do not exist yet;

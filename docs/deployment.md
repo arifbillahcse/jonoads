@@ -142,3 +142,45 @@ php artisan up
 Migrations are not rolled back automatically. If the bad deploy migrated, decide
 deliberately: `php artisan migrate:rollback --step=1` drops whatever that
 migration created, including any data in it.
+
+## Installing without shell access (cPanel)
+
+`install.php` in the project root does the half of a deploy that needs no
+terminal. It cannot run Composer — resolving Laravel and Filament needs more
+memory and time than a web request gets, and `exec()` is disabled on most shared
+hosting — so the dependencies have to arrive with the upload.
+
+**Before uploading**, on any machine with PHP and Node:
+
+```bash
+composer install --no-dev --optimize-autoloader
+npm ci && npm run build
+```
+
+Then zip the project *including* `vendor/` and `public/build/`, and upload it
+through cPanel → File Manager.
+
+**Point the domain at `public/`**, not the project root — cPanel → Domains →
+Document Root. Serving the project root exposes `.env` to the web. The installer
+checks this and warns you.
+
+**Create the database** under cPanel → MySQL Databases: a database, a user, and
+All Privileges for that user on it.
+
+**Then visit `https://yourdomain.com/install.php`.** It will:
+
+1. Check PHP version, extensions and folder permissions
+2. Ask for the setup code in `storage/app/install-token.txt` — being able to
+   read that file is what proves you own the server rather than just finding
+   the page
+3. Take the database, admin and SMTP details
+4. Write `.env`, generate the app key, migrate, seed, link storage, cache config
+
+On success it writes `storage/installed.lock`, deletes the token and tries to
+delete itself.
+
+> **Delete `install.php` afterwards.** It usually removes itself, but if the
+> file is not writable it cannot, and it will say so. Left in place, anyone who
+> finds the URL could repoint the site at their own database.
+
+To reinstall deliberately, delete `storage/installed.lock` first.
