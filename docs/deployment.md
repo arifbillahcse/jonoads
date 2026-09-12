@@ -175,6 +175,16 @@ server, `install.php` shows those two checks in red and keeps the submit
 button disabled — that's the installer refusing to run against an incomplete
 upload, not a bug.
 
+**If your host allows shell commands from PHP**, the failing "Composer
+dependencies uploaded" row shows a **Try to run Composer now** button — enter
+the setup code and it looks for Composer on the server and runs
+`composer install` directly from the web request, showing the real output
+either way. Most shared hosting disables `exec()`/`shell_exec()`/`proc_open()`
+specifically to prevent this, so expect it to say so and fall back to
+uploading `vendor/` yourself — that's the expected outcome on a locked-down
+host, not a broken feature. It still cannot build `public/build/`, since that
+needs Node, not Composer.
+
 ### Deploying via cPanel's Git Version Control instead
 
 If you're pulling the repo straight from GitHub with cPanel's **Git™ Version
@@ -205,6 +215,16 @@ If a deploy task fails, cPanel shows the task output right in the Git Version
 Control UI after you click Deploy — the likeliest failure is the Composer
 binary path in `.cpanel.yml` not matching this host; cPanel → Software →
 Composer names the correct path to swap in.
+
+**"Deploy HEAD Commit" is greyed out even with a valid `.cpanel.yml` and no
+uncommitted changes?** That means shell/SSH access is disabled for this
+account — cPanel's deployment tasks need it even though Git cloning itself
+doesn't. `.cpanel.yml` cannot help here. Try `install.php`'s **Try to run
+Composer now** button instead (see above) — it uses PHP's own
+`exec`/`shell_exec`/`proc_open` rather than cPanel's deploy mechanism, so it
+sometimes works even when Deploy is blocked. If that also reports shell
+execution is disabled, this host blocks it at the PHP level too, and there's
+no way around it short of building `vendor/` elsewhere and uploading it.
 
 **Point the domain at `public/`**, not the project root — cPanel → Domains →
 Document Root. Serving the project root exposes `.env` to the web. The installer

@@ -5,10 +5,17 @@
  *
  * It does the half of a deploy that does NOT need a terminal: writes .env,
  * generates the app key, runs migrations and seeders, links storage and warms
- * the caches. It deliberately does not try to run Composer — resolving Laravel
- * and Filament needs far more memory and time than a web request gets, and
- * exec() is disabled on most shared hosting. Upload `vendor/` and
- * `public/build/` with the rest of the files.
+ * the caches. It does not run Composer as part of the main install — resolving
+ * Laravel and Filament needs far more memory and time than a web request
+ * comfortably gets, and exec()/shell_exec()/proc_open() are disabled on a lot
+ * of shared hosting. Upload `vendor/` and `public/build/` with the rest of the
+ * files as the default path.
+ *
+ * Where the host does allow shell execution and has Composer installed (check
+ * cPanel → Software → Composer), the "Composer dependencies uploaded" row
+ * offers a "Try to run Composer now" button as a best-effort shortcut — see
+ * attemptComposerInstall(). It still cannot build `public/build/`; that needs
+ * Node, which this approach does not attempt at all.
  *
  * Security: reading the generated token proves you have real file access to the
  * server, not just the URL. After a successful run the installer locks itself,
@@ -101,6 +108,152 @@ function requirementChecks(string $root): array
     );
 
     return $rows;
+}
+
+function disabledFunctionsList(): array
+{
+    $raw = trim((string) ini_get('disable_functions'));
+
+    return $raw === '' ? [] : array_map('trim', explode(',', $raw));
+}
+
+function phpCallableAllowed(string $function): bool
+{
+    return function_exists($function) && ! in_array($function, disabledFunctionsList(), true);
+}
+
+function shellExecutionAvailable(): bool
+{
+    return phpCallableAllowed('proc_open') || phpCallableAllowed('shell_exec') || phpCallableAllowed('exec');
+}
+
+/** Common install locations for Composer on shared/cPanel hosting, tried in order. */
+const COMPOSER_CANDIDATES = [
+    'composer',
+    '/opt/cpanel/composer/bin/composer',
+    '/usr/local/bin/composer',
+    '/usr/bin/composer',
+    '/usr/local/cpanel/3rdparty/bin/composer',
+];
+
+/**
+ * Runs one shell command and captures its combined output, trying whichever
+ * of proc_open / shell_exec / exec the host has not disabled. Returns
+ * ['ran' => bool, 'exit' => int, 'output' => string].
+ */
+function runShellCommand(string $command, string $cwd, int $timeoutSeconds): array
+{
+    if (phpCallableAllowed('proc_open')) {
+        $descriptors = [1 => ['pipe', 'w'], 2 => ['pipe', 'w']];
+        $process = @proc_open($command, $descriptors, $pipes, $cwd);
+
+        if (! is_resource($process)) {
+            return ['ran' => false, 'exit' => -1, 'output' => ''];
+        }
+
+        stream_set_blocking($pipes[1], false);
+        stream_set_blocking($pipes[2], false);
+
+        $output = '';
+        $started = time();
+
+        while (true) {
+            $output .= (string) stream_get_contents($pipes[1]);
+            $output .= (string) stream_get_contents($pipes[2]);
+            $status = proc_get_status($process);
+
+            if (! $status['running']) {
+                break;
+            }
+
+            if (time() - $started > $timeoutSeconds) {
+                proc_terminate($process);
+                $output .= "\n[stopped: exceeded {$timeoutSeconds}s]";
+                break;
+            }
+
+            usleep(200000);
+        }
+
+        $output .= (string) stream_get_contents($pipes[1]);
+        $output .= (string) stream_get_contents($pipes[2]);
+        foreach ($pipes as $pipe) {
+            fclose($pipe);
+        }
+
+        return ['ran' => true, 'exit' => proc_close($process), 'output' => trim($output)];
+    }
+
+    if (phpCallableAllowed('shell_exec')) {
+        $output = @shell_exec($command . ' 2>&1');
+
+        return ['ran' => $output !== null, 'exit' => $output === null ? -1 : 0, 'output' => trim((string) $output)];
+    }
+
+    if (phpCallableAllowed('exec')) {
+        $lines = [];
+        $exit = -1;
+        @exec($command . ' 2>&1', $lines, $exit);
+
+        return ['ran' => true, 'exit' => $exit, 'output' => trim(implode("\n", $lines))];
+    }
+
+    return ['ran' => false, 'exit' => -1, 'output' => ''];
+}
+
+function findComposerBinary(string $root): ?string
+{
+    foreach (COMPOSER_CANDIDATES as $candidate) {
+        $result = runShellCommand(escapeshellarg($candidate) . ' --version', $root, 15);
+
+        if ($result['ran'] && $result['exit'] === 0) {
+            return $candidate;
+        }
+    }
+
+    return null;
+}
+
+/**
+ * Best-effort Composer run for the minority of hosts that allow shell
+ * execution from PHP even without an interactive terminal. Most shared
+ * hosting blocks this — that is expected, not a bug, and the caller falls
+ * back to "upload vendor/ yourself" either way.
+ */
+function attemptComposerInstall(string $root): array
+{
+    if (! shellExecutionAvailable()) {
+        return [
+            'ok' => false,
+            'output' => '',
+            'message' => 'exec(), shell_exec() and proc_open() are all disabled on this server — a common '
+                . 'hardening setting on shared hosting. There is no way to run Composer from a web request '
+                . 'here. Build vendor/ elsewhere and upload it, or use the GitHub Actions release workflow.',
+        ];
+    }
+
+    $binary = findComposerBinary($root);
+
+    if ($binary === null) {
+        return [
+            'ok' => false,
+            'output' => '',
+            'message' => 'Composer was not found under any of the usual paths on this server. Check cPanel → '
+                . 'Software → Composer for the exact path, or build vendor/ elsewhere and upload it.',
+        ];
+    }
+
+    $command = escapeshellarg($binary) . ' install --no-dev --optimize-autoloader --no-interaction';
+    $result = runShellCommand($command, $root, 240);
+    $ok = $result['ran'] && $result['exit'] === 0 && is_file($root . '/vendor/autoload.php');
+
+    return [
+        'ok' => $ok,
+        'output' => $result['output'],
+        'message' => $ok
+            ? 'Composer install finished using ' . $binary . '.'
+            : 'Composer ran but did not finish cleanly — see the output below.',
+    ];
 }
 
 /**
@@ -292,6 +445,18 @@ $docRoot = documentRootAdvice($root);
 
 $token = $alreadyInstalled ? '' : ensureToken($tokenFile);
 $givenToken = field('token');
+$composerAttempt = null;
+
+if (! $alreadyInstalled && $action === 'run_composer') {
+    if (! tokenIsValid($tokenFile, $givenToken)) {
+        $errors[] = 'That setup code is not correct. Open storage/app/install-token.txt in cPanel File Manager and copy the value exactly.';
+    } else {
+        $composerAttempt = attemptComposerInstall($root);
+        // vendor/ may exist now — re-check before rendering.
+        $requirements = requirementChecks($root);
+        $requirementsMet = ! in_array(false, array_column($requirements, 'ok'), true);
+    }
+}
 
 if (! $alreadyInstalled && $action === 'install') {
     if (! tokenIsValid($tokenFile, $givenToken)) {
@@ -484,8 +649,11 @@ $selfRemains = is_file(__FILE__);
 <?php else: ?>
 
   <p class="lede">
-    Sets up the database and configuration. Composer and npm are not run here —
-    upload <code>vendor/</code> and <code>public/build/</code> with the rest of the files.
+    Sets up the database and configuration. npm is never run here, and Composer
+    isn't run automatically either — upload <code>vendor/</code> and
+    <code>public/build/</code> with the rest of the files. If this server
+    happens to allow shell commands from PHP, the Composer row below offers a
+    best-effort "try it anyway" button, but most shared hosting blocks that.
   </p>
 
   <?php if ($errors): ?>
@@ -510,6 +678,13 @@ $selfRemains = is_file(__FILE__);
   </div>
   <?php endif; ?>
 
+  <?php if ($composerAttempt !== null): ?>
+  <div class="alert <?= $composerAttempt['ok'] ? 'alert-good' : 'alert-warn' ?>">
+    <strong><?= h($composerAttempt['message']) ?></strong>
+    <?php if ($composerAttempt['output'] !== ''): ?><pre><?= h($composerAttempt['output']) ?></pre><?php endif; ?>
+  </div>
+  <?php endif; ?>
+
   <h2>Server check</h2>
   <div class="card">
     <div class="rows">
@@ -518,6 +693,14 @@ $selfRemains = is_file(__FILE__);
         <span class="mark"><?= $row['ok'] ? '✓' : '✕' ?></span>
         <span><?= h($row['label']) ?>
           <?php if (! $row['ok']): ?><small><?= h($row['detail']) ?></small><?php endif; ?>
+          <?php if (! $row['ok'] && $row['label'] === 'Composer dependencies uploaded'): ?>
+          <form method="post" style="margin-top:10px;display:flex;gap:8px;flex-wrap:wrap;align-items:center;">
+            <input type="hidden" name="action" value="run_composer">
+            <input type="text" name="token" placeholder="Setup code" value="<?= h($givenToken) ?>" style="width:auto;flex:1;min-width:160px;">
+            <button type="submit" style="padding:8px 18px;font-size:.82rem;border-radius:4px;">Try to run Composer now</button>
+          </form>
+          <small>Works only if this server allows PHP to run shell commands and has Composer installed — most shared hosting does not. If it fails, upload <code>vendor/</code> instead.</small>
+          <?php endif; ?>
         </span>
       </div>
       <?php endforeach; ?>
