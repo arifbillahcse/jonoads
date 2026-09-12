@@ -1,0 +1,67 @@
+name: Build upload-ready release
+
+# Builds Composer and npm dependencies in CI and packages the whole project
+# into one zip you can upload through cPanel File Manager. This exists because
+# install.php cannot run Composer/npm on shared hosting (exec() is disabled),
+# so vendor/ and public/build/ have to arrive pre-built.
+#
+# Run it from the Actions tab any time ("Run workflow"), or it runs
+# automatically on every push to this branch. Download the zip from the
+# finished run's Artifacts section.
+
+on:
+  push:
+    branches:
+      - claude/project-structure-assets-h4hobt
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.3'
+          extensions: bcmath, ctype, curl, dom, fileinfo, filter, hash, mbstring, openssl, pcre, pdo, pdo_mysql, session, tokenizer, xml, gd
+          coverage: none
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Install Composer dependencies (no dev)
+        run: composer install --no-dev --optimize-autoloader --no-interaction --prefer-dist
+
+      - name: Install npm dependencies
+        run: npm ci
+
+      - name: Build front-end assets
+        run: npm run build
+
+      - name: Remove node_modules before packaging
+        run: rm -rf node_modules
+
+      - name: Package upload-ready zip
+        run: |
+          mkdir -p dist
+          zip -r "dist/jonoads-release.zip" . \
+            -x "dist/*" \
+            -x ".git/*" \
+            -x ".github/*" \
+            -x "node_modules/*" \
+            -x "storage/logs/*" \
+            -x "storage/framework/cache/data/*" \
+            -x "storage/framework/sessions/*" \
+            -x "storage/framework/views/*" \
+            -x ".env"
+
+      - name: Upload release artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: jonoads-release
+          path: dist/jonoads-release.zip
+          retention-days: 14
