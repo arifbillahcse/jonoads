@@ -370,11 +370,14 @@ button {
   margin-bottom: 4.5rem;
 }
 
+/* Each page fills this strip from its own stat group, and the counts differ —
+   five on the homepage, four on the Engine page, three on Team, two on
+   Contact — so it wraps instead of assuming a fixed column count. */
 .hero-stats {
-  display: grid;
-  grid-template-columns: repeat(4, auto);
-  gap: 40px;
-  max-width: 640px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 28px 36px;
+  max-width: 860px;
   border-top: 1px solid var(--line-soft);
   padding-top: 32px;
 }
@@ -383,6 +386,11 @@ button {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  /* Shares the row evenly, but capped so a two-stat strip stays compact
+     rather than stretching across the full width. */
+  flex: 1 1 140px;
+  min-width: 0;
+  max-width: 220px;
 }
 
 .stat-number,
@@ -1821,8 +1829,13 @@ main:focus {
   }
 
   .hero-stats {
-    grid-template-columns: repeat(2, auto);
     row-gap: 24px;
+  }
+
+  /* Two per row from here down, whatever the count. */
+  .hero-stat {
+    flex-basis: calc(50% - 18px);
+    max-width: none;
   }
 
   .founder {
@@ -1880,7 +1893,11 @@ main:focus {
   }
 
   .hero-stats {
-    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 24px;
+  }
+
+  .hero-stat {
+    flex-basis: calc(50% - 12px);
   }
 
   .section-inner {

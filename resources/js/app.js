@@ -393,9 +393,17 @@ function initBarCharts() {
     const suffix = chart.dataset.suffix || '';
     const max = Math.max(...values, 1);
 
+    // Which row is ours, and so gets the accent. Naming it explicitly beats
+    // inferring it from position: our bar sits first now, and a chart that
+    // omits the attribute keeps the old "last row is ours" behaviour.
+    const highlightAttr = chart.dataset.highlight;
+    const highlight = highlightAttr === undefined || highlightAttr === ''
+      ? values.length - 1
+      : Number(highlightAttr);
+
     values.forEach((val, i) => {
       const row = document.createElement('div');
-      row.className = 'bar-row' + (i === values.length - 1 ? ' bar-row-jono' : '');
+      row.className = 'bar-row' + (i === highlight ? ' bar-row-jono' : '');
 
       const label = document.createElement('span');
       label.className = 'bar-label';
