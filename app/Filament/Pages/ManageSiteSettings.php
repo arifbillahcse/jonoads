@@ -5,6 +5,7 @@ namespace App\Filament\Pages;
 use App\Models\SiteSetting;
 use BackedEnum;
 use Filament\Actions\Action;
+use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -65,6 +66,24 @@ class ManageSiteSettings extends Page
                             ->required(),
                     ])
                     ->columns(2),
+
+                Section::make('Booking')
+                    ->schema([
+                        TextInput::make('calendly_url')
+                            ->label('Calendly booking link')
+                            ->url()
+                            ->helperText('Every "Schedule a call" button opens this. Leave it blank and they go to the contact form instead.'),
+                    ]),
+
+                Section::make('Brand')
+                    ->schema([
+                        FileUpload::make('logo_image')
+                            ->label('Logo')
+                            ->image()
+                            ->disk('public')
+                            ->directory('brand')
+                            ->helperText('Replaces the "Jono" wordmark in the header and footer. SVG or a transparent PNG works best.'),
+                    ]),
 
                 Section::make('Links')
                     ->description('Leave a link blank to hide it from the footer.')

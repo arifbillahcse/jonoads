@@ -16,7 +16,7 @@
       at the top ad networks for eight consecutive years: twenty-four contests, zero losses.
     </p>
     <div class="hero-actions reveal">
-      <a href="{{ route('contact') }}" class="btn btn-primary">Schedule a call</a>
+      <x-cta.schedule class="btn btn-primary" />
       <a href="#diagram" class="btn btn-ghost">See how it works</a>
     </div>
 
@@ -59,7 +59,7 @@
     <div>
       <h2 class="reveal">The Engine, in results.</h2>
       <p class="reveal">A sample of what running through Review, Operate, Improve does to an account.</p>
-      <a href="{{ route('work') }}" class="btn btn-ghost reveal">See the full case studies</a>
+      <a href="{{ route('case-studies') }}" class="btn btn-ghost reveal">See the full case studies</a>
     </div>
     <div class="engine-proof-stats">
       <div class="case-stat reveal">
@@ -83,7 +83,7 @@
   <div class="section-inner contact-inner">
     <h2 class="reveal">Ready to put your account through the Engine?</h2>
     <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
-    <a href="{{ route('contact') }}" class="btn btn-primary btn-large reveal">Schedule a call</a>
+    <x-cta.schedule class="btn btn-primary btn-large reveal" />
   </div>
 </section>
 @endsection

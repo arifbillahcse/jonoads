@@ -5,24 +5,23 @@
     $nav = [
         ['route' => 'roas-engine', 'label' => 'ROAS Engine'],
         ['route' => 'services',    'label' => 'Services'],
-        ['route' => 'work',        'label' => 'Work'],
+        ['route' => 'case-studies', 'label' => 'Case Studies'],
         ['route' => 'team',        'label' => 'Team'],
     ];
-    $onHome    = request()->routeIs('home');
-    $onContact = request()->routeIs('contact');
+    $onHome = request()->routeIs('home');
 @endphp
 
 <!-- ============ NAV ============ -->
 <header class="site-header" id="siteHeader">
   <div class="header-inner">
-    <a href="{{ $onHome ? '#top' : route('home') . '#top' }}" class="logo">Jono<span class="logo-dot">.</span></a>
+    <x-brand.logo />
 
     <nav class="main-nav" id="mainNav">
       @foreach ($nav as $item)
         <a href="{{ request()->routeIs($item['route']) ? '#top' : route($item['route']) }}">{{ $item['label'] }}</a>
       @endforeach
       <a href="{{ $onHome ? '#partners' : route('home') . '#partners' }}">Partners</a>
-      <a href="{{ $onContact ? '#top' : route('contact') }}" class="nav-cta">Schedule a call</a>
+      <x-cta.schedule class="nav-cta" />
     </nav>
 
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false">

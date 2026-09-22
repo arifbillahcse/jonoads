@@ -15,10 +15,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [PageController::class, 'home'])->name('home');
 Route::get('/roas-engine', [PageController::class, 'roasEngine'])->name('roas-engine');
 Route::get('/services', [PageController::class, 'services'])->name('services');
-Route::get('/work', [PageController::class, 'work'])->name('work');
+Route::get('/case-studies', [PageController::class, 'caseStudies'])->name('case-studies');
 Route::get('/team', [PageController::class, 'team'])->name('team');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
 Route::get('/smb', [PageController::class, 'smb'])->name('smb');
+
+// The case studies page used to live at /work; keep that address working.
+Route::permanentRedirect('/work', '/case-studies');
 
 /*
 |--------------------------------------------------------------------------

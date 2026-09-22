@@ -21,9 +21,9 @@ class PageController extends Controller
         return view('pages.services');
     }
 
-    public function work(): View
+    public function caseStudies(): View
     {
-        return view('pages.work');
+        return view('pages.case-studies');
     }
 
     public function team(): View

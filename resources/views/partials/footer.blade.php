@@ -1,5 +1,4 @@
 @php
-    $onHome    = request()->routeIs('home');
     $onContact = request()->routeIs('contact');
     $home      = route('home');
 
@@ -13,7 +12,7 @@
 <footer class="site-footer">
   <div class="section-inner footer-inner">
     <div class="footer-brand">
-      <a href="{{ $onHome ? '#top' : $home . '#top' }}" class="logo">Jono<span class="logo-dot">.</span></a>
+      <x-brand.logo />
       <p>jonoads.com · <a href="mailto:{{ config('mail.contact_address') }}">{{ config('mail.contact_address') }}</a></p>
     </div>
 
@@ -22,7 +21,7 @@
         <h4>Site</h4>
         <a href="{{ request()->routeIs('roas-engine') ? '#top' : route('roas-engine') }}">ROAS Engine</a>
         <a href="{{ request()->routeIs('services') ? '#top' : route('services') }}">Services</a>
-        <a href="{{ request()->routeIs('work') ? '#top' : route('work') }}">Work</a>
+        <a href="{{ request()->routeIs('case-studies') ? '#top' : route('case-studies') }}">Case Studies</a>
         <a href="{{ request()->routeIs('team') ? '#top' : route('team') }}">Team</a>
       </div>
       <div class="footer-col">

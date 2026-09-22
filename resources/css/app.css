@@ -253,8 +253,13 @@ button {
   letter-spacing: -0.01em;
 }
 
-.logo-dot {
-  color: var(--cyan);
+/* Shown instead of the wordmark once a logo is uploaded under Settings.
+   Height-constrained so any reasonable file sits on the header baseline. */
+.logo-image {
+  display: block;
+  height: 30px;
+  width: auto;
+  max-width: 180px;
 }
 
 .main-nav {

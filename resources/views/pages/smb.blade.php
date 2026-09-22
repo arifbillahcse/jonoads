@@ -13,7 +13,7 @@
     <h1 class="reveal">{{ $smb?->headline }}</h1>
     <p class="engine-hero-sub reveal">{{ $smb?->intro }}</p>
     <div class="hero-actions reveal">
-      <a href="{{ route('contact') }}" class="btn btn-primary">Schedule a call</a>
+      <x-cta.schedule class="btn btn-primary" />
       <a href="#industries" class="btn btn-ghost">See who this is for</a>
     </div>
   </div>
@@ -87,7 +87,7 @@
   <div class="section-inner contact-inner">
     <h2 class="reveal">{{ $smb?->cta_heading }}</h2>
     <p class="reveal">{{ $smb?->cta_body }}</p>
-    <a href="{{ route('contact') }}" class="btn btn-primary btn-large reveal">Schedule a call</a>
+    <x-cta.schedule class="btn btn-primary btn-large reveal" />
   </div>
 </section>
 

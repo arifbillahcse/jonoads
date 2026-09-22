@@ -15,7 +15,7 @@
       cast of account managers.
     </p>
     <div class="hero-actions reveal">
-      <a href="{{ route('contact') }}" class="btn btn-primary">Schedule a call</a>
+      <x-cta.schedule class="btn btn-primary" />
       <a href="#dream-team" class="btn btn-ghost">Meet the team</a>
     </div>
 
@@ -58,7 +58,7 @@
   <div class="section-inner contact-inner">
     <h2 class="reveal">Want to work with this team?</h2>
     <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
-    <a href="{{ route('contact') }}" class="btn btn-primary btn-large reveal">Schedule a call</a>
+    <x-cta.schedule class="btn btn-primary btn-large reveal" />
   </div>
 </section>
 @endsection

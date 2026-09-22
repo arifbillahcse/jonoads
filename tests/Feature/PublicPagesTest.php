@@ -18,7 +18,7 @@ class PublicPagesTest extends TestCase
             'home' => ['home'],
             'roas engine' => ['roas-engine'],
             'services' => ['services'],
-            'work' => ['work'],
+            'case studies' => ['case-studies'],
             'team' => ['team'],
             'contact' => ['contact'],
             'smb' => ['smb'],
@@ -54,7 +54,7 @@ class PublicPagesTest extends TestCase
 
         CaseStudy::factory()->create(['client' => 'Verifiable Test Client']);
 
-        $this->get(route('work'))->assertSee('Verifiable Test Client');
+        $this->get(route('case-studies'))->assertSee('Verifiable Test Client');
     }
 
     public function test_unpublished_content_is_not_shown(): void
@@ -64,7 +64,7 @@ class PublicPagesTest extends TestCase
         CaseStudy::factory()->unpublished()->create(['client' => 'Hidden Client']);
         TeamMember::factory()->create(['name' => 'Hidden Person', 'is_published' => false]);
 
-        $this->get(route('work'))->assertDontSee('Hidden Client');
+        $this->get(route('case-studies'))->assertDontSee('Hidden Client');
         $this->get(route('team'))->assertDontSee('Hidden Person');
     }
 

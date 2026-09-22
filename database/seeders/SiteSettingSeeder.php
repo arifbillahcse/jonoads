@@ -9,9 +9,11 @@ class SiteSettingSeeder extends Seeder
 {
     public function run(): void
     {
-        // Podcast and merch URLs are intentionally blank: both footer links
-        // point at anchors that do not exist yet and depend on add-ons that
-        // are not in the core scope.
+        // Several values ship blank on purpose. Podcast and merch point at
+        // anchors that do not exist yet; calendly_url and logo_image wait on
+        // assets from the client, and the site falls back gracefully until
+        // each arrives — the contact page for booking, the wordmark for the
+        // logo.
         foreach ([
             [
                 'key' => 'contact_email',
@@ -47,6 +49,20 @@ class SiteSettingSeeder extends Seeder
                 'group' => 'links',
                 'label' => 'Merch store URL',
                 'type' => 'url',
+            ],
+            [
+                'key' => 'calendly_url',
+                'value' => '',
+                'group' => 'links',
+                'label' => 'Calendly booking link',
+                'type' => 'url',
+            ],
+            [
+                'key' => 'logo_image',
+                'value' => '',
+                'group' => 'general',
+                'label' => 'Logo image',
+                'type' => 'text',
             ],
             [
                 'key' => 'share_image',

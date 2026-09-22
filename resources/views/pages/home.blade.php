@@ -22,7 +22,7 @@
       8 years. 40+ brands scaled.
     </p>
     <div class="hero-actions">
-      <a href="{{ route('contact') }}" class="btn btn-primary">Schedule a call</a>
+      <x-cta.schedule class="btn btn-primary" />
       <a href="{{ route('roas-engine') }}" class="btn btn-ghost">See the ROAS Engine</a>
     </div>
 
@@ -114,7 +114,7 @@
 </section>
 
 <!-- ============ CASE STUDIES ============ -->
-<section class="case-studies" id="work">
+<section class="case-studies" id="case-studies">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">Results</p>
     <h2 class="reveal">Case studies, by request.</h2>
@@ -122,7 +122,7 @@
 
     <x-section.case-grid />
 
-    <a href="{{ route('work') }}" class="btn btn-ghost reveal section-more-link">See all case studies</a>
+    <a href="{{ route('case-studies') }}" class="btn btn-ghost reveal section-more-link">See all case studies</a>
   </div>
 </section>
 
@@ -172,7 +172,7 @@
   <div class="section-inner contact-inner">
     <h2 class="reveal">Let's do great things together.</h2>
     <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
-    <a href="mailto:info@jonoadvertising.com" class="btn btn-primary btn-large reveal">Schedule a call</a>
+    <x-cta.schedule class="btn btn-primary btn-large reveal" />
 
     <div class="contact-links reveal">
       <a href="#newsletter">Newsletter</a>

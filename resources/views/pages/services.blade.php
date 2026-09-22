@@ -15,7 +15,7 @@
       agency and three subcontractors.
     </p>
     <div class="hero-actions reveal">
-      <a href="{{ route('contact') }}" class="btn btn-primary">Schedule a call</a>
+      <x-cta.schedule class="btn btn-primary" />
       <a href="#engagement" class="btn btn-ghost">How we work together</a>
     </div>
   </div>
@@ -56,7 +56,7 @@
   <div class="section-inner contact-inner">
     <h2 class="reveal">Not sure which service fits?</h2>
     <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
-    <a href="{{ route('contact') }}" class="btn btn-primary btn-large reveal">Schedule a call</a>
+    <x-cta.schedule class="btn btn-primary btn-large reveal" />
   </div>
 </section>
 @endsection

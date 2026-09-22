@@ -12,7 +12,7 @@ class SeoController extends Controller
         'home' => ['priority' => '1.0', 'frequency' => 'weekly'],
         'roas-engine' => ['priority' => '0.9', 'frequency' => 'monthly'],
         'services' => ['priority' => '0.9', 'frequency' => 'monthly'],
-        'work' => ['priority' => '0.8', 'frequency' => 'monthly'],
+        'case-studies' => ['priority' => '0.8', 'frequency' => 'monthly'],
         'team' => ['priority' => '0.7', 'frequency' => 'monthly'],
         'smb' => ['priority' => '0.7', 'frequency' => 'monthly'],
         'contact' => ['priority' => '0.6', 'frequency' => 'yearly'],

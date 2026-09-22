@@ -15,7 +15,7 @@ class SeoTest extends TestCase
             ->assertOk()
             ->assertHeader('Content-Type', 'application/xml');
 
-        foreach (['home', 'roas-engine', 'services', 'work', 'team', 'smb', 'contact'] as $name) {
+        foreach (['home', 'roas-engine', 'services', 'case-studies', 'team', 'smb', 'contact'] as $name) {
             $response->assertSee(route($name), false);
         }
     }
