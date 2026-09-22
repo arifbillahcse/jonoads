@@ -45,7 +45,7 @@
 <section class="comparison" id="comparison">
   <div class="section-inner">
     <h2 class="reveal">Jono vs. the average agency.</h2>
-    <p class="comparison-sub reveal">There's no comparison. We check every box.</p>
+    <p class="comparison-sub reveal">There's simply no comparison.</p>
 
     <x-section.comparison />
   </div>

@@ -9,14 +9,17 @@
   <canvas id="heroCanvas" class="hero-canvas"></canvas>
 
   <div class="hero-inner">
+    {{-- Breaks are placed by hand, as they were before: the headline is
+         capped at 15ch, so leaving them to the browser puts "confidence."
+         alone on a line in some fonts. --}}
     <h1 class="hero-headline">
-      Performance advertising,<br>
-      engineered to <span class="accent-text">win.</span>
+      Scale your brand<br>
+      with confidence.<br>
+      <span class="accent-text">Win.</span>
     </h1>
     <p class="hero-sub">
-      We've managed $225M in media, generated $750M+ in client revenue, and
-      never lost a pitch against a top ad network's marketing science team.
-      Eight years running.
+      The trusted choice. Outperformed every client and ad network team for
+      8 years. 40+ brands scaled.
     </p>
     <div class="hero-actions">
       <a href="{{ route('contact') }}" class="btn btn-primary">Schedule a call</a>
@@ -41,7 +44,8 @@
   <div class="section-inner">
     <h2 class="reveal">Only elite talent works here.</h2>
     <p class="pedigree-sub reveal">
-      Every media buyer on our team has run ads for brands most agencies only dream of pitching.
+      Trusted by mega brands and premier startups. Our media buyers have run
+      ads for brands most agencies dream about.
     </p>
 
     <x-section.pedigree />
@@ -55,9 +59,10 @@
       <p class="eyebrow-free-label reveal">The ROAS Engine™</p>
       <h2 class="reveal">A media buying system, not a guessing game.</h2>
       <p class="roas-intro reveal">
-        Every account runs through the same three-stage cycle. It's the reason
-        we've beaten the marketing science teams at the top ad networks for
-        eight consecutive years — nineteen pitches, zero losses.
+        Every client receives the same 3-phase approach tailored to its
+        specific business. This isn't a one-size-fits-all fixed playbook.
+        That's why we've outperformed the marketing science teams at top ad
+        networks for eight consecutive years. Twenty-four contests, zero losses.
       </p>
 
       <x-section.roas-steps />
@@ -73,7 +78,7 @@
 <section class="services" id="services">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">What we do</p>
-    <h2 class="reveal">Four services. One team, no handoffs.</h2>
+    <h2 class="reveal">World-class services.</h2>
 
     <x-section.services-list />
 
@@ -85,7 +90,7 @@
 <section class="comparison" id="comparison">
   <div class="section-inner">
     <h2 class="reveal">Jono vs. the average agency.</h2>
-    <p class="comparison-sub reveal">There's no comparison. We check every box.</p>
+    <p class="comparison-sub reveal">There's simply no comparison.</p>
 
     <x-section.comparison />
   </div>
