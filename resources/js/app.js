@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initHeroCanvas();
   initCounters();
   initRoasEngine();
+  initTestimonials();
   initBarCharts();
 });
 
@@ -379,6 +380,76 @@ function initRoasEngine() {
     observer.observe(svg);
   } else {
     restartAutoAdvance();
+  }
+}
+
+/* ---------- Testimonial carousel ---------- */
+function initTestimonials() {
+  const carousel = document.querySelector('[data-testimonial-carousel]');
+  if (!carousel) return;
+
+  const slides = [...carousel.querySelectorAll('.testimonial-slide')];
+  const dots = [...carousel.querySelectorAll('.testimonial-dot')];
+  if (slides.length < 2) return;
+
+  const interval = Number(carousel.dataset.interval || 4000);
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0;
+  let timer = null;
+
+  // Hand over from the no-JS markup: every slide joins the grid cell, and
+  // visibility decides which one shows from here on.
+  slides.forEach((slide) => slide.removeAttribute('hidden'));
+  carousel.classList.add('is-ready');
+
+  function show(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((slide, i) => {
+      slide.classList.toggle('is-current', i === current);
+    });
+    dots.forEach((dot, i) => {
+      dot.classList.toggle('is-active', i === current);
+      dot.setAttribute('aria-selected', i === current ? 'true' : 'false');
+    });
+  }
+
+  function start() {
+    // Someone who asked for less motion still gets every quote — through the
+    // dots, rather than having them move on their own.
+    if (prefersReducedMotion || timer) return;
+    timer = setInterval(() => show(current + 1), interval);
+  }
+
+  function stop() {
+    if (!timer) return;
+    clearInterval(timer);
+    timer = null;
+  }
+
+  dots.forEach((dot, i) => {
+    dot.addEventListener('click', () => {
+      show(i);
+      // Restart the clock so a quote someone just chose gets its full turn.
+      stop();
+      start();
+    });
+  });
+
+  // Reading stops the rotation; so does moving focus into it by keyboard.
+  carousel.addEventListener('mouseenter', stop);
+  carousel.addEventListener('mouseleave', start);
+  carousel.addEventListener('focusin', stop);
+  carousel.addEventListener('focusout', start);
+
+  show(0);
+
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => (entry.isIntersecting ? start() : stop()));
+    }, { threshold: 0.4 });
+    observer.observe(carousel);
+  } else {
+    start();
   }
 }
 

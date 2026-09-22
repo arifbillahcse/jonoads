@@ -74,6 +74,8 @@
   </div>
 </section>
 
+<x-section.testimonial />
+
 <!-- ============ SERVICES ============ -->
 <section class="services" id="services">
   <div class="section-inner">
@@ -95,8 +97,6 @@
     <x-section.comparison />
   </div>
 </section>
-
-<x-section.testimonial />
 
 <!-- ============ TEAM ============ -->
 <section class="team" id="team">

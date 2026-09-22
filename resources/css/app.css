@@ -890,6 +890,72 @@ button {
   max-width: 760px;
 }
 
+/* Without JavaScript only the first quote shows, courtesy of the hidden
+   attribute in the markup. */
+.testimonial-slides {
+  display: grid;
+}
+
+.testimonial-slide {
+  grid-area: 1 / 1;
+}
+
+.testimonial-slide[hidden] {
+  display: none;
+}
+
+/* Once the carousel is running, the slides stack in one grid cell and hide
+   with visibility rather than display: they keep occupying the cell, so the
+   band holds the height of the longest quote and the page below it doesn't
+   jump each time a much shorter one comes around. (visibility: hidden also
+   keeps them out of the accessibility tree, so only the current quote is
+   read out.) */
+.testimonial-carousel.is-ready .testimonial-slide {
+  visibility: hidden;
+}
+
+.testimonial-carousel.is-ready .testimonial-slide.is-current {
+  visibility: visible;
+}
+
+/* The dots only do anything once the carousel is running, so they stay out
+   of the way until then. */
+.testimonial-dots {
+  display: none;
+  gap: 10px;
+  margin-top: 28px;
+}
+
+.testimonial-carousel.is-ready .testimonial-dots {
+  display: flex;
+}
+
+.testimonial-dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: 0;
+  border-radius: 999px;
+  background: var(--black);
+  opacity: 0.25;
+  cursor: pointer;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease);
+}
+
+.testimonial-dot:hover {
+  opacity: 0.55;
+}
+
+.testimonial-dot.is-active {
+  opacity: 0.85;
+  transform: scale(1.25);
+}
+
+.testimonial-dot:focus-visible {
+  outline: 2px solid var(--black);
+  outline-offset: 3px;
+}
+
 .testimonial p {
   font-family: var(--font-display);
   font-size: clamp(1.4rem, 2.6vw, 2rem);
