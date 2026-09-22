@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Storage;
 
 class SiteSetting extends Model
 {
@@ -32,5 +33,30 @@ class SiteSetting extends Model
     public static function get(string $key, ?string $default = null): ?string
     {
         return static::all_values()[$key] ?? $default;
+    }
+
+    /**
+     * URL for a setting that holds an image.
+     *
+     * Values arrive two ways: uploaded through the panel, which stores a path
+     * on the public disk, or shipped with the site under public/ — the
+     * placeholders do that, so they survive a deploy without needing an
+     * upload. Resolving both here keeps the templates from caring which.
+     */
+    public static function imageUrl(string $key): ?string
+    {
+        $value = static::get($key);
+
+        if (blank($value)) {
+            return null;
+        }
+
+        if (str_contains($value, '://')) {
+            return $value;
+        }
+
+        return is_file(public_path($value))
+            ? asset($value)
+            : Storage::disk('public')->url($value);
     }
 }

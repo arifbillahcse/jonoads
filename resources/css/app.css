@@ -337,6 +337,39 @@ button {
     var(--black);
 }
 
+/* A still photo instead of the animated chart. object-fit keeps it filling
+   the hero at any aspect ratio, and the scrim above it is what makes white
+   text safe over a bright daytime shot. */
+.hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  max-width: none;
+}
+
+.hero-scrim {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, rgba(10, 10, 10, 0.92) 0%, rgba(10, 10, 10, 0.72) 45%, rgba(10, 10, 10, 0.45) 100%),
+    linear-gradient(to top, rgba(10, 10, 10, 0.85) 0%, transparent 45%);
+  pointer-events: none;
+}
+
+/* The hero's own cyan wash fights a photo, so it steps aside for one. */
+.hero.has-hero-photo {
+  background: var(--black);
+}
+
+/* Over a bright daytime shot the muted sub-paragraph measures 4.4:1 against
+   the scrimmed background — just under the 4.5:1 it needs at this size. A
+   lighter grey takes it to 6.2:1 without darkening the photo further. */
+.hero.has-hero-photo .hero-sub {
+  color: #a9b2ba;
+}
+
 .hero-canvas {
   position: absolute;
   inset: 0;
@@ -478,6 +511,24 @@ button {
 
 .marquee-group span:hover {
   color: var(--white);
+}
+
+/* Logos get the treatment the client liked on the names: muted at rest,
+   coming up to full on hover. Greyscale keeps a row of mismatched brand
+   colours from pulling the eye around. */
+.marquee-logo {
+  height: 26px;
+  width: auto;
+  max-width: 150px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(1.8);
+  opacity: 0.6;
+  transition: opacity 0.2s var(--ease), filter 0.2s var(--ease);
+}
+
+.marquee-item:hover .marquee-logo {
+  filter: grayscale(0) brightness(1);
+  opacity: 1;
 }
 
 @keyframes marqueeScroll {
@@ -1105,6 +1156,16 @@ button {
   font-family: var(--font-display);
   font-weight: 600;
   color: rgba(255, 255, 255, 0.18);
+}
+
+/* Headshots run black and white, as asked. Applied here rather than baked
+   into the files, so the originals stay in colour and this is one line to
+   undo. It only hits the img — the initials placeholder is already
+   monochrome. */
+img.founder-photo,
+img.team-photo {
+  filter: grayscale(1) contrast(1.05);
+  object-fit: cover;
 }
 
 .founder-photo::after {

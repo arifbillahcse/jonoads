@@ -77,6 +77,12 @@ class ManageSiteSettings extends Page
 
                 Section::make('Brand')
                     ->schema([
+                        FileUpload::make('hero_image')
+                            ->label('Homepage hero image')
+                            ->image()
+                            ->disk('public')
+                            ->directory('brand')
+                            ->helperText('A wide, dark-ish photo works best — it sits behind the headline. Leave it empty and the animated chart runs instead.'),
                         FileUpload::make('logo_image')
                             ->label('Logo')
                             ->image()

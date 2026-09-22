@@ -58,6 +58,13 @@ class SiteSettingSeeder extends Seeder
                 'type' => 'url',
             ],
             [
+                'key' => 'hero_image',
+                'value' => 'placeholders/hero-placeholder.jpg',
+                'group' => 'general',
+                'label' => 'Homepage hero image',
+                'type' => 'text',
+            ],
+            [
                 'key' => 'logo_image',
                 'value' => '',
                 'group' => 'general',

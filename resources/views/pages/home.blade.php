@@ -5,8 +5,16 @@
 
 @section('content')
 <!-- ============ HERO ============ -->
-<section class="hero" id="top">
-  <canvas id="heroCanvas" class="hero-canvas"></canvas>
+@php($heroImage = \App\Models\SiteSetting::imageUrl('hero_image'))
+<section class="hero @if (filled($heroImage)) has-hero-photo @endif" id="top">
+  @if (filled($heroImage))
+    {{-- A photo replaces the animated chart rather than sitting behind it.
+         The scrim is what keeps the headline readable over a bright one. --}}
+    <img class="hero-photo" src="{{ $heroImage }}" alt="" aria-hidden="true">
+    <div class="hero-scrim" aria-hidden="true"></div>
+  @else
+    <canvas id="heroCanvas" class="hero-canvas"></canvas>
+  @endif
 
   <div class="hero-inner">
     {{-- Breaks are placed by hand, as they were before: the headline is
