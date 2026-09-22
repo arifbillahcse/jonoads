@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCounters();
   initRoasEngine();
   initTestimonials();
+  initCaseVideos();
   initBarCharts();
 });
 
@@ -451,6 +452,71 @@ function initTestimonials() {
   } else {
     start();
   }
+}
+
+/* ---------- Case study video modal ---------- */
+function initCaseVideos() {
+  const buttons = [...document.querySelectorAll('.case-video-btn')];
+  if (!buttons.length) return;
+
+  // Built on first use and reused after that: no dialog markup on pages that
+  // never open one, and no YouTube request until someone actually asks.
+  let dialog = null;
+
+  function build() {
+    dialog = document.createElement('dialog');
+    dialog.className = 'video-dialog';
+    dialog.innerHTML = `
+      <div class="video-dialog-inner">
+        <div class="video-dialog-bar">
+          <p class="video-dialog-title"></p>
+          <button type="button" class="video-dialog-close" aria-label="Close video">&times;</button>
+        </div>
+        <div class="video-dialog-frame"></div>
+      </div>
+    `;
+    document.body.appendChild(dialog);
+
+    dialog.querySelector('.video-dialog-close').addEventListener('click', () => dialog.close());
+
+    // Clicking the backdrop closes. The dialog element itself fills the
+    // viewport, so a click that lands on it rather than on the inner panel
+    // came from outside the panel.
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+
+    // Tearing the player out is what actually stops playback — closing the
+    // dialog alone would leave it running with the sound on. Emptying the
+    // slot outright rather than chasing a reference means this holds however
+    // the dialog was opened. Covers Escape, which closes it natively.
+    dialog.addEventListener('close', () => {
+      dialog.querySelector('.video-dialog-frame').replaceChildren();
+    });
+  }
+
+  buttons.forEach((button) => {
+    button.addEventListener('click', () => {
+      const id = button.dataset.videoId;
+      if (!id) return;
+
+      if (!dialog) build();
+
+      dialog.querySelector('.video-dialog-title').textContent = button.dataset.videoTitle || '';
+
+      const frame = document.createElement('iframe');
+      frame.src = `https://www.youtube-nocookie.com/embed/${encodeURIComponent(id)}?autoplay=1&rel=0`;
+      frame.title = button.dataset.videoTitle || 'Case study video';
+      frame.allow = 'accelerometer; autoplay; clipped-media; encrypted-media; picture-in-picture';
+      frame.allowFullscreen = true;
+      frame.referrerPolicy = 'strict-origin-when-cross-origin';
+
+      const slot = dialog.querySelector('.video-dialog-frame');
+      slot.replaceChildren(frame);
+
+      dialog.showModal();
+    });
+  });
 }
 
 /* ---------- Comparison bar charts (Jono vs Average Agency) ---------- */

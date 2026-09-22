@@ -12,6 +12,8 @@
       @foreach ($case->detailParagraphs() as $paragraph)
       <p class="reveal">{{ $paragraph }}</p>
       @endforeach
+
+      <x-case-video-button :case="$case" class="reveal" />
     </div>
     @if ($headline)
     <div class="featured-case-chart reveal">

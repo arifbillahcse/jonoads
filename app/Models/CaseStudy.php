@@ -20,6 +20,7 @@ class CaseStudy extends Model
         'slug',
         'summary',
         'detail',
+        'video_url',
         'is_featured',
         'sort_order',
         'is_published',
@@ -59,6 +60,43 @@ class CaseStudy extends Model
     public function headlineStat(): ?CaseStudyStat
     {
         return $this->stats->firstWhere('is_headline', true) ?? $this->stats->last();
+    }
+
+    /**
+     * The YouTube id from whatever link was pasted — watch page, youtu.be
+     * share link, or an embed URL, with or without extra query parameters.
+     * Returns null for anything that isn't recognisably a YouTube link, so a
+     * stray paste never reaches the page as an embed.
+     */
+    public function youtubeId(): ?string
+    {
+        $url = trim((string) $this->video_url);
+
+        if ($url === '') {
+            return null;
+        }
+
+        $patterns = [
+            '~youtu\.be/([A-Za-z0-9_-]{11})~',
+            '~youtube\.com/watch\?(?:.*&)?v=([A-Za-z0-9_-]{11})~',
+            '~youtube(?:-nocookie)?\.com/(?:embed|v|shorts|live)/([A-Za-z0-9_-]{11})~',
+        ];
+
+        foreach ($patterns as $pattern) {
+            if (preg_match($pattern, $url, $matches)) {
+                return $matches[1];
+            }
+        }
+
+        return null;
+    }
+
+    /** Built from the id rather than the pasted URL, so only YouTube loads. */
+    public function videoEmbedUrl(): ?string
+    {
+        $id = $this->youtubeId();
+
+        return $id ? "https://www.youtube-nocookie.com/embed/{$id}" : null;
     }
 
     public function scopeFeatured(Builder $query): Builder

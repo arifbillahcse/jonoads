@@ -35,6 +35,12 @@ class CaseStudyForm
                             ->rows(5)
                             ->columnSpanFull()
                             ->helperText('Only shown for the featured case study.'),
+                        TextInput::make('video_url')
+                            ->label('YouTube video')
+                            ->url()
+                            ->maxLength(255)
+                            ->columnSpanFull()
+                            ->helperText('Paste the YouTube link and the card gets a "Watch the Video" button. Leave it blank and no button appears.'),
                     ])
                     ->columns(2),
 

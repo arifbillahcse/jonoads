@@ -11,6 +11,8 @@
           @endforeach
         </div>
         <p>{{ $case->summary }}</p>
+
+        <x-case-video-button :case="$case" />
       </div>
       @endforeach
     </div>
