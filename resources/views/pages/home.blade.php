@@ -98,6 +98,19 @@
   </div>
 </section>
 
+<!-- ============ CASE STUDIES ============ -->
+<section class="case-studies" id="case-studies">
+  <div class="section-inner">
+    <p class="eyebrow-free-label reveal">Results</p>
+    <h2 class="reveal">Case studies, by request.</h2>
+    <p class="case-sub reveal">A sample of what changing the account architecture, creative, and management model actually does to the numbers.</p>
+
+    <x-section.case-grid />
+
+    <a href="{{ route('case-studies') }}" class="btn btn-ghost reveal section-more-link">See all case studies</a>
+  </div>
+</section>
+
 <!-- ============ TEAM ============ -->
 <section class="team" id="team">
   <div class="section-inner">
@@ -110,19 +123,6 @@
     <p class="team-sub reveal">Trusted by startups and mega brands. Collectively scaled over 100 brands.</p>
 
     <x-section.team-grid />
-  </div>
-</section>
-
-<!-- ============ CASE STUDIES ============ -->
-<section class="case-studies" id="case-studies">
-  <div class="section-inner">
-    <p class="eyebrow-free-label reveal">Results</p>
-    <h2 class="reveal">Case studies, by request.</h2>
-    <p class="case-sub reveal">A sample of what changing the account architecture, creative, and management model actually does to the numbers.</p>
-
-    <x-section.case-grid />
-
-    <a href="{{ route('case-studies') }}" class="btn btn-ghost reveal section-more-link">See all case studies</a>
   </div>
 </section>
 

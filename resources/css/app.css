@@ -979,6 +979,14 @@ button {
   border-bottom: 1px solid var(--line-soft);
 }
 
+/* Only where case studies runs straight into the team section — the homepage,
+   since the reorder — team takes the half-step to near-black, so it doesn't
+   merge into the engagement section below it. The team page stacks two .team
+   sections of its own and is left alone. */
+.case-studies + .team {
+  background: var(--near-black);
+}
+
 .founder {
   display: grid;
   grid-template-columns: 220px 1fr;
