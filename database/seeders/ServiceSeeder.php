@@ -7,13 +7,19 @@ use Illuminate\Database\Seeder;
 
 class ServiceSeeder extends Seeder
 {
+    /**
+     * Client feedback round 1: CMO Advisory moved to slot 02 and Creative
+     * Services to 03, and every summary was rewritten. The `summary` is what
+     * the homepage list renders; `detail` and `features` belong to the
+     * services page and were left as they were.
+     */
     public function run(): void
     {
         foreach ([
             [
                 'number' => '01',
                 'title' => 'Digital Advertising',
-                'summary' => 'Media planning, optimization, and attribution across Meta, Google, TikTok, X, Reddit, CTV, podcasts, and Pinterest — run by buyers who\'ve managed nine figures in spend.',
+                'summary' => 'Media planning, optimization and attribution across Meta, Google, TikTok, X, CTV, podcasts, Reddit, etc. Executed by pros who\'ve managed 9-figures in ad spend.',
                 'detail' => 'Media planning, optimization, and attribution run by buyers who\'ve managed nine figures in spend.',
                 'features' => [
                     'Meta, Google, TikTok, X, Reddit',
@@ -24,20 +30,8 @@ class ServiceSeeder extends Seeder
             ],
             [
                 'number' => '02',
-                'title' => 'Creative Services',
-                'summary' => 'Concept to production. We write the brief, build the asset, and integrate directly with your internal team — then feed performance data straight back into the next round.',
-                'detail' => 'Concept to production, integrated directly with your internal team.',
-                'features' => [
-                    'Creative brief and concepting',
-                    'Asset production',
-                    'Direct integration with your team',
-                    'Performance data feeds the next round',
-                ],
-            ],
-            [
-                'number' => '03',
                 'title' => 'CMO Advisory',
-                'summary' => 'Business alignment, competitive intelligence, and operational improvements — the full-funnel best practices we\'ve used to future-proof media programs at billion-dollar brands.',
+                'summary' => 'Go-to-market plans (GTM), organizational alignment and leadership, omni-channel and full-funnel customer acquisition strategy. Best practices used over 200 times to future-proof growth programs at billion-dollar brands.',
                 'detail' => 'The full-funnel best practices we\'ve used to future-proof media programs at billion-dollar brands.',
                 'features' => [
                     'Business alignment',
@@ -47,9 +41,21 @@ class ServiceSeeder extends Seeder
                 ],
             ],
             [
+                'number' => '03',
+                'title' => 'Creative Services',
+                'summary' => 'High-caliber creative to fuel consistent growth. Integrate with client internal teams or utilize ours. Brief writing, concepting, project management and optimization pipeline.',
+                'detail' => 'Concept to production, integrated directly with your internal team.',
+                'features' => [
+                    'Creative brief and concepting',
+                    'Asset production',
+                    'Direct integration with your team',
+                    'Performance data feeds the next round',
+                ],
+            ],
+            [
                 'number' => '04',
                 'title' => 'CRM Strategy',
-                'summary' => 'Email and SMS optimization, database monetization, and customer journey mapping — plus the creative production to actually ship the campaigns.',
+                'summary' => 'Email and SMS optimization, database monetization, customer journey planning.',
                 'detail' => 'Email, SMS, and lifecycle work — plus the creative production to actually ship the campaigns.',
                 'features' => [
                     'Email and SMS optimization',

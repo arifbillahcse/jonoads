@@ -258,7 +258,12 @@ function initCounters() {
       if (startTime === null) startTime = now;
       const t = Math.min((now - startTime) / duration, 1);
       const eased = 1 - Math.pow(1 - t, 3);
-      const value = (target * eased).toFixed(decimals);
+      // Thousands separators, or "150,000 Unique Ads Launched" counts up to
+      // a bare 150000. Figures under four digits are unaffected.
+      const value = Number((target * eased).toFixed(decimals)).toLocaleString('en-US', {
+        minimumFractionDigits: decimals,
+        maximumFractionDigits: decimals,
+      });
       el.textContent = `${prefix}${value}${suffix}`;
       if (t < 1) requestAnimationFrame(step);
     }

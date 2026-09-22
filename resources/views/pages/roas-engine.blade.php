@@ -13,7 +13,7 @@
       Every account we run — from a $2M DTC brand to a billion-dollar enterprise —
       goes through the same three-stage cycle. It's not a philosophy, it's a
       process, and it's the reason we've beaten the marketing science teams
-      at the top ad networks for eight consecutive years: nineteen pitches, zero losses.
+      at the top ad networks for eight consecutive years: twenty-four contests, zero losses.
     </p>
     <div class="hero-actions reveal">
       <a href="{{ route('contact') }}" class="btn btn-primary">Schedule a call</a>

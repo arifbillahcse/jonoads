@@ -23,7 +23,6 @@ class BrandLogoSeeder extends Seeder
             'SideChef',
             'Stickybeak',
             'Muse',
-            'Verdanté',
             'MRM',
             'AOL',
             'Gen',

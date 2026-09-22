@@ -7,23 +7,42 @@ use Illuminate\Database\Seeder;
 
 class TeamMemberSeeder extends Seeder
 {
+    /**
+     * Client feedback round 1: the founder is named in full, his bio was
+     * rewritten, and the grid order changed twice over — Nicole Hidalgo and
+     * Phil Irvine swap on the top row, and the bottom row now reads Nicole
+     * Dunn, Tom Pelligrino, Bill Bradford.
+     *
+     * Order below is the order the 3-column grid renders, top row first.
+     * (Nicole Hidalgo and Nicole Dunn are two different people — the
+     * feedback names both, which is easy to misread as one typo.)
+     */
     public function run(): void
     {
         foreach ([
             [
-                'name' => 'Joseph',
+                'name' => 'Joseph Nolan',
                 'role' => 'Founder & CEO',
-                'bio' => 'Among the world\'s most experienced digital advertising professionals, with $250M in media managed, ~$750M in revenue generated, and over 150,000 ads launched. He\'s scaled 30+ brands, managed media for seven billion-dollar companies, and worked with 70+ brands total.
-Acclaimed for paid social advertising, Joseph has doubled client ROAS and monthly budget more than twenty times, and is undefeated against the marketing science teams at the top ad networks for eight consecutive years — nineteen pitches, zero losses.
-He spent roughly 14 years at billion-dollar brands and is the first two-time recipient of the Brand Innovator Top 40 Under 40 Award. Joseph has spoken at Dreamforce, Spreadfast Summit, Social Loco, Mobile Loco, and the Corporate Social Media Summit, and regularly lectures in MBA programs at USC, Columbia, and George Washington University.',
-                'initials' => 'J',
+                'bio' => 'Joseph is among the world\'s most successful and experienced digital advertising pros with $250M media managed, ~$750M revenue generated and over 150,000 ads launched. He\'s scaled >40 brands, managed media for 7 billion-dollar companies and worked with >70 brands.
+Acclaimed for paid social advertising, he\'s doubled client ROAS and monthly budget over 20 times and is undefeated versus the marketing science teams at the top ad networks for eight consecutive years (24-0). He\'s also outperformed every client\'s previous team (>35 brands).
+Joseph spent 14 years at billion-dollar brands and is the first two-time recipient of the Brand Innovator Top 40 Under 40 Award. He showcased at the world\'s most popular marketing/digital events like Dreamforce, Spreadfast Summit, Social Loco, Mobile Loco and Corporate Social Media Summit. Joseph regularly lectures in MBA programs at USC (alum), Columbia Univ., and George Washington Univ., among others.',
+                'initials' => 'JN',
                 'is_founder' => true,
             ],
+
+            // ---- Top row --------------------------------------------------
             [
                 'name' => 'Mike Smart',
                 'role' => 'Head of Client Success',
                 'bio' => 'Go-to-market expert with two decades launching the world\'s most popular consumer electronics and Apple ecosystem brands. Deep manufacturer and retailer relationships across the US and Southeast Asia.',
                 'initials' => 'MS',
+                'is_founder' => false,
+            ],
+            [
+                'name' => 'Nicole Hidalgo',
+                'role' => 'Social Media + Content',
+                'bio' => 'Founder of 197, a strategy-first creative growth agency aligning positioning, messaging, creative, and performance into one operating system built for scale.',
+                'initials' => 'NH',
                 'is_founder' => false,
             ],
             [
@@ -33,11 +52,13 @@ He spent roughly 14 years at billion-dollar brands and is the first two-time rec
                 'initials' => 'PI',
                 'is_founder' => false,
             ],
+
+            // ---- Bottom row -----------------------------------------------
             [
-                'name' => 'Nicole Hidalgo',
-                'role' => 'Social Media + Content',
-                'bio' => 'Founder of 197, a strategy-first creative growth agency aligning positioning, messaging, creative, and performance into one operating system built for scale.',
-                'initials' => 'NH',
+                'name' => 'Nicole Dunn',
+                'role' => 'Public Relations, CEO of DPM PR',
+                'bio' => 'Founded DPM PR to bring positive health coverage to media. The firm elevates brands, experts, and healthcare providers in health, wellness, and lifestyle — and regularly contributes to Forbes.',
+                'initials' => 'ND',
                 'is_founder' => false,
             ],
             [
@@ -52,13 +73,6 @@ He spent roughly 14 years at billion-dollar brands and is the first two-time rec
                 'role' => 'Advisor + Executive Leadership',
                 'bio' => 'Recognized executive leader in eCommerce and digital transformation, having led large, profitable digital divisions at Fox, Beachbody, AOL, Yahoo!, Oracle, and Wondr Health.',
                 'initials' => 'BB',
-                'is_founder' => false,
-            ],
-            [
-                'name' => 'Nicole Dunn',
-                'role' => 'Public Relations, CEO of DPM PR',
-                'bio' => 'Founded DPM PR to bring positive health coverage to media. The firm elevates brands, experts, and healthcare providers in health, wellness, and lifestyle — and regularly contributes to Forbes.',
-                'initials' => 'ND',
                 'is_founder' => false,
             ],
         ] as $i => $row) {

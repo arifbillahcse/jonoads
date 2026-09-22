@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title', "Jono Advertising — Performance advertising, engineered to win.")
-@section('description', 'Jono Advertising manages $225M+ in media, has generated $750M+ in client revenue, and runs the ROAS Engine — a media buying system built for billion-dollar brands.')
+@section('description', 'Jono Advertising manages $250M+ in media, has generated $750M+ in client revenue, and runs the ROAS Engine — a media buying system built for billion-dollar brands.')
 
 @section('content')
 <!-- ============ HERO ============ -->

@@ -20,7 +20,7 @@ class ComparisonSeeder extends Seeder
                 'suffix' => '%',
             ],
             [
-                'title' => 'Clients whose ROAS we increased 25%+',
+                'title' => 'Client ROAS we increased 25%+',
                 'baseline_label' => 'Avg agency',
                 'baseline_value' => 25.0,
                 'jono_label' => 'Jono',
@@ -36,7 +36,7 @@ class ComparisonSeeder extends Seeder
                 'suffix' => 'M',
             ],
             [
-                'title' => 'Years experience of your media buyer',
+                'title' => 'Media buyer years experience',
                 'baseline_label' => 'Avg agency',
                 'baseline_value' => 4.0,
                 'jono_label' => 'Jono',
@@ -47,13 +47,17 @@ class ComparisonSeeder extends Seeder
             ComparisonMetric::create($row + ['sort_order' => $i + 1]);
         }
 
+        // The checklist is a two-column CSS grid, which fills row by row —
+        // so this order reads left, right, left, right down the page. The
+        // client asked for 24/7 access on the left and A-list partner network
+        // on the right, which is why those two swap sides here.
         foreach ([
-            'Only world-class talent',
-            '10x the experience of a typical agency team',
-            'A-list partner network',
-            'Transparency is our standard',
-            'All-inclusive pricing — you win, we win',
-            '24/7 access',
+            'Only world-class talent',          // left, top
+            '10X the avg team experience',      // right, top
+            '24/7 on-demand access',            // left, middle
+            'A-list partner network',           // right, middle
+            'All-inclusive pricing model',      // left, bottom
+            'Transparency is standard',         // right, bottom
         ] as $i => $text) {
             ComparisonCheck::create(['text' => $text, 'sort_order' => $i + 1]);
         }
