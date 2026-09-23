@@ -1,0 +1,35 @@
+# This file only does anything when the domain's document root is the project
+# folder rather than public/. Pointing the domain at public/ is still the right
+# setup — do that if the host allows it. Where it doesn't, this keeps the site
+# working and, just as importantly, keeps .env and the application folders out
+# of reach of the web.
+#
+# When the document root is public/ this file sits outside it and is never read,
+# so leaving it in place costs nothing.
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+    # Refuse the files and folders that must never be served, whatever the
+    # document root is. These come first so nothing below can undo them.
+    RewriteRule ^\.env - [F,L]
+    RewriteRule ^\.git - [F,L]
+    RewriteRule ^(composer|package)(-lock)?\.(json|lock) - [F,L]
+    RewriteRule ^(artisan|phpunit\.xml|vite\.config\.js)$ - [F,L]
+    RewriteRule ^(app|bootstrap|config|database|resources|routes|storage|tests|tools|vendor|node_modules)/ - [F,L]
+
+    # install.php is meant to be reachable while it exists, so it is served
+    # from here rather than being sent into public/.
+    RewriteCond %{REQUEST_URI} ^/install\.php
+    RewriteRule ^ - [L]
+
+    # Everything else is served out of public/, which is where Laravel's front
+    # controller lives. public/.htaccess takes over from there.
+    RewriteCond %{REQUEST_URI} !^/public/
+    RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+# Belt and braces for hosts that ignore the rewrite above.
+<FilesMatch "^\.env">
+    Require all denied
+</FilesMatch>

@@ -38,6 +38,15 @@ php artisan storage:link           # so uploaded images resolve
 
 Point the web server's document root at `public/`, not the project root.
 
+**Seeing a 403 instead of the site?** That is what a server returns when the
+document root has no `index.php` in it and directory listing is off — in other
+words, when the domain is pointing at the project folder rather than `public/`.
+Fix the document root if you can. Where the host won't allow it, the `.htaccess`
+in the project root forwards requests into `public/` and refuses `.env` and the
+application folders, so the site works either way. A 403 can also mean the files
+aren't readable by the web server: folders should be 755 and files 644, owned by
+the hosting account rather than root.
+
 ### Environment values that matter
 
 | Key | Why |
