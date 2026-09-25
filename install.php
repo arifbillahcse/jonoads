@@ -101,6 +101,17 @@ function requirementChecks(string $root): array
         );
     }
 
+    // Uploaded images (logos, headshots, the hero photo) are written straight
+    // into public/storage/ rather than through a symlink — see
+    // config/filesystems.php. That subfolder is created on first upload, so
+    // it's public/ itself that needs to be writable, not a folder that
+    // necessarily exists yet.
+    $rows[] = check(
+        'Writable: public (for uploaded images)',
+        is_writable($root . '/public'),
+        'Set the public/ folder to 755 (or 775) in cPanel → File Manager → Permissions.'
+    );
+
     $rows[] = check(
         'Project root writable (for .env)',
         is_writable($root),
@@ -394,11 +405,16 @@ function runInstallCommands(string $root): array
     $kernel = $app->make(\Illuminate\Contracts\Console\Kernel::class);
     $kernel->bootstrap();
 
+    // No storage:link step: the 'public' disk writes straight into
+    // public/storage/ (see config/filesystems.php) rather than the symlink
+    // Laravel usually creates, since several hosts this site has run on
+    // block Apache from following it — a 403 on every uploaded image with
+    // the rest of the site fine, and not something this installer or a
+    // project .htaccess can fix on its own.
     $steps = [
         ['Clearing stale caches', 'config:clear', []],
         ['Creating database tables', 'migrate', ['--force' => true]],
         ['Loading site content', 'db:seed', ['--force' => true]],
-        ['Linking uploaded files', 'storage:link', []],
         ['Caching config and routes', 'optimize', []],
     ];
 
@@ -411,16 +427,14 @@ function runInstallCommands(string $root): array
             $results[] = [
                 'label' => $label,
                 'ok' => $status === 0,
-                // storage:link is the one that commonly fails on shared hosting,
-                // and the site still works without it apart from uploaded images.
-                'fatal' => $status !== 0 && $command !== 'storage:link',
+                'fatal' => $status !== 0,
                 'output' => $output,
             ];
         } catch (\Throwable $e) {
             $results[] = [
                 'label' => $label,
                 'ok' => false,
-                'fatal' => $command !== 'storage:link',
+                'fatal' => true,
                 'output' => $e->getMessage(),
             ];
         }

@@ -33,7 +33,25 @@ the `MAIL_*` block, and `ADMIN_EMAIL` / `ADMIN_PASSWORD`. Then:
 ```bash
 php artisan migrate --force
 php artisan db:seed --force        # imports the site copy; first deploy only
-php artisan storage:link           # so uploaded images resolve
+```
+
+No `storage:link` step — uploaded images (logos, headshots, the hero photo) save
+directly into `public/storage/`, a real folder rather than the symlink Laravel
+normally creates. Several hosts this site has run on block Apache from
+following that symlink at all, which shows up as a 403 on every uploaded
+image with the rest of the site working fine, and it's not always something a
+project-level `.htaccess` can override. Writing straight into `public/`
+avoids the question entirely, symlink-friendly host or not.
+
+**Moving an existing deployment onto this?** If `public/storage` is currently
+a symlink (from before this change), remove it and let uploads carry across
+to the new real folder:
+
+```bash
+rm public/storage                              # removes the symlink, not its target
+mkdir -p public/storage
+cp -r storage/app/public/. public/storage/     # carries over anything already uploaded
+chmod -R 755 public/storage
 ```
 
 Point the web server's document root at `public/`, not the project root.
