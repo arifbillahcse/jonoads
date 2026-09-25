@@ -3,6 +3,7 @@
 namespace App\Filament\Pages;
 
 use App\Models\SiteSetting;
+use App\Support\AppVersion;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
@@ -43,6 +44,16 @@ class ManageSiteSettings extends Page
     public function getTitle(): string
     {
         return 'Site settings';
+    }
+
+    /**
+     * Shown under the page title, not as a form field — it describes this
+     * codebase's release, not a value someone edits or that "Save changes"
+     * should touch. Bump it by editing the VERSION file at the project root.
+     */
+    public function getSubheading(): ?string
+    {
+        return 'Version ' . AppVersion::current();
     }
 
     public function mount(): void
