@@ -42,11 +42,6 @@
   </div>
 </section>
 
-<!-- ============ LOGO MARQUEE ============ -->
-<section class="marquee-section" aria-label="Brands we've worked with">
-  <x-section.marquee />
-</section>
-
 <!-- ============ PEDIGREE STATS ============ -->
 <section class="pedigree" id="pedigree">
   <div class="section-inner">
