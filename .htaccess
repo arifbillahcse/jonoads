@@ -10,6 +10,12 @@
 <IfModule mod_rewrite.c>
     RewriteEngine On
 
+    # /storage/* is where uploaded images live — but on disk that's
+    # public/storage/, not the project-root storage/ folder blocked below
+    # (they share a URL segment name only). Route it there and stop before
+    # the block rule gets a chance to see it.
+    RewriteRule ^storage/(.*)$ public/storage/$1 [L]
+
     # Refuse the files and folders that must never be served, whatever the
     # document root is. These come first so nothing below can undo them.
     RewriteRule ^\.env - [F,L]
