@@ -42,6 +42,11 @@
   </div>
 </section>
 
+<!-- ============ LOGO MARQUEE ============ -->
+<section class="marquee-section">
+  <x-section.marquee />
+</section>
+
 <!-- ============ PEDIGREE STATS ============ -->
 <section class="pedigree" id="pedigree">
   <div class="section-inner">
