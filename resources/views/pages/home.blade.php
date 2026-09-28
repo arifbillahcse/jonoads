@@ -50,7 +50,7 @@
 <!-- ============ PEDIGREE STATS ============ -->
 <section class="pedigree" id="pedigree">
   <div class="section-inner">
-    <h2 class="reveal">Only elite talent works here.</h2>
+    <h2 class="reveal">Only Elite Talent Works Here.</h2>
     <p class="pedigree-sub reveal">
       Trusted by mega brands and premier startups. Our media buyers have run
       ads for brands most agencies dream about.
