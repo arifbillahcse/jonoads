@@ -514,20 +514,21 @@ button {
 }
 
 /* Logos get the treatment the client liked on the names: muted at rest,
-   coming up to full on hover. Greyscale keeps a row of mismatched brand
-   colours from pulling the eye around. */
+   coming up to full on hover. brightness(0) invert(1) flattens whatever
+   colour a logo's marks are into solid white — with a transparent-background
+   file this reads as a clean white mark, matching the plain-text brand names
+   either side of it instead of a mismatched colour or a stray white box. */
 .marquee-logo {
   height: 26px;
   width: auto;
   max-width: 150px;
   object-fit: contain;
-  filter: grayscale(1) brightness(1.8);
+  filter: brightness(0) invert(1);
   opacity: 0.6;
-  transition: opacity 0.2s var(--ease), filter 0.2s var(--ease);
+  transition: opacity 0.2s var(--ease);
 }
 
 .marquee-item:hover .marquee-logo {
-  filter: grayscale(0) brightness(1);
   opacity: 1;
 }
 
