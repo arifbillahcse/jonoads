@@ -8,7 +8,7 @@
 <section class="engine-hero" id="top">
   <div class="section-inner engine-hero-inner">
     <p class="eyebrow-free-label reveal">The people</p>
-    <h1 class="reveal">Industry leaders in every domain.</h1>
+    <h1 class="reveal">Industry Leaders In Every Domain.</h1>
     <p class="engine-hero-sub reveal">
       Trusted by startups and mega brands, collectively scaled over 100
       brands — the team every account actually works with, not a rotating
@@ -36,7 +36,7 @@
 <section class="team" id="dream-team">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">Dream team</p>
-    <h2 class="reveal">One team, no handoffs.</h2>
+    <h2 class="reveal">One Team, No Handoffs.</h2>
     <p class="team-sub reveal">Every discipline an account touches — media, creative, CRM, PR, and advisory — sits inside the same team.</p>
 
     <x-section.team-grid />
@@ -47,7 +47,7 @@
 <section class="partners" id="partners">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">World-class partner network</p>
-    <h2 class="reveal">We don't do everything. We know who does.</h2>
+    <h2 class="reveal">We Don't Do Everything. We Know Who Does.</h2>
 
     <x-section.partner-grid />
   </div>
@@ -56,7 +56,7 @@
 <!-- ============ CONTACT / CTA ============ -->
 <section class="contact" id="contact">
   <div class="section-inner contact-inner">
-    <h2 class="reveal">Want to work with this team?</h2>
+    <h2 class="reveal">Want To Work With This Team?</h2>
     <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
     <x-cta.schedule class="btn btn-primary btn-large reveal" />
   </div>

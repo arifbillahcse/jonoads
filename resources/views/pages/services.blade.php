@@ -8,7 +8,7 @@
 <section class="engine-hero" id="top">
   <div class="section-inner engine-hero-inner">
     <p class="eyebrow-free-label reveal">What we do</p>
-    <h1 class="reveal">Four services. One team, no handoffs.</h1>
+    <h1 class="reveal">Four Services. One Team, No Handoffs.</h1>
     <p class="engine-hero-sub reveal">
       Media, creative, advisory, and CRM — run by the same people who see
       the performance data, so nothing gets lost translating between an
@@ -25,7 +25,7 @@
 <section class="services" id="services-detail">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">The services</p>
-    <h2 class="reveal">What's included in each.</h2>
+    <h2 class="reveal">What's Included In Each.</h2>
 
     <x-section.services-detail />
   </div>
@@ -35,7 +35,7 @@
 <section class="engagement" id="engagement">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">How we work together</p>
-    <h2 class="reveal">Three ways in. Pick what fits.</h2>
+    <h2 class="reveal">Three Ways In. Pick What Fits.</h2>
 
     <x-section.engagement />
   </div>
@@ -44,7 +44,7 @@
 <!-- ============ COMPARISON ============ -->
 <section class="comparison" id="comparison">
   <div class="section-inner">
-    <h2 class="reveal">Jono vs. the average agency.</h2>
+    <h2 class="reveal">Jono Vs. The Average Agency.</h2>
     <p class="comparison-sub reveal">There's simply no comparison.</p>
 
     <x-section.comparison />
@@ -54,7 +54,7 @@
 <!-- ============ CONTACT / CTA ============ -->
 <section class="contact" id="contact">
   <div class="section-inner contact-inner">
-    <h2 class="reveal">Not sure which service fits?</h2>
+    <h2 class="reveal">Not Sure Which Service Fits?</h2>
     <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
     <x-cta.schedule class="btn btn-primary btn-large reveal" />
   </div>

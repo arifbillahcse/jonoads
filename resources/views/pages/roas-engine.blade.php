@@ -8,7 +8,7 @@
 <section class="engine-hero" id="top">
   <div class="section-inner engine-hero-inner">
     <p class="eyebrow-free-label reveal">The ROAS Engine™</p>
-    <h1 class="reveal">A media buying system, built to never lose.</h1>
+    <h1 class="reveal">A Media Buying System, Built To Never Lose.</h1>
     <p class="engine-hero-sub reveal">
       Every account we run — from a $2M DTC brand to a billion-dollar enterprise —
       goes through the same three-stage cycle. It's not a philosophy, it's a
@@ -46,7 +46,7 @@
 <section class="engine-detail" id="breakdown">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">Inside each stage</p>
-    <h2 class="reveal">What actually happens at each step.</h2>
+    <h2 class="reveal">What Actually Happens At Each Step.</h2>
     <p class="engine-detail-sub reveal">A closer look at the work behind each third of the cycle.</p>
 
     <x-section.engine-detail />
@@ -57,7 +57,7 @@
 <section class="engine-proof">
   <div class="section-inner engine-proof-inner">
     <div>
-      <h2 class="reveal">The Engine, in results.</h2>
+      <h2 class="reveal">The Engine, In Results.</h2>
       <p class="reveal">A sample of what running through Review, Operate, Improve does to an account.</p>
       <a href="{{ route('case-studies') }}" class="btn btn-ghost reveal">See the full case studies</a>
     </div>
@@ -81,7 +81,7 @@
 <!-- ============ CONTACT / CTA ============ -->
 <section class="contact" id="contact">
   <div class="section-inner contact-inner">
-    <h2 class="reveal">Ready to put your account through the Engine?</h2>
+    <h2 class="reveal">Ready To Put Your Account Through The Engine?</h2>
     <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
     <x-cta.schedule class="btn btn-primary btn-large reveal" />
   </div>

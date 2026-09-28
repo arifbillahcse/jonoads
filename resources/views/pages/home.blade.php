@@ -65,7 +65,7 @@
   <div class="section-inner roas-grid">
     <div class="roas-copy">
       <p class="eyebrow-free-label reveal">The ROAS Engine™</p>
-      <h2 class="reveal">A media buying system, not a guessing game.</h2>
+      <h2 class="reveal">A Media Buying System, Not A Guessing Game.</h2>
       <p class="roas-intro reveal">
         Every client receives the same 3-phase approach tailored to its
         specific business. This isn't a one-size-fits-all fixed playbook.
@@ -88,7 +88,7 @@
 <section class="services" id="services">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">What we do</p>
-    <h2 class="reveal">World-class services.</h2>
+    <h2 class="reveal">World-Class Services.</h2>
 
     <x-section.services-list />
 
@@ -99,7 +99,7 @@
 <!-- ============ COMPARISON ============ -->
 <section class="comparison" id="comparison">
   <div class="section-inner">
-    <h2 class="reveal">Jono vs. the average agency.</h2>
+    <h2 class="reveal">Jono Vs. The Average Agency.</h2>
     <p class="comparison-sub reveal">There's simply no comparison.</p>
 
     <x-section.comparison />
@@ -110,7 +110,7 @@
 <section class="case-studies" id="case-studies">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">Results</p>
-    <h2 class="reveal">Case studies, by request.</h2>
+    <h2 class="reveal">Case Studies, By Request.</h2>
     <p class="case-sub reveal">A sample of what changing the account architecture, creative, and management model actually does to the numbers.</p>
 
     <x-section.case-grid />
@@ -127,7 +127,7 @@
     <x-section.founder />
 
     <p class="eyebrow-free-label reveal team-heading-spacer">Dream team</p>
-    <h2 class="reveal">Industry leaders in every domain.</h2>
+    <h2 class="reveal">Industry Leaders In Every Domain.</h2>
     <p class="team-sub reveal">Trusted by startups and mega brands. Collectively scaled over 100 brands.</p>
 
     <x-section.team-grid />
@@ -138,7 +138,7 @@
 <section class="engagement" id="engagement">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">How we work together</p>
-    <h2 class="reveal">Three ways in. Pick what fits.</h2>
+    <h2 class="reveal">Three Ways In. Pick What Fits.</h2>
 
     <x-section.engagement />
   </div>
@@ -148,7 +148,7 @@
 <section class="partners" id="partners">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">World-class partner network</p>
-    <h2 class="reveal">We don't do everything. We know who does.</h2>
+    <h2 class="reveal">We Don't Do Everything. We Know Who Does.</h2>
 
     <x-section.partner-grid />
   </div>
@@ -158,7 +158,7 @@
 <section class="locations" id="locations">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">Small team. Big impact.</p>
-    <h2 class="reveal">Cross cultures and time zones. We understand people.</h2>
+    <h2 class="reveal">Cross Cultures And Time Zones. We Understand People.</h2>
 
     <x-section.locations />
   </div>
@@ -178,7 +178,7 @@
 <!-- ============ CONTACT / CTA ============ -->
 <section class="contact" id="contact">
   <div class="section-inner contact-inner">
-    <h2 class="reveal">Let's do great things together.</h2>
+    <h2 class="reveal">Let's Do Great Things Together.</h2>
     <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
     <x-cta.schedule class="btn btn-primary btn-large reveal" />
 

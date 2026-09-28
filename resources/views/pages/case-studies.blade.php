@@ -8,7 +8,7 @@
 <section class="engine-hero" id="top">
   <div class="section-inner engine-hero-inner">
     <p class="eyebrow-free-label reveal">Results</p>
-    <h1 class="reveal">Real accounts. Real numbers.</h1>
+    <h1 class="reveal">Real Accounts. Real Numbers.</h1>
     <p class="engine-hero-sub reveal">
       A sample of what changing the account architecture, creative, and
       management model actually does to the numbers — available in full
@@ -25,7 +25,7 @@
 <section class="case-studies" id="cases">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">Case studies</p>
-    <h2 class="reveal">Case studies, by request.</h2>
+    <h2 class="reveal">Case Studies, By Request.</h2>
     <p class="case-sub reveal">A sample of what changing the account architecture, creative, and management model actually does to the numbers.</p>
 
     <x-section.case-grid />
@@ -39,7 +39,7 @@
 <!-- ============ CONTACT / CTA ============ -->
 <section class="contact" id="contact">
   <div class="section-inner contact-inner">
-    <h2 class="reveal">Want to see the full numbers?</h2>
+    <h2 class="reveal">Want To See The Full Numbers?</h2>
     <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
     <x-cta.schedule class="btn btn-primary btn-large reveal" />
   </div>

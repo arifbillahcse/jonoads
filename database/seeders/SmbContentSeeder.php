@@ -12,11 +12,11 @@ class SmbContentSeeder extends Seeder
     {
         SmbContent::create([
             'eyebrow' => 'SMB program',
-            'headline' => 'Enterprise media buying, sized for your market.',
+            'headline' => 'Enterprise Media Buying, Sized For Your Market.',
             'intro' => 'The same buyers who run nine-figure budgets for billion-dollar brands, on a program built for a local and regional budget. One market, one team, and the same daily management the enterprise accounts get.',
-            'industries_heading' => 'Built around how local demand actually works.',
-            'approach_heading' => 'What a local budget usually buys, and what it buys here.',
-            'cta_heading' => 'Let\'s look at your market.',
+            'industries_heading' => 'Built Around How Local Demand Actually Works.',
+            'approach_heading' => 'What A Local Budget Usually Buys, And What It Buys Here.',
+            'cta_heading' => 'Let\'s Look At Your Market.',
             'cta_body' => 'Tell us your service area and what you\'re spending now. We\'ll tell you what we\'d change first.',
         ]);
 

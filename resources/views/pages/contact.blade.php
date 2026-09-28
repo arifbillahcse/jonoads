@@ -8,7 +8,7 @@
 <section class="engine-hero" id="top">
   <div class="section-inner engine-hero-inner">
     <p class="eyebrow-free-label reveal">Get in touch</p>
-    <h1 class="reveal">Let's do great things together.</h1>
+    <h1 class="reveal">Let's Do Great Things Together.</h1>
     <p class="engine-hero-sub reveal">
       Tell us about your brand and your media spend. We'll tell you what
       we'd change first — email is the fastest way to reach us.
@@ -51,7 +51,7 @@
   <div class="section-inner enquiry-inner">
     <div class="enquiry-intro">
       <p class="eyebrow-free-label reveal">Send an enquiry</p>
-      <h2 class="reveal">Tell us what you're running.</h2>
+      <h2 class="reveal">Tell Us What You're Running.</h2>
       <p class="reveal">The more you tell us about the account, the more specific we can be about what we'd change first.</p>
     </div>
     <div class="reveal">
@@ -64,7 +64,7 @@
 <section class="locations" id="locations">
   <div class="section-inner">
     <p class="eyebrow-free-label reveal">Small team. Big impact.</p>
-    <h2 class="reveal">Cross cultures and time zones. We understand people.</h2>
+    <h2 class="reveal">Cross Cultures And Time Zones. We Understand People.</h2>
 
     <x-section.locations />
   </div>
