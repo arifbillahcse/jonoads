@@ -36,6 +36,23 @@ class CaseStudyStat extends Model
         return $this->belongsTo(CaseStudy::class);
     }
 
+    /**
+     * The column is NOT NULL with a '' default, but an empty Filament
+     * repeater field (most stats have no prefix, e.g. "40%") submits as
+     * null rather than ''. Coercing here means every write path — the
+     * admin form, tinker, a future import — is safe without remembering
+     * to blank-check it first.
+     */
+    public function setPrefixAttribute(?string $value): void
+    {
+        $this->attributes['prefix'] = $value ?? '';
+    }
+
+    public function setSuffixAttribute(?string $value): void
+    {
+        $this->attributes['suffix'] = $value ?? '';
+    }
+
     /** What the counter counts up to, without the stored decimal padding. */
     public function animationTarget(): string
     {
