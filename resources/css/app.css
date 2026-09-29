@@ -1166,6 +1166,10 @@ img.founder-photo,
 img.team-photo {
   filter: grayscale(1) contrast(1.05);
   object-fit: cover;
+  /* Cropping to a square from the centre clips the top of the head on a
+     headshot with more room above the subject than below. Anchoring the
+     crop to the top keeps the head whole and trims the shoulders instead. */
+  object-position: center top;
 }
 
 .founder-photo::after {
