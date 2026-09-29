@@ -10,10 +10,12 @@ use Illuminate\Console\Command;
 /**
  * One-off fix for a live deployment seeded before the client's round-1
  * feedback rewrote the comparison section (items 22-26) and the
- * testimonial band (items 27-28). ComparisonSeeder and TestimonialSeeder
- * already have the right rows for a fresh install; this replaces them on
- * an existing database the same way the earlier fix commands did. Safe to
- * run more than once — it clears each table first.
+ * testimonial band (items 27-28, three quotes only — the original
+ * "Lens & Eyewear Client" quote is dropped, not kept alongside them).
+ * ComparisonSeeder and TestimonialSeeder already have the right rows for
+ * a fresh install; this replaces them on an existing database the same
+ * way the earlier fix commands did. Safe to run more than once — it
+ * clears each table first.
  */
 class FixComparisonAndTestimonials extends Command
 {
@@ -54,28 +56,22 @@ class FixComparisonAndTestimonials extends Command
 
         foreach ([
             [
-                'quote' => 'Their digital ads expertise is superior. They have integrity, always transparent. Jono is fully invested in our success. I don\'t have to worry about our digital ads anymore — I don\'t have to worry about ads performance anymore.',
-                'attribution' => 'Lens & Eyewear Client',
-                'is_featured' => true,
-                'sort_order' => 1,
-            ],
-            [
                 'quote' => 'Big fan. They have integrity, fantastic team. Worked with them at small and large brands.',
                 'attribution' => 'Client Chief Digital Officer',
-                'is_featured' => false,
-                'sort_order' => 2,
+                'is_featured' => true,
+                'sort_order' => 1,
             ],
             [
                 'quote' => 'Highly recommend. Joseph and his team are the real deal. Hired them at several of my companies.',
                 'attribution' => 'Digital Marketing Director, Global Mobile Tech Brand',
                 'is_featured' => false,
-                'sort_order' => 3,
+                'sort_order' => 2,
             ],
             [
                 'quote' => 'Strongly recommend. Established stability and achieved ROAS goal fast. Reduced internal workload.',
                 'attribution' => 'President, Global Fitness App & Consumer Wearables',
                 'is_featured' => false,
-                'sort_order' => 4,
+                'sort_order' => 3,
             ],
         ] as $row) {
             Testimonial::create($row + ['is_published' => true]);
