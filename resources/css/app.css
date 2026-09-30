@@ -520,7 +520,8 @@ button {
    either side of it instead of a mismatched colour or a stray white box. */
 .marquee-logo {
   height: 36px;
-  width: 180px;
+  width: auto;
+  max-width: 160px;
   object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.6;
