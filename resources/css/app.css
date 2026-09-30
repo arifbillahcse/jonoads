@@ -1128,7 +1128,7 @@ button {
 
 .founder {
   display: grid;
-  grid-template-columns: 96px 1fr;
+  grid-template-columns: 160px 1fr;
   gap: 32px;
   margin-bottom: 5rem;
   align-items: start;
@@ -1150,8 +1150,8 @@ button {
    request to match — a big square photo stood out next to the
    otherwise-consistent headshot style used everywhere else. */
 .founder-photo {
-  width: 96px;
-  height: 96px;
+  width: 160px;
+  height: 160px;
   border-radius: 50%;
 }
 
@@ -1183,7 +1183,7 @@ img.team-photo {
 }
 
 .founder-photo::after {
-  font-size: 1.75rem;
+  font-size: 3rem;
 }
 
 .team-photo::after {
