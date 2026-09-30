@@ -10,10 +10,10 @@ class SiteSettingSeeder extends Seeder
     public function run(): void
     {
         // Several values ship blank on purpose. Podcast and merch point at
-        // anchors that do not exist yet; calendly_url and logo_image wait on
-        // assets from the client, and the site falls back gracefully until
-        // each arrives — the contact page for booking, the wordmark for the
-        // logo.
+        // anchors that do not exist yet; logo_image waits on an asset from
+        // the client, and the site falls back gracefully until it arrives —
+        // the contact page for booking, the wordmark for the logo.
+        // calendly_url is the client's real booking link, supplied directly.
         foreach ([
             [
                 'key' => 'contact_email',
@@ -52,7 +52,7 @@ class SiteSettingSeeder extends Seeder
             ],
             [
                 'key' => 'calendly_url',
-                'value' => '',
+                'value' => 'https://calendly.com/d/d2mc-3p7-qjh/digital-ads-strategy-call-w-jono-ads',
                 'group' => 'links',
                 'label' => 'Calendly booking link',
                 'type' => 'url',
