@@ -531,15 +531,6 @@ button {
   opacity: 1;
 }
 
-/* These two read noticeably smaller than the rest at the shared box size —
-   their source files have more padding baked around the mark than most
-   logos here. Scaling up (not a bigger box) keeps the marquee's spacing
-   and alignment with its neighbours untouched. */
-.marquee-logo[alt*="lululemon" i],
-.marquee-logo[alt*="Beachbody" i] {
-  transform: scale(1.35);
-}
-
 @keyframes marqueeScroll {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }

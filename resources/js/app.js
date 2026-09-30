@@ -83,6 +83,88 @@ function initMarquee() {
   const clone = group.cloneNode(true);
   clone.setAttribute('aria-hidden', 'true');
   track.appendChild(clone);
+
+  normalizeMarqueeLogoSizes();
+}
+
+/**
+ * Brand logo files vary a lot in how much transparent padding sits around
+ * the actual mark, so the same fixed box (object-fit: contain) renders one
+ * logo edge-to-edge and another a third that size. Reading each image's
+ * real (non-transparent) bounding box off a canvas and scaling up to a
+ * shared target visual size evens that out automatically — no per-logo
+ * CSS rule to maintain as new ones are uploaded.
+ */
+function normalizeMarqueeLogoSizes() {
+  const images = document.querySelectorAll('.marquee-logo');
+  if (!images.length) return;
+
+  const alphaThreshold = 16;
+  // A logo already filling most of the box shouldn't shrink; a tiny mark
+  // shouldn't blow up past what still reads cleanly at this size.
+  const minScale = 1;
+  const maxScale = 1.8;
+  const targetFill = 0.72; // fraction of the box's shorter side
+
+  images.forEach((img) => {
+    const measure = () => {
+      const iw = img.naturalWidth;
+      const ih = img.naturalHeight;
+      const boxW = img.clientWidth;
+      const boxH = img.clientHeight;
+      if (!iw || !ih || !boxW || !boxH) return;
+
+      let data;
+      try {
+        const canvas = document.createElement('canvas');
+        canvas.width = iw;
+        canvas.height = ih;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        data = ctx.getImageData(0, 0, iw, ih).data;
+      } catch (e) {
+        // A tainted canvas (image not actually same-origin) can't be read —
+        // leave that logo at its default contained size rather than throw.
+        return;
+      }
+
+      let minX = iw, minY = ih, maxX = 0, maxY = 0, found = false;
+      const step = Math.max(1, Math.floor(Math.max(iw, ih) / 200));
+      for (let y = 0; y < ih; y += step) {
+        for (let x = 0; x < iw; x += step) {
+          if (data[(y * iw + x) * 4 + 3] > alphaThreshold) {
+            found = true;
+            if (x < minX) minX = x;
+            if (x > maxX) maxX = x;
+            if (y < minY) minY = y;
+            if (y > maxY) maxY = y;
+          }
+        }
+      }
+      // Fully transparent (broken export) or fully opaque (no alpha channel
+      // at all, so "content" is the whole canvas) — either way there's no
+      // padding to correct for, so leave it as object-fit already rendered it.
+      if (!found || (minX === 0 && minY === 0 && maxX >= iw - step && maxY >= ih - step)) {
+        return;
+      }
+
+      const bw = maxX - minX;
+      const bh = maxY - minY;
+      if (bw <= 0 || bh <= 0) return;
+
+      const containScale = Math.min(boxW / iw, boxH / ih);
+      const renderedMax = Math.max(bw, bh) * containScale;
+      const target = Math.min(boxW, boxH) * targetFill;
+
+      const scale = Math.min(Math.max(target / renderedMax, minScale), maxScale);
+      if (scale > 1.02) {
+        img.style.transform = `scale(${scale.toFixed(3)})`;
+      }
+    };
+
+    if (img.complete) measure();
+    else img.addEventListener('load', measure, { once: true });
+  });
 }
 
 /* ---------- Reveal-on-scroll for section content ---------- */
