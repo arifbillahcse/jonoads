@@ -1128,8 +1128,8 @@ button {
 
 .founder {
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 48px;
+  grid-template-columns: 96px 1fr;
+  gap: 32px;
   margin-bottom: 5rem;
   align-items: start;
 }
@@ -1144,6 +1144,15 @@ button {
     var(--surface-2);
   border: 1px solid var(--line-soft);
   overflow: hidden;
+}
+
+/* Same small circular treatment as the team grid, per the client's
+   request to match — a big square photo stood out next to the
+   otherwise-consistent headshot style used everywhere else. */
+.founder-photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
 }
 
 .founder-photo::after,
@@ -1174,7 +1183,7 @@ img.team-photo {
 }
 
 .founder-photo::after {
-  font-size: 4.5rem;
+  font-size: 1.75rem;
 }
 
 .team-photo::after {
@@ -2078,10 +2087,6 @@ main:focus {
 
   .founder {
     grid-template-columns: 1fr;
-  }
-
-  .founder-photo {
-    max-width: 200px;
   }
 }
 
