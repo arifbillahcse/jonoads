@@ -496,8 +496,8 @@ button {
 .marquee-group {
   display: flex;
   align-items: center;
-  gap: 56px;
-  padding-right: 56px;
+  gap: 40px;
+  padding-right: 40px;
 }
 
 .marquee-group span {
@@ -519,9 +519,9 @@ button {
    file this reads as a clean white mark, matching the plain-text brand names
    either side of it instead of a mismatched colour or a stray white box. */
 .marquee-logo {
-  height: 36px;
+  height: 44px;
   width: auto;
-  max-width: 160px;
+  max-width: 170px;
   object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.6;
