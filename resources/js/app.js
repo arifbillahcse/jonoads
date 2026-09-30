@@ -103,8 +103,8 @@ function normalizeMarqueeLogoSizes() {
   // A logo already filling most of the box shouldn't shrink; a tiny mark
   // shouldn't blow up past what still reads cleanly at this size.
   const minScale = 1;
-  const maxScale = 1.15;
-  const targetFill = 0.42; // fraction of the box's shorter side
+  const maxScale = 1.2;
+  const targetFill = 0.46; // fraction of the box's shorter side
 
   images.forEach((img) => {
     const measure = () => {
