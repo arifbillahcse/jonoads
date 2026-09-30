@@ -535,8 +535,8 @@ button {
    their source files have more padding baked around the mark than most
    logos here. Scaling up (not a bigger box) keeps the marquee's spacing
    and alignment with its neighbours untouched. */
-.marquee-logo[alt="lululemon" i],
-.marquee-logo[alt="Beachbody" i] {
+.marquee-logo[alt*="lululemon" i],
+.marquee-logo[alt*="Beachbody" i] {
   transform: scale(1.35);
 }
 
