@@ -7,10 +7,12 @@ use Illuminate\Console\Command;
 
 /**
  * One-off fix for a live deployment seeded before the client's round-1
- * feedback changed the homepage hero strip. StatSeeder already has the
- * right rows for a fresh install; this replaces the home_hero group's
- * rows on an existing database the same way, without duplicating them.
- * Safe to run more than once — it clears the group first each time.
+ * feedback changed the homepage hero strip, and again before a later
+ * reorder request (Brands Scaled, then Billion-Dollar Brands, then
+ * 9-Figure Brands last). StatSeeder already has the right rows for a
+ * fresh install; this replaces the home_hero group's rows on an
+ * existing database the same way, without duplicating them. Safe to
+ * run more than once — it clears the group first each time.
  */
 class FixHomeHeroStats extends Command
 {
@@ -25,9 +27,9 @@ class FixHomeHeroStats extends Command
         foreach ([
             ['label' => 'Media Managed', 'value' => 250.0, 'prefix' => '$', 'suffix' => 'M', 'sort_order' => 1],
             ['label' => 'Revenue Generated', 'value' => 750.0, 'prefix' => '$', 'suffix' => 'M+', 'sort_order' => 2],
-            ['label' => '9-Figure Brands', 'value' => 15.0, 'prefix' => '', 'suffix' => '+', 'sort_order' => 3],
-            ['label' => 'Brands Scaled', 'value' => 40.0, 'prefix' => '', 'suffix' => '+', 'sort_order' => 4],
-            ['label' => 'Billion-Dollar Brands', 'value' => 7.0, 'prefix' => '', 'suffix' => '', 'sort_order' => 5],
+            ['label' => 'Brands Scaled', 'value' => 40.0, 'prefix' => '', 'suffix' => '+', 'sort_order' => 3],
+            ['label' => 'Billion-Dollar Brands', 'value' => 7.0, 'prefix' => '', 'suffix' => '', 'sort_order' => 4],
+            ['label' => '9-Figure Brands', 'value' => 15.0, 'prefix' => '', 'suffix' => '+', 'sort_order' => 5],
         ] as $row) {
             Stat::create($row + [
                 'group' => 'home_hero',

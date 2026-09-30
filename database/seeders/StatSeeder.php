@@ -22,8 +22,8 @@ class StatSeeder extends Seeder
     {
         foreach ([
             // ---- Homepage hero -------------------------------------------
-            // "7 Billion-Dollar Brands" moves to the far right; "15+ 9-Figure
-            // Brands" takes the slot it used to hold.
+            // Order per the client: Media Managed, Revenue Generated,
+            // Brands Scaled, Billion-Dollar Brands, 9-Figure Brands last.
             [
                 'group' => 'home_hero',
                 'label' => 'Media Managed',
@@ -48,8 +48,8 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'home_hero',
-                'label' => '9-Figure Brands',
-                'value' => 15.0,
+                'label' => 'Brands Scaled',
+                'value' => 40.0,
                 'prefix' => '',
                 'suffix' => '+',
                 'decimals' => 0,
@@ -59,10 +59,10 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'home_hero',
-                'label' => 'Brands Scaled',
-                'value' => 40.0,
+                'label' => 'Billion-Dollar Brands',
+                'value' => 7.0,
                 'prefix' => '',
-                'suffix' => '+',
+                'suffix' => '',
                 'decimals' => 0,
                 'is_static' => false,
                 'static_value' => null,
@@ -70,10 +70,10 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'home_hero',
-                'label' => 'Billion-Dollar Brands',
-                'value' => 7.0,
+                'label' => '9-Figure Brands',
+                'value' => 15.0,
                 'prefix' => '',
-                'suffix' => '',
+                'suffix' => '+',
                 'decimals' => 0,
                 'is_static' => false,
                 'static_value' => null,
