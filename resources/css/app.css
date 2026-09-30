@@ -519,8 +519,8 @@ button {
    file this reads as a clean white mark, matching the plain-text brand names
    either side of it instead of a mismatched colour or a stray white box. */
 .marquee-logo {
-  height: 34px;
-  width: 115px;
+  height: 20px;
+  width: 68px;
   object-fit: contain;
   filter: brightness(0) invert(1);
   opacity: 0.6;
