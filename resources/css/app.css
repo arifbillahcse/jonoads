@@ -496,8 +496,8 @@ button {
 .marquee-group {
   display: flex;
   align-items: center;
-  gap: 40px;
-  padding-right: 40px;
+  gap: 64px;
+  padding-right: 64px;
 }
 
 .marquee-group span {
