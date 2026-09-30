@@ -59,7 +59,7 @@ class SiteSettingSeeder extends Seeder
             ],
             [
                 'key' => 'hero_image',
-                'value' => 'placeholders/hero-placeholder.jpg',
+                'value' => 'placeholders/hero-placeholder.webp',
                 'group' => 'general',
                 'label' => 'Homepage hero image',
                 'type' => 'text',
