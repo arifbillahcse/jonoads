@@ -26,8 +26,6 @@
 <!-- ============ FOUNDER ============ -->
 <section class="team" id="founder">
   <div class="section-inner">
-    <p class="eyebrow-free-label reveal">Founder &amp; CEO</p>
-
     <x-section.founder />
   </div>
 </section>

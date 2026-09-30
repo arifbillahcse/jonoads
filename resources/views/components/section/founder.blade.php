@@ -8,6 +8,7 @@
       <div class="founder-photo" data-initials="{{ $founder->initials }}" aria-hidden="true"></div>
       @endif
       <div class="founder-copy">
+        <p class="eyebrow-free-label reveal">Founder &amp; CEO</p>
         <h2>{{ $founder->name }}</h2>
         @foreach ($founder->bioParagraphs() as $paragraph)
         <p>{{ $paragraph }}</p>

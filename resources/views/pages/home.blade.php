@@ -122,8 +122,6 @@
 <!-- ============ TEAM ============ -->
 <section class="team" id="team">
   <div class="section-inner">
-    <p class="eyebrow-free-label reveal">Founder &amp; CEO</p>
-
     <x-section.founder />
 
     <p class="eyebrow-free-label reveal team-heading-spacer">Dream team</p>
