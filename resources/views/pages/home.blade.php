@@ -177,7 +177,6 @@
 <section class="contact" id="contact">
   <div class="section-inner contact-inner">
     <h2 class="reveal">Let's Do Great Things Together.</h2>
-    <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
     <x-cta.schedule class="btn btn-primary btn-large reveal" />
 
     <div class="contact-links reveal">
