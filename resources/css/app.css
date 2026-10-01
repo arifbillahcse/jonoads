@@ -1005,18 +1005,38 @@ button {
   right: 24px;
 }
 
+/* Below this width there's no room to float the arrows over the quote
+   without overlapping the text, so they drop out of the carousel's
+   absolute positioning and sit as a small centered row underneath it
+   instead — still clickable, just no longer floating in the text. */
 @media (max-width: 640px) {
-  .testimonial-arrow-prev {
-    left: 8px;
+  .testimonial-carousel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
   }
 
-  .testimonial-arrow-next {
-    right: 8px;
+  .testimonial-carousel > .section-inner {
+    order: 1;
+    flex: 1 0 100%;
   }
 
   .testimonial-arrow {
+    position: static;
+    transform: none;
+    order: 2;
     width: 34px;
     height: 34px;
+  }
+
+  .testimonial-arrow-prev {
+    order: 2;
+  }
+
+  .testimonial-arrow-next {
+    order: 3;
   }
 }
 
