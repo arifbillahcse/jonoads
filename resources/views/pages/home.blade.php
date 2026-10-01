@@ -84,6 +84,16 @@
 
 <x-section.testimonial />
 
+<!-- ============ COMPARISON ============ -->
+<section class="comparison" id="comparison">
+  <div class="section-inner">
+    <h2 class="reveal">Jono Vs. The Average Agency.</h2>
+    <p class="comparison-sub reveal">There's simply no comparison. ROAS Engine is undefeated.</p>
+
+    <x-section.comparison />
+  </div>
+</section>
+
 <!-- ============ SERVICES ============ -->
 <section class="services" id="services">
   <div class="section-inner">
@@ -93,16 +103,6 @@
     <x-section.services-list />
 
     <a href="{{ route('services') }}" class="btn btn-ghost reveal section-more-link">See all services</a>
-  </div>
-</section>
-
-<!-- ============ COMPARISON ============ -->
-<section class="comparison" id="comparison">
-  <div class="section-inner">
-    <h2 class="reveal">Jono Vs. The Average Agency.</h2>
-    <p class="comparison-sub reveal">There's simply no comparison.</p>
-
-    <x-section.comparison />
   </div>
 </section>
 
