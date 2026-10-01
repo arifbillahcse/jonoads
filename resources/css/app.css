@@ -1011,6 +1011,15 @@ button {
    the side arrows in the same desktop-style position, just with more
    breathing room on either side of the now-narrower text. */
 @media (max-width: 1024px) and (min-width: 481px) {
+  /* Reserves a fixed band on both sides of the text for the arrows,
+     regardless of the exact viewport width — narrowing the quote column
+     alone depended on there being enough leftover space outside it, which
+     a mid-size viewport (e.g. a landscape phone) didn't always have. */
+  .testimonial-carousel > .section-inner {
+    padding-left: 76px;
+    padding-right: 76px;
+  }
+
   .testimonial-heading {
     text-align: center;
   }
