@@ -1005,45 +1005,15 @@ button {
   right: 24px;
 }
 
-/* Below this width the quote's own 760px max-width leaves no clearance
-   beside it for the page-edge arrows, so the quote column is narrowed
-   and centered instead — it wraps onto more (shorter) lines, keeping
-   the side arrows in the same desktop-style position, just with more
-   breathing room on either side of the now-narrower text. */
-@media (max-width: 1024px) and (min-width: 481px) {
-  /* Reserves a fixed band on both sides of the text for the arrows,
-     regardless of the exact viewport width — narrowing the quote column
-     alone depended on there being enough leftover space outside it, which
-     a mid-size viewport (e.g. a landscape phone) didn't always have. */
-  .testimonial-carousel > .section-inner {
-    padding-left: 76px;
-    padding-right: 76px;
-  }
-
-  .testimonial-heading {
-    text-align: center;
-  }
-
-  .testimonial-content {
-    max-width: 480px;
-    margin: 0 auto;
-  }
-
-  .testimonial blockquote {
-    margin: 0 auto;
-    text-align: center;
-  }
-
-  .testimonial-dots {
-    justify-content: center;
-  }
-}
-
-/* Too narrow even for a 480px-wide quote column to clear the arrows, so
-   on phones they drop out of absolute positioning and sit as a small
-   centered row underneath the quote instead — still clickable, just no
-   longer floating over the text. */
-@media (max-width: 480px) {
+/* Below desktop width, trying to keep the arrows beside the text kept
+   breaking at one in-between viewport size or another (a landscape phone,
+   a resized browser window...) no matter how the quote column was
+   narrowed. Below this width the arrows always drop out of absolute
+   positioning and sit as a small centered row underneath the quote
+   instead — that can never overlap the text, whatever the exact width -
+   and the quote's own font-size shrinks a bit so it still reads
+   comfortably whether it wraps to 3, 4, or 5 lines. */
+@media (max-width: 1024px) {
   .testimonial-carousel {
     display: flex;
     flex-wrap: wrap;
@@ -1061,9 +1031,18 @@ button {
     text-align: center;
   }
 
+  .testimonial-content {
+    max-width: 560px;
+    margin: 0 auto;
+  }
+
   .testimonial blockquote {
     margin: 0 auto;
     text-align: center;
+  }
+
+  .testimonial p {
+    font-size: clamp(1.1rem, 4vw, 1.4rem);
   }
 
   .testimonial-dots {
