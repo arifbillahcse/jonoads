@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTestimonials();
   initCaseVideos();
   initBarCharts();
+  initBackToTop();
 });
 
 /* ---------- Sticky header shrink on scroll ---------- */
@@ -31,6 +32,28 @@ function initHeader() {
   };
   window.addEventListener('scroll', onScroll, { passive: true });
   onScroll();
+}
+
+/* ---------- Back-to-top button ---------- */
+function initBackToTop() {
+  const button = document.getElementById('backToTop');
+  if (!button) return;
+
+  let lastState = false;
+  const onScroll = () => {
+    const shouldShow = window.scrollY > 600;
+    if (shouldShow !== lastState) {
+      button.classList.toggle('is-visible', shouldShow);
+      lastState = shouldShow;
+    }
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  button.addEventListener('click', () => {
+    const behavior = window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth';
+    window.scrollTo({ top: 0, behavior });
+  });
 }
 
 /* ---------- Mobile hamburger menu ---------- */
