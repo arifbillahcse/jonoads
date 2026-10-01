@@ -707,6 +707,87 @@ button {
   filter: drop-shadow(0 0 10px var(--cyan-glow));
 }
 
+/* A small dot that sweeps back and forth along whichever arc is active —
+   set in motion from JS, which animates its cx/cy each frame. */
+.roas-spark {
+  fill: var(--white);
+  filter: drop-shadow(0 0 6px var(--cyan-glow));
+  transition: opacity 0.3s var(--ease);
+}
+
+/* The three icon badges sitting just outside the ring, one per step. JS
+   positions each with a transform on .roas-node itself, so the float
+   animation and active-state scaling below live on nested elements instead
+   of fighting that same transform attribute. */
+.roas-node-inner {
+  color: var(--muted);
+  animation: roasNodeFloat 3.6s ease-in-out infinite;
+  transition: color 0.4s var(--ease);
+}
+
+#roasNode2 .roas-node-inner {
+  animation-delay: 0.5s;
+}
+
+#roasNode3 .roas-node-inner {
+  animation-delay: 1s;
+}
+
+@keyframes roasNodeFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.roas-node-bg {
+  fill: rgba(255, 255, 255, 0.06);
+  stroke: var(--line-soft);
+  stroke-width: 1.5;
+  transition: fill 0.4s var(--ease), stroke 0.4s var(--ease);
+}
+
+.roas-node.is-active .roas-node-bg {
+  fill: var(--cyan);
+  stroke: var(--cyan);
+}
+
+.roas-node.is-active .roas-node-inner {
+  color: var(--black);
+}
+
+/* An expanding, fading ring behind the active node — a radar-ping pulse
+   that only plays while that step is current. */
+.roas-node-pulse {
+  fill: none;
+  stroke: var(--cyan);
+  stroke-width: 2;
+  opacity: 0;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+.roas-node.is-active .roas-node-pulse {
+  animation: roasNodePulse 1.8s var(--ease) infinite;
+}
+
+@keyframes roasNodePulse {
+  0% { transform: scale(1); opacity: 0.55; }
+  100% { transform: scale(1.7); opacity: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roas-node-inner {
+    animation: none;
+  }
+
+  .roas-node.is-active .roas-node-pulse {
+    animation: none;
+  }
+
+  .roas-spark {
+    display: none;
+  }
+}
+
 .roas-center-label {
   font-family: var(--font-display);
   font-size: 22px;

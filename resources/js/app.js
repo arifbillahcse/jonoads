@@ -415,9 +415,9 @@ function initRoasEngine() {
   const segmentDeg = (360 / 3) - gapDeg;
   const startAngles = { 1: -90, 2: -90 + 120, 3: -90 + 240 };
 
-  function polar(angleDeg) {
+  function polar(angleDeg, radius = r) {
     const rad = (angleDeg * Math.PI) / 180;
-    return { x: cx + r * Math.cos(rad), y: cy + r * Math.sin(rad) };
+    return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) };
   }
 
   function describeArc(startDeg, sweepDeg) {
@@ -431,6 +431,54 @@ function initRoasEngine() {
     const path = arcs[key];
     if (path) path.setAttribute('d', describeArc(startAngles[key], segmentDeg));
   });
+
+  // Three icon badges sit just outside the ring, one centred over each arc
+  // segment, so the diagram reads as three connected stations rather than a
+  // bare progress ring.
+  const nodeRadius = r + 34;
+  const nodes = {
+    1: document.getElementById('roasNode1'),
+    2: document.getElementById('roasNode2'),
+    3: document.getElementById('roasNode3'),
+  };
+  Object.keys(nodes).forEach((key) => {
+    const node = nodes[key];
+    if (!node) return;
+    const pos = polar(startAngles[key] + segmentDeg / 2, nodeRadius);
+    node.setAttribute('transform', `translate(${pos.x}, ${pos.y})`);
+  });
+
+  // A small dot that travels back and forth along whichever arc is active,
+  // giving the ring a sense of motion rather than sitting static between
+  // step changes. Skipped entirely for reduced-motion.
+  const spark = document.getElementById('roasSpark');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let sparkRaf = null;
+  let sparkStart = null;
+
+  function animateSpark(stepNum) {
+    if (!spark || reduceMotion) return;
+    if (sparkRaf) cancelAnimationFrame(sparkRaf);
+    sparkStart = null;
+    spark.setAttribute('opacity', '1');
+
+    const start = startAngles[stepNum];
+    const duration = 2200;
+
+    function tick(ts) {
+      if (sparkStart === null) sparkStart = ts;
+      const elapsed = (ts - sparkStart) % duration;
+      // Ping-pongs along the segment instead of snapping back, so the
+      // motion reads as a sweep rather than a restart.
+      const t = elapsed / duration;
+      const sweep = t < 0.5 ? t * 2 : 2 - t * 2;
+      const pos = polar(start + sweep * segmentDeg);
+      spark.setAttribute('cx', pos.x);
+      spark.setAttribute('cy', pos.y);
+      sparkRaf = requestAnimationFrame(tick);
+    }
+    sparkRaf = requestAnimationFrame(tick);
+  }
 
   let autoAdvance = null;
   let currentStep = 1;
@@ -447,6 +495,11 @@ function initRoasEngine() {
       const isActive = Number(key) === stepNum;
       arcs[key].classList.toggle('is-active', isActive);
     });
+    Object.keys(nodes).forEach((key) => {
+      const node = nodes[key];
+      if (node) node.classList.toggle('is-active', Number(key) === stepNum);
+    });
+    animateSpark(stepNum);
     if (centerStep) {
       centerStep.textContent = `0${stepNum} · ${stepNames[stepNum]}`;
     }
@@ -478,8 +531,9 @@ function initRoasEngine() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           restartAutoAdvance();
-        } else if (autoAdvance) {
-          clearInterval(autoAdvance);
+        } else {
+          if (autoAdvance) clearInterval(autoAdvance);
+          if (sparkRaf) cancelAnimationFrame(sparkRaf);
         }
       });
     }, { threshold: 0.4 });
