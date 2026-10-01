@@ -518,6 +518,21 @@ function initTestimonials() {
     });
   });
 
+  const prevButton = carousel.querySelector('[data-testimonial-prev]');
+  const nextButton = carousel.querySelector('[data-testimonial-next]');
+
+  prevButton?.addEventListener('click', () => {
+    show(current - 1);
+    stop();
+    start();
+  });
+
+  nextButton?.addEventListener('click', () => {
+    show(current + 1);
+    stop();
+    start();
+  });
+
   // Reading stops the rotation; so does moving focus into it by keyboard.
   carousel.addEventListener('mouseenter', stop);
   carousel.addEventListener('mouseleave', start);
