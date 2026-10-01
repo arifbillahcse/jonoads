@@ -1005,13 +1005,36 @@ button {
   right: 24px;
 }
 
-/* Below this width there isn't enough room beside the quote's own
-   760px max-width for both arrows to sit at the page edges without
-   overlapping the text, so they drop out of absolute positioning and
-   sit as a small centered row underneath it instead — still clickable,
-   just no longer floating over the text. (640px wasn't nearly enough
-   margin — the quote plus both arrows needs close to 900px of width.) */
-@media (max-width: 1024px) {
+/* Below this width the quote's own 760px max-width leaves no clearance
+   beside it for the page-edge arrows, so the quote column is narrowed
+   and centered instead — it wraps onto more (shorter) lines, keeping
+   the side arrows in the same desktop-style position, just with more
+   breathing room on either side of the now-narrower text. */
+@media (max-width: 1024px) and (min-width: 481px) {
+  .testimonial-heading {
+    text-align: center;
+  }
+
+  .testimonial-content {
+    max-width: 480px;
+    margin: 0 auto;
+  }
+
+  .testimonial blockquote {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .testimonial-dots {
+    justify-content: center;
+  }
+}
+
+/* Too narrow even for a 480px-wide quote column to clear the arrows, so
+   on phones they drop out of absolute positioning and sit as a small
+   centered row underneath the quote instead — still clickable, just no
+   longer floating over the text. */
+@media (max-width: 480px) {
   .testimonial-carousel {
     display: flex;
     flex-wrap: wrap;
