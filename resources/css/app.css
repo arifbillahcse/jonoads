@@ -947,26 +947,25 @@ button {
 }
 
 .testimonial-carousel {
-  /* The arrows are laid out as flex siblings either side of the quote
-     rather than absolutely positioned, so they always sit the same fixed
-     gap from the text itself — no mismatch between the carousel's own
-     width and the blockquote's (narrower) max-width to create a lopsided
-     gap on one side. */
-  display: flex;
-  align-items: center;
-  gap: 24px;
+  /* Full width of the section, with the arrows pinned to its own left/right
+     edges (inside the section's existing gutter padding, so they're never
+     clipped by the viewport) rather than hugging the quote text. */
+  position: relative;
+  width: 100%;
+  padding: 0 64px;
 }
 
 .testimonial-content {
-  flex: 1 1 auto;
-  min-width: 0;
+  max-width: 760px;
 }
 
 /* Circular prev/next buttons flanking the quote, so it's obvious the strip
    can be clicked through rather than just watched. Hidden with the same
    single-quote guard as the dots — nothing to click through with only one. */
 .testimonial-arrow {
-  flex: 0 0 auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   width: 40px;
   height: 40px;
   border-radius: 50%;
@@ -999,9 +998,17 @@ button {
   outline-offset: 3px;
 }
 
+.testimonial-arrow-prev {
+  left: 0;
+}
+
+.testimonial-arrow-next {
+  right: 0;
+}
+
 @media (max-width: 640px) {
   .testimonial-carousel {
-    gap: 12px;
+    padding: 0 48px;
   }
 
   .testimonial-arrow {
