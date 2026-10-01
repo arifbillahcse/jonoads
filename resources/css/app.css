@@ -947,12 +947,11 @@ button {
 }
 
 .testimonial-carousel {
-  /* Full width of the section, with the arrows pinned to its own left/right
-     edges (inside the section's existing gutter padding, so they're never
-     clipped by the viewport) rather than hugging the quote text. */
+  /* Wraps the whole section width (not just .section-inner's padded
+     content), with the arrows pinned near its true left/right edges —
+     close to the page edge itself, per the client's marked-up reference,
+     rather than inset with the text's own gutter. */
   position: relative;
-  width: 100%;
-  padding: 0 64px;
 }
 
 .testimonial-content {
@@ -999,16 +998,20 @@ button {
 }
 
 .testimonial-arrow-prev {
-  left: 0;
+  left: 24px;
 }
 
 .testimonial-arrow-next {
-  right: 0;
+  right: 24px;
 }
 
 @media (max-width: 640px) {
-  .testimonial-carousel {
-    padding: 0 48px;
+  .testimonial-arrow-prev {
+    left: 8px;
+  }
+
+  .testimonial-arrow-next {
+    right: 8px;
   }
 
   .testimonial-arrow {
