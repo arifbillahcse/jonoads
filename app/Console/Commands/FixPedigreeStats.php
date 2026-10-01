@@ -26,7 +26,7 @@ class FixPedigreeStats extends Command
         Stat::where('group', 'pedigree')->forceDelete();
 
         foreach ([
-            ['label' => 'Media Managed', 'value' => 250.0, 'prefix' => '$', 'suffix' => 'M', 'sort_order' => 1],
+            ['label' => 'Media Managed', 'value' => 250.0, 'prefix' => '$', 'suffix' => 'M+', 'sort_order' => 1],
             ['label' => 'Revenue Generated', 'value' => 750.0, 'prefix' => '$', 'suffix' => 'M+', 'sort_order' => 2],
             ['label' => 'Years At Mega Brands', 'value' => 100.0, 'prefix' => '', 'suffix' => '+', 'sort_order' => 3],
             ['label' => 'Unique Ads Launched', 'value' => 150000.0, 'prefix' => '', 'suffix' => '+', 'sort_order' => 4],

@@ -25,7 +25,7 @@ class FixHomeHeroStats extends Command
         Stat::where('group', 'home_hero')->forceDelete();
 
         foreach ([
-            ['label' => 'Media Managed', 'value' => 250.0, 'prefix' => '$', 'suffix' => 'M', 'sort_order' => 1],
+            ['label' => 'Media Managed', 'value' => 250.0, 'prefix' => '$', 'suffix' => 'M+', 'sort_order' => 1],
             ['label' => 'Revenue Generated', 'value' => 750.0, 'prefix' => '$', 'suffix' => 'M+', 'sort_order' => 2],
             ['label' => 'Brands Scaled', 'value' => 40.0, 'prefix' => '', 'suffix' => '+', 'sort_order' => 3],
             ['label' => 'Billion-Dollar Brands', 'value' => 7.0, 'prefix' => '', 'suffix' => '', 'sort_order' => 4],
