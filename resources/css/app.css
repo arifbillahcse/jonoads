@@ -1005,11 +1005,13 @@ button {
   right: 24px;
 }
 
-/* Below this width there's no room to float the arrows over the quote
-   without overlapping the text, so they drop out of the carousel's
-   absolute positioning and sit as a small centered row underneath it
-   instead — still clickable, just no longer floating in the text. */
-@media (max-width: 640px) {
+/* Below this width there isn't enough room beside the quote's own
+   760px max-width for both arrows to sit at the page edges without
+   overlapping the text, so they drop out of absolute positioning and
+   sit as a small centered row underneath it instead — still clickable,
+   just no longer floating over the text. (640px wasn't nearly enough
+   margin — the quote plus both arrows needs close to 900px of width.) */
+@media (max-width: 1024px) {
   .testimonial-carousel {
     display: flex;
     flex-wrap: wrap;
