@@ -66,7 +66,7 @@ class SiteSettingSeeder extends Seeder
             ],
             [
                 'key' => 'logo_image',
-                'value' => '',
+                'value' => 'placeholders/logo-cursive.webp',
                 'group' => 'general',
                 'label' => 'Logo image',
                 'type' => 'text',
