@@ -16,33 +16,35 @@
       </button>
       @endif
 
-      <div class="testimonial-slides" aria-live="polite">
-        @foreach ($testimonials as $testimonial)
-        <blockquote class="testimonial-slide" @if (! $loop->first) hidden @endif>
-          <p>"{{ $testimonial->quote }}"</p>
-          <footer>{{ $testimonial->attribution }}</footer>
-        </blockquote>
-        @endforeach
+      <div class="testimonial-content">
+        <div class="testimonial-slides" aria-live="polite">
+          @foreach ($testimonials as $testimonial)
+          <blockquote class="testimonial-slide" @if (! $loop->first) hidden @endif>
+            <p>"{{ $testimonial->quote }}"</p>
+            <footer>{{ $testimonial->attribution }}</footer>
+          </blockquote>
+          @endforeach
+        </div>
+
+        @if ($testimonials->count() > 1)
+        <div class="testimonial-dots" role="tablist" aria-label="Choose a client quote">
+          @foreach ($testimonials as $testimonial)
+          <button
+            type="button"
+            class="testimonial-dot @if ($loop->first) is-active @endif"
+            role="tab"
+            aria-selected="{{ $loop->first ? 'true' : 'false' }}"
+            aria-label="Quote {{ $loop->iteration }} of {{ $testimonials->count() }}"
+          ></button>
+          @endforeach
+        </div>
+        @endif
       </div>
 
       @if ($testimonials->count() > 1)
       <button type="button" class="testimonial-arrow testimonial-arrow-next" data-testimonial-next aria-label="Next quote">
         <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
-      @endif
-
-      @if ($testimonials->count() > 1)
-      <div class="testimonial-dots" role="tablist" aria-label="Choose a client quote">
-        @foreach ($testimonials as $testimonial)
-        <button
-          type="button"
-          class="testimonial-dot @if ($loop->first) is-active @endif"
-          role="tab"
-          aria-selected="{{ $loop->first ? 'true' : 'false' }}"
-          aria-label="Quote {{ $loop->iteration }} of {{ $testimonials->count() }}"
-        ></button>
-        @endforeach
-      </div>
       @endif
     </div>
   </div>
