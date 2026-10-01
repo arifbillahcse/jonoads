@@ -1005,26 +1005,17 @@ button {
   right: 24px;
 }
 
-/* Below desktop width, trying to keep the arrows beside the text kept
-   breaking at one in-between viewport size or another (a landscape phone,
-   a resized browser window...) no matter how the quote column was
-   narrowed. Below this width the arrows always drop out of absolute
-   positioning and sit as a small centered row underneath the quote
-   instead — that can never overlap the text, whatever the exact width -
-   and the quote's own font-size shrinks a bit so it still reads
-   comfortably whether it wraps to 3, 4, or 5 lines. */
+/* Below desktop width the arrows stay beside the text, same as desktop -
+   but the section's own left/right padding is fixed (not the usual
+   responsive gutter) at exactly enough to clear the 40px arrow plus its
+   inset, so the text can never reach under it at any viewport width. The
+   quote column itself is just left free to fill the remaining space and
+   wrap onto as many lines as it needs (smaller font, so 3-5 short lines
+   still read comfortably instead of 2 long ones). */
 @media (max-width: 1024px) {
-  .testimonial-carousel {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-  }
-
   .testimonial-carousel > .section-inner {
-    order: 1;
-    flex: 1 0 100%;
+    padding-left: 72px;
+    padding-right: 72px;
   }
 
   .testimonial-heading {
@@ -1032,7 +1023,7 @@ button {
   }
 
   .testimonial-content {
-    max-width: 560px;
+    max-width: 480px;
     margin: 0 auto;
   }
 
@@ -1048,21 +1039,25 @@ button {
   .testimonial-dots {
     justify-content: center;
   }
+}
+
+@media (max-width: 480px) {
+  .testimonial-carousel > .section-inner {
+    padding-left: 52px;
+    padding-right: 52px;
+  }
 
   .testimonial-arrow {
-    position: static;
-    transform: none;
-    order: 2;
     width: 34px;
     height: 34px;
   }
 
   .testimonial-arrow-prev {
-    order: 2;
+    left: 8px;
   }
 
   .testimonial-arrow-next {
-    order: 3;
+    right: 8px;
   }
 }
 
