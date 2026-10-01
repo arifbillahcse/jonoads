@@ -1023,6 +1023,19 @@ button {
     flex: 1 0 100%;
   }
 
+  .testimonial-heading {
+    text-align: center;
+  }
+
+  .testimonial blockquote {
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .testimonial-dots {
+    justify-content: center;
+  }
+
   .testimonial-arrow {
     position: static;
     transform: none;
