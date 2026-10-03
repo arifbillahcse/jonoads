@@ -1,8 +1,53 @@
 /* ============================================================
    Jono Advertising — stylesheet
    Palette: near-black, white, cyan accent (#35C1F1)
-   Type: Josefin Sans (display) / Inter (body + UI)
+   Type: Avenir (display) / Inter (body + UI)
    ============================================================ */
+
+/* ---------- Display font: client-supplied Avenir files ----------
+   Only Light, Heavy, and Black weights were provided (no Regular/Medium),
+   so headings - set at font-weight 500/600 throughout - fall back to
+   whichever of these the browser's font matching considers closest,
+   which lands on Heavy. */
+@font-face {
+  font-family: "Avenir";
+  src: url("/fonts/Avenir-Light.ttf") format("truetype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("/fonts/Avenir-LightOblique.ttf") format("truetype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("/fonts/Avenir-Heavy.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("/fonts/Avenir-HeavyOblique.ttf") format("truetype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Avenir";
+  src: url("/fonts/Avenir-Black.ttf") format("truetype");
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* ---------- Tokens ---------- */
 :root {
@@ -21,7 +66,7 @@
   --cyan-dim: rgba(53, 193, 241, 0.16);
   --cyan-glow: rgba(53, 193, 241, 0.45);
 
-  --font-display: "Josefin Sans", "Inter", sans-serif;
+  --font-display: "Avenir", "Josefin Sans", "Inter", sans-serif;
   --font-body: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
 
   --container: 1180px;
