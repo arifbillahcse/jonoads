@@ -9,10 +9,6 @@
   <div class="section-inner engine-hero-inner">
     <p class="eyebrow-free-label reveal">Get in touch</p>
     <h1 class="reveal">Let's Do Great Things Together.</h1>
-    <p class="engine-hero-sub reveal">
-      Tell us about your brand and your media spend. We'll tell you what
-      we'd change first — email is the fastest way to reach us.
-    </p>
     <div class="hero-actions reveal">
       <a href="#enquiry" class="btn btn-primary">Send an enquiry</a>
       <a href="mailto:{{ \App\Models\SiteSetting::get('contact_email') }}" class="btn btn-ghost">Or email us directly</a>

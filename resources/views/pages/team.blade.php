@@ -55,7 +55,6 @@
 <section class="contact" id="contact">
   <div class="section-inner contact-inner">
     <h2 class="reveal">Want To Work With This Team?</h2>
-    <p class="reveal">Tell us about your brand and your media spend. We'll tell you what we'd change first.</p>
     <x-cta.schedule class="btn btn-primary btn-large reveal" />
   </div>
 </section>

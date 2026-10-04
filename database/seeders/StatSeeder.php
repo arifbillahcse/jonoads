@@ -156,7 +156,7 @@ class StatSeeder extends Seeder
             // ---- ROAS Engine page ----------------------------------------
             [
                 'group' => 'engine_hero',
-                'label' => 'Point audit in Review',
+                'label' => 'Point Audit In Review',
                 'value' => 13.0,
                 'prefix' => '',
                 'suffix' => '',
@@ -167,7 +167,7 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'engine_hero',
-                'label' => 'Media run through the Engine',
+                'label' => 'Media Run Through The Engine',
                 'value' => 250.0,
                 'prefix' => '$',
                 'suffix' => 'M',
@@ -178,7 +178,7 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'engine_hero',
-                'label' => 'Years undefeated',
+                'label' => 'Years Undefeated',
                 'value' => 8.0,
                 'prefix' => '',
                 'suffix' => '',
@@ -189,7 +189,7 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'engine_hero',
-                'label' => 'Contests, zero losses',
+                'label' => 'Contests, Zero Losses',
                 'value' => 24.0,
                 'prefix' => '',
                 'suffix' => '',
@@ -202,7 +202,7 @@ class StatSeeder extends Seeder
             // ---- Team page -----------------------------------------------
             [
                 'group' => 'team_hero',
-                'label' => 'Combined years at mega brands',
+                'label' => 'Years At Mega Brands',
                 'value' => 100.0,
                 'prefix' => '',
                 'suffix' => '+',
@@ -213,7 +213,7 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'team_hero',
-                'label' => 'Brands scaled',
+                'label' => 'Brands Scaled',
                 'value' => 40.0,
                 'prefix' => '',
                 'suffix' => '+',
@@ -224,7 +224,7 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'team_hero',
-                'label' => 'Billion-dollar brands',
+                'label' => 'Billion-Dollar Brands',
                 'value' => 7.0,
                 'prefix' => '',
                 'suffix' => '',
@@ -237,7 +237,7 @@ class StatSeeder extends Seeder
             // ---- Contact page --------------------------------------------
             [
                 'group' => 'contact_hero',
-                'label' => 'Access to your team',
+                'label' => 'Access To Your Team',
                 'value' => null,
                 'prefix' => '',
                 'suffix' => '',
@@ -248,7 +248,7 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'contact_hero',
-                'label' => 'Offices, one team',
+                'label' => 'Offices, One Team',
                 'value' => 5.0,
                 'prefix' => '',
                 'suffix' => '',
@@ -261,7 +261,7 @@ class StatSeeder extends Seeder
             // ---- ROAS Engine results strip -------------------------------
             [
                 'group' => 'engine_proof',
-                'label' => 'Monthly budget scaled',
+                'label' => 'Monthly Budget Scaled',
                 'value' => 7.5,
                 'prefix' => '',
                 'suffix' => 'x',
@@ -272,7 +272,7 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'engine_proof',
-                'label' => 'ROAS lift in 4 months',
+                'label' => 'ROAS Lift In 4 Months',
                 'value' => 40.0,
                 'prefix' => '+',
                 'suffix' => '%',
@@ -283,7 +283,7 @@ class StatSeeder extends Seeder
             ],
             [
                 'group' => 'engine_proof',
-                'label' => 'To 3x ROAS for one client',
+                'label' => 'To 3x ROAS For One Client',
                 'value' => 45.0,
                 'prefix' => '',
                 'suffix' => ' days',
