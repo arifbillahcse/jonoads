@@ -34,9 +34,13 @@
       <div class="footer-col">
         <h4>More</h4>
         <a href="{{ $onContact ? '#newsletter' : route('contact') . '#newsletter' }}">Newsletter</a>
-        <a href="{{ config('services.skool.url') }}" target="_blank" rel="noopener">Skool community</a>
-        <a href="{{ $anchor('home', '#podcast') }}">Podcast</a>
-        <a href="{{ $home }}#merch">Merch</a>
+        <a href="{{ \App\Models\SiteSetting::get('skool_url') }}" target="_blank" rel="noopener">Skool community</a>
+        @if (filled(\App\Models\SiteSetting::get('podcast_url')))
+        <a href="{{ \App\Models\SiteSetting::get('podcast_url') }}" target="_blank" rel="noopener">Podcast</a>
+        @endif
+        @if (filled(\App\Models\SiteSetting::get('merch_url')))
+        <a href="{{ \App\Models\SiteSetting::get('merch_url') }}" target="_blank" rel="noopener">Merch</a>
+        @endif
       </div>
     </div>
   </div>

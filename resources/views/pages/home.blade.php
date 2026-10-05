@@ -181,9 +181,13 @@
 
     <div class="contact-links reveal">
       <a href="#newsletter">Newsletter</a>
-      <a href="https://www.skool.com" target="_blank" rel="noopener">Skool community</a>
-      <a href="#podcast">Podcast</a>
-      <a href="{{ route('home') }}#merch">Merch</a>
+      <a href="{{ \App\Models\SiteSetting::get('skool_url') }}" target="_blank" rel="noopener">Skool community</a>
+      @if (filled(\App\Models\SiteSetting::get('podcast_url')))
+      <a href="{{ \App\Models\SiteSetting::get('podcast_url') }}" target="_blank" rel="noopener">Podcast</a>
+      @endif
+      @if (filled(\App\Models\SiteSetting::get('merch_url')))
+      <a href="{{ \App\Models\SiteSetting::get('merch_url') }}" target="_blank" rel="noopener">Merch</a>
+      @endif
     </div>
   </div>
 </section>
