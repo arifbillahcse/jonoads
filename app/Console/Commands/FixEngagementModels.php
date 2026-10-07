@@ -1,14 +1,30 @@
 <?php
 
-namespace Database\Seeders;
+namespace App\Console\Commands;
 
 use App\Models\EngagementModel;
-use Illuminate\Database\Seeder;
+use Illuminate\Console\Command;
 
-class EngagementModelSeeder extends Seeder
+/**
+ * One-off fix for a live deployment seeded before the client renamed the
+ * "how we work together" models and rewrote their bullets: Media
+ * Management -> Digital Advertising, Team Augment -> CMO Advisory & GTM
+ * (down to 3 bullets from 4), Media Audit -> Advertising Audit.
+ * EngagementModelSeeder already has the right rows for a fresh install;
+ * this replaces the three models and their features on an existing
+ * database the same way, without duplicating them. Safe to run more
+ * than once — it clears the table first each time.
+ */
+class FixEngagementModels extends Command
 {
-    public function run(): void
+    protected $signature = 'fix:engagement-models';
+
+    protected $description = 'Replace the "how we work together" models with the latest feedback content';
+
+    public function handle(): void
     {
+        EngagementModel::query()->forceDelete();
+
         foreach ([
             [
                 'title' => 'Digital Advertising',
@@ -39,11 +55,16 @@ class EngagementModelSeeder extends Seeder
             $features = $row['features'];
             unset($row['features']);
 
-            $model = EngagementModel::create($row + ['sort_order' => $i + 1]);
+            $model = EngagementModel::create($row + [
+                'sort_order' => $i + 1,
+                'is_published' => true,
+            ]);
 
             foreach ($features as $j => $text) {
                 $model->features()->create(['text' => $text, 'sort_order' => $j + 1]);
             }
         }
+
+        $this->info('Engagement models replaced: ' . EngagementModel::count() . ' rows.');
     }
 }
