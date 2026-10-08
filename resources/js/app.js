@@ -399,75 +399,19 @@ function initCounters() {
 
 /* ---------- ROAS Engine diagram + step interaction ----------
    The circular graphic is the client's own flat image, so the active
-   step can't be shown by recoloring it directly. Instead a transparent
-   SVG glow-arc overlay sits on top, pixel-measured against this exact
-   image (center ~998,1016 of its 2000x2000 canvas, ring edge ~r750,
-   segments at these angles) so it lines up with the real ring
-   underneath, and brightens over whichever third is active — the same
-   effect the old hand-drawn ring had, just layered on top of a real
-   image instead of replacing its colors. */
+   step is shown by crossfading between three real recolored variants
+   of it (one segment at full color, the other two dimmed) rather than
+   recoloring anything live — genuine artwork, not a CSS trick. */
 function initRoasEngine() {
   const diagram = document.getElementById('roasDiagram');
-  const overlay = document.querySelector('.roas-diagram-overlay');
   const steps = document.querySelectorAll('.roas-step');
   if (!diagram || !steps.length) return;
 
-  const cx = 998, cy = 1016, r = 770;
-  const glowArcs = overlay ? {
-    1: overlay.querySelector('.roas-glow-arc-1'),
-    2: overlay.querySelector('.roas-glow-arc-2'),
-    3: overlay.querySelector('.roas-glow-arc-3'),
-  } : {};
-
-  // Matches the image's own segment boundaries (measured directly from
-  // its pixels), not an assumed even 3-way split.
-  const gapDeg = 6;
-  const segmentDeg = 120 - gapDeg;
-  const startAngles = { 1: 277, 2: 37, 3: 157 };
-
-  function polar(angleDeg, radius = r) {
-    const rad = (angleDeg * Math.PI) / 180;
-    return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) };
-  }
-
-  function describeArc(startDeg, sweepDeg) {
-    const start = polar(startDeg);
-    const end = polar(startDeg + sweepDeg);
-    const largeArc = sweepDeg > 180 ? 1 : 0;
-    return `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 1 ${end.x} ${end.y}`;
-  }
-
-  Object.keys(glowArcs).forEach((key) => {
-    const path = glowArcs[key];
-    if (path) path.setAttribute('d', describeArc(startAngles[key], segmentDeg));
-  });
-
-  const spark = document.getElementById('roasSpark');
-  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  let sparkRaf = null;
-  let sparkStart = null;
-
-  function animateSpark(stepNum) {
-    if (!spark || reduceMotion) return;
-    if (sparkRaf) cancelAnimationFrame(sparkRaf);
-    sparkStart = null;
-    spark.setAttribute('opacity', '1');
-
-    const start = startAngles[stepNum];
-    const duration = 2200;
-
-    function tick(ts) {
-      if (sparkStart === null) sparkStart = ts;
-      const elapsed = (ts - sparkStart) % duration;
-      const t = elapsed / duration;
-      const sweep = t < 0.5 ? t * 2 : 2 - t * 2;
-      const pos = polar(start + sweep * segmentDeg);
-      spark.setAttribute('cx', pos.x);
-      spark.setAttribute('cy', pos.y);
-      sparkRaf = requestAnimationFrame(tick);
-    }
-    sparkRaf = requestAnimationFrame(tick);
-  }
+  const diagramImages = {
+    1: diagram.querySelector('.roas-diagram-image[data-step="1"]'),
+    2: diagram.querySelector('.roas-diagram-image[data-step="2"]'),
+    3: diagram.querySelector('.roas-diagram-image[data-step="3"]'),
+  };
 
   let autoAdvance = null;
   let currentStep = 1;
@@ -477,11 +421,10 @@ function initRoasEngine() {
     steps.forEach((li) => {
       li.classList.toggle('is-active', Number(li.dataset.step) === stepNum);
     });
-    Object.keys(glowArcs).forEach((key) => {
-      const path = glowArcs[key];
-      if (path) path.classList.toggle('is-active', Number(key) === stepNum);
+    Object.keys(diagramImages).forEach((key) => {
+      const img = diagramImages[key];
+      if (img) img.classList.toggle('is-active', Number(key) === stepNum);
     });
-    animateSpark(stepNum);
   }
 
   steps.forEach((li) => {
@@ -510,9 +453,8 @@ function initRoasEngine() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           restartAutoAdvance();
-        } else {
-          if (autoAdvance) clearInterval(autoAdvance);
-          if (sparkRaf) cancelAnimationFrame(sparkRaf);
+        } else if (autoAdvance) {
+          clearInterval(autoAdvance);
         }
       });
     }, { threshold: 0.4 });

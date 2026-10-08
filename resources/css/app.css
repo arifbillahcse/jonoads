@@ -730,49 +730,25 @@ button {
   z-index: 1;
   width: 100%;
   max-width: 420px;
+  aspect-ratio: 1 / 1;
 }
 
+/* Three real recolored variants of the same graphic (one segment at
+   full color, the other two dimmed), crossfaded by JS toggling
+   .is-active to match whichever step the list is on — a genuine color
+   change rather than an overlay trick. */
 .roas-diagram-image {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
-/* Pixel-measured against the actual image (center ~998,1016 of its
-   2000x2000 canvas, ring outer edge ~r750) so this lines up with the
-   real ring underneath rather than an assumed/generic circle. */
-.roas-diagram-overlay {
   position: absolute;
   inset: 0;
+  display: block;
   width: 100%;
   height: 100%;
-  overflow: visible;
-}
-
-.roas-glow-arc {
-  fill: none;
-  stroke: var(--cyan);
-  stroke-width: 26;
-  stroke-linecap: round;
   opacity: 0;
-  filter: drop-shadow(0 0 22px var(--cyan-glow)) drop-shadow(0 0 44px var(--cyan-glow));
-  transition: opacity 0.4s var(--ease);
+  transition: opacity 0.5s var(--ease);
 }
 
-.roas-glow-arc.is-active {
-  opacity: 0.9;
-}
-
-.roas-spark {
-  fill: var(--white);
-  filter: drop-shadow(0 0 10px var(--cyan-glow));
-  transition: opacity 0.3s var(--ease);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .roas-spark {
-    display: none;
-  }
+.roas-diagram-image.is-active {
+  opacity: 1;
 }
 
 /* ============================================================
