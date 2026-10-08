@@ -397,34 +397,112 @@ function initCounters() {
   counters.forEach((el) => observer.observe(el));
 }
 
-/* ---------- ROAS Engine diagram + step interaction ----------
-   The circular graphic is the client's own flat image, so the active
-   step is shown by crossfading between three real recolored variants
-   of it (one segment at full color, the other two dimmed) rather than
-   recoloring anything live — genuine artwork, not a CSS trick. */
+/* ---------- ROAS Engine circular diagram + step interaction ---------- */
 function initRoasEngine() {
-  const diagram = document.getElementById('roasDiagram');
+  const svg = document.getElementById('roasDiagram');
   const steps = document.querySelectorAll('.roas-step');
-  if (!diagram || !steps.length) return;
+  if (!svg || !steps.length) return;
 
-  const diagramImages = {
-    1: diagram.querySelector('.roas-diagram-image[data-step="1"]'),
-    2: diagram.querySelector('.roas-diagram-image[data-step="2"]'),
-    3: diagram.querySelector('.roas-diagram-image[data-step="3"]'),
+  const cx = 200, cy = 200, r = 160;
+  const arcs = {
+    1: svg.querySelector('.roas-arc-1'),
+    2: svg.querySelector('.roas-arc-2'),
+    3: svg.querySelector('.roas-arc-3'),
   };
+
+  // Three equal segments with small gaps between them
+  const gapDeg = 6;
+  const segmentDeg = (360 / 3) - gapDeg;
+  const startAngles = { 1: -90, 2: -90 + 120, 3: -90 + 240 };
+
+  function polar(angleDeg, radius = r) {
+    const rad = (angleDeg * Math.PI) / 180;
+    return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) };
+  }
+
+  function describeArc(startDeg, sweepDeg) {
+    const start = polar(startDeg);
+    const end = polar(startDeg + sweepDeg);
+    const largeArc = sweepDeg > 180 ? 1 : 0;
+    return `M ${start.x} ${start.y} A ${r} ${r} 0 ${largeArc} 1 ${end.x} ${end.y}`;
+  }
+
+  Object.keys(arcs).forEach((key) => {
+    const path = arcs[key];
+    if (path) path.setAttribute('d', describeArc(startAngles[key], segmentDeg));
+  });
+
+  // Three icon badges sit just outside the ring, one centred over each arc
+  // segment, so the diagram reads as three connected stations rather than a
+  // bare progress ring.
+  const nodeRadius = r + 34;
+  const nodes = {
+    1: document.getElementById('roasNode1'),
+    2: document.getElementById('roasNode2'),
+    3: document.getElementById('roasNode3'),
+  };
+  Object.keys(nodes).forEach((key) => {
+    const node = nodes[key];
+    if (!node) return;
+    const pos = polar(startAngles[key] + segmentDeg / 2, nodeRadius);
+    node.setAttribute('transform', `translate(${pos.x}, ${pos.y})`);
+  });
+
+  // A small dot that travels back and forth along whichever arc is active,
+  // giving the ring a sense of motion rather than sitting static between
+  // step changes. Skipped entirely for reduced-motion.
+  const spark = document.getElementById('roasSpark');
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let sparkRaf = null;
+  let sparkStart = null;
+
+  function animateSpark(stepNum) {
+    if (!spark || reduceMotion) return;
+    if (sparkRaf) cancelAnimationFrame(sparkRaf);
+    sparkStart = null;
+    spark.setAttribute('opacity', '1');
+
+    const start = startAngles[stepNum];
+    const duration = 2200;
+
+    function tick(ts) {
+      if (sparkStart === null) sparkStart = ts;
+      const elapsed = (ts - sparkStart) % duration;
+      // Ping-pongs along the segment instead of snapping back, so the
+      // motion reads as a sweep rather than a restart.
+      const t = elapsed / duration;
+      const sweep = t < 0.5 ? t * 2 : 2 - t * 2;
+      const pos = polar(start + sweep * segmentDeg);
+      spark.setAttribute('cx', pos.x);
+      spark.setAttribute('cy', pos.y);
+      sparkRaf = requestAnimationFrame(tick);
+    }
+    sparkRaf = requestAnimationFrame(tick);
+  }
 
   let autoAdvance = null;
   let currentStep = 1;
+  const centerStep = document.getElementById('roasCenterStep');
+  const stepNames = { 1: 'REVIEW', 2: 'OPERATE', 3: 'IMPROVE' };
 
   function setActiveStep(stepNum) {
     currentStep = stepNum;
     steps.forEach((li) => {
-      li.classList.toggle('is-active', Number(li.dataset.step) === stepNum);
+      const isActive = Number(li.dataset.step) === stepNum;
+      li.classList.toggle('is-active', isActive);
     });
-    Object.keys(diagramImages).forEach((key) => {
-      const img = diagramImages[key];
-      if (img) img.classList.toggle('is-active', Number(key) === stepNum);
+    Object.keys(arcs).forEach((key) => {
+      const isActive = Number(key) === stepNum;
+      arcs[key].classList.toggle('is-active', isActive);
     });
+    Object.keys(nodes).forEach((key) => {
+      const node = nodes[key];
+      if (node) node.classList.toggle('is-active', Number(key) === stepNum);
+    });
+    animateSpark(stepNum);
+    if (centerStep) {
+      centerStep.textContent = `0${stepNum} · ${stepNames[stepNum]}`;
+    }
   }
 
   steps.forEach((li) => {
@@ -453,12 +531,13 @@ function initRoasEngine() {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           restartAutoAdvance();
-        } else if (autoAdvance) {
-          clearInterval(autoAdvance);
+        } else {
+          if (autoAdvance) clearInterval(autoAdvance);
+          if (sparkRaf) cancelAnimationFrame(sparkRaf);
         }
       });
     }, { threshold: 0.4 });
-    observer.observe(diagram);
+    observer.observe(svg);
   } else {
     restartAutoAdvance();
   }
