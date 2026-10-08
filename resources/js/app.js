@@ -397,15 +397,21 @@ function initCounters() {
   counters.forEach((el) => observer.observe(el));
 }
 
-/* ---------- ROAS Engine step list interaction ----------
-   The circular graphic is now the client's own flat image (swapped in
-   for the previous hand-drawn SVG ring), so it has no per-segment
-   colors to update — only the text step list still highlights on
-   hover/click/auto-advance, same as before. */
+/* ---------- ROAS Engine diagram + step interaction ----------
+   The circular graphic is the client's own flat image, so the active
+   step is shown by crossfading between three real recolored variants
+   of it (one segment at full color, the other two dimmed) rather than
+   recoloring anything live — genuine artwork, not a CSS trick. */
 function initRoasEngine() {
   const diagram = document.getElementById('roasDiagram');
   const steps = document.querySelectorAll('.roas-step');
   if (!diagram || !steps.length) return;
+
+  const diagramImages = {
+    1: diagram.querySelector('.roas-diagram-image[data-step="1"]'),
+    2: diagram.querySelector('.roas-diagram-image[data-step="2"]'),
+    3: diagram.querySelector('.roas-diagram-image[data-step="3"]'),
+  };
 
   let autoAdvance = null;
   let currentStep = 1;
@@ -414,6 +420,10 @@ function initRoasEngine() {
     currentStep = stepNum;
     steps.forEach((li) => {
       li.classList.toggle('is-active', Number(li.dataset.step) === stepNum);
+    });
+    Object.keys(diagramImages).forEach((key) => {
+      const img = diagramImages[key];
+      if (img) img.classList.toggle('is-active', Number(key) === stepNum);
     });
   }
 
