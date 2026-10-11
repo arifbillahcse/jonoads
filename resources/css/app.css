@@ -1274,6 +1274,72 @@ button {
   border: 0;
 }
 
+/* "Schedule a call" booking popup — same dialog pattern as the video
+   one above, but sized and themed for a booking calendar (taller than
+   wide, light background) instead of a 16:9 video. */
+.booking-dialog {
+  width: min(520px, calc(100vw - 32px));
+  max-width: none;
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--off-white);
+  color: var(--black);
+  overflow: hidden;
+}
+
+.booking-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.78);
+}
+
+.booking-dialog-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--off-white-line);
+}
+
+.booking-dialog-title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.booking-dialog-close {
+  background: none;
+  border: 0;
+  color: var(--muted-on-light);
+  font-size: 1.6rem;
+  line-height: 1;
+  padding: 0 4px;
+  cursor: pointer;
+  transition: color 0.2s var(--ease);
+}
+
+.booking-dialog-close:hover {
+  color: var(--black);
+}
+
+.booking-dialog-close:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+.booking-dialog-frame {
+  height: min(80vh, 720px);
+  background: var(--off-white);
+}
+
+.booking-dialog-frame iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
 /* ============================================================
    TEAM
    ============================================================ */

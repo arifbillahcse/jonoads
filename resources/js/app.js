@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCaseVideos();
   initBarCharts();
   initBackToTop();
+  initBookingDialog();
 });
 
 /* ---------- Sticky header shrink on scroll ---------- */
@@ -665,6 +666,67 @@ function initCaseVideos() {
       frame.referrerPolicy = 'strict-origin-when-cross-origin';
 
       const slot = dialog.querySelector('.video-dialog-frame');
+      slot.replaceChildren(frame);
+
+      dialog.showModal();
+    });
+  });
+}
+
+/* ---------- "Schedule a call" booking popup ----------
+   Every button goes through <x-cta.schedule>, which renders a real link
+   to the booking page (so it still works with JS off, a middle-click, or
+   a long-press) but carries data-booking-url for this to intercept on a
+   plain left-click and open as an on-site popup instead of a new tab. */
+function initBookingDialog() {
+  const triggers = [...document.querySelectorAll('.js-booking-trigger')];
+  if (!triggers.length) return;
+
+  let dialog = null;
+
+  function build() {
+    dialog = document.createElement('dialog');
+    dialog.className = 'booking-dialog';
+    dialog.innerHTML = `
+      <div class="booking-dialog-inner">
+        <div class="booking-dialog-bar">
+          <p class="booking-dialog-title">Schedule a call</p>
+          <button type="button" class="booking-dialog-close" aria-label="Close">&times;</button>
+        </div>
+        <div class="booking-dialog-frame"></div>
+      </div>
+    `;
+    document.body.appendChild(dialog);
+
+    dialog.querySelector('.booking-dialog-close').addEventListener('click', () => dialog.close());
+    dialog.addEventListener('click', (event) => {
+      if (event.target === dialog) dialog.close();
+    });
+    dialog.addEventListener('close', () => {
+      dialog.querySelector('.booking-dialog-frame').replaceChildren();
+    });
+  }
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      // A modified click (middle-click, ctrl/cmd/shift-click) means the
+      // visitor is deliberately asking for a new tab — let the browser's
+      // default handling of the real href do that instead of popping a
+      // dialog on top of it.
+      if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+      const url = trigger.dataset.bookingUrl;
+      if (!url) return;
+
+      event.preventDefault();
+      if (!dialog) build();
+
+      const frame = document.createElement('iframe');
+      frame.src = url;
+      frame.title = 'Schedule a call';
+      frame.loading = 'eager';
+
+      const slot = dialog.querySelector('.booking-dialog-frame');
       slot.replaceChildren(frame);
 
       dialog.showModal();
