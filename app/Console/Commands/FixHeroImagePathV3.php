@@ -21,12 +21,18 @@ class FixHeroImagePathV3 extends Command
 
     public function handle(): void
     {
-        $updated = SiteSetting::where('key', 'hero_image')->update([
-            'value' => 'placeholders/hero-miami-night.jpg',
-        ]);
+        SiteSetting::updateOrCreate(
+            ['key' => 'hero_image'],
+            [
+                'value' => 'placeholders/hero-miami-night.jpg',
+                'group' => 'general',
+                'label' => 'Homepage hero image',
+                'type' => 'text',
+            ],
+        );
 
         cache()->forget(SiteSetting::CACHE_KEY);
 
-        $this->info("hero_image updated: {$updated} row(s).");
+        $this->info('hero_image set.');
     }
 }

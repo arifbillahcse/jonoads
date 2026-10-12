@@ -20,12 +20,18 @@ class FixLogoImage extends Command
 
     public function handle(): void
     {
-        $updated = SiteSetting::where('key', 'logo_image')->update([
-            'value' => 'placeholders/logo-cursive.webp',
-        ]);
+        SiteSetting::updateOrCreate(
+            ['key' => 'logo_image'],
+            [
+                'value' => 'placeholders/logo-cursive.webp',
+                'group' => 'general',
+                'label' => 'Logo image',
+                'type' => 'text',
+            ],
+        );
 
         cache()->forget(SiteSetting::CACHE_KEY);
 
-        $this->info("logo_image updated: {$updated} row(s).");
+        $this->info('logo_image set.');
     }
 }

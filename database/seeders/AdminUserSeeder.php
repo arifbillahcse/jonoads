@@ -17,13 +17,19 @@ class AdminUserSeeder extends Seeder
         // env()'s default only applies when the key is entirely absent — a
         // blank ADMIN_PASSWORD= in .env still counts as "set" and would seed
         // an empty password, so an empty string is treated as unset here too.
-        $email = env('ADMIN_EMAIL') ?: 'admin@jonoads.com';
-        $password = env('ADMIN_PASSWORD') ?: 'password';
+        $email = env('ADMIN_EMAIL');
+        $email = $email === null || $email === '' ? 'admin@jonoads.com' : $email;
+
+        $password = env('ADMIN_PASSWORD');
+        $password = $password === null || $password === '' ? 'password' : $password;
+
+        $name = env('ADMIN_NAME');
+        $name = $name === null || $name === '' ? 'Jono Admin' : $name;
 
         User::updateOrCreate(
             ['email' => $email],
             [
-                'name' => env('ADMIN_NAME') ?: 'Jono Admin',
+                'name' => $name,
                 'password' => Hash::make($password),
                 'role' => UserRole::Admin,
             ],

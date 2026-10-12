@@ -43,7 +43,7 @@
 </section>
 
 <!-- ============ LOGO MARQUEE ============ -->
-<section class="marquee-section">
+<section class="marquee-section" aria-label="Brands we've worked with">
   <x-section.marquee />
 </section>
 

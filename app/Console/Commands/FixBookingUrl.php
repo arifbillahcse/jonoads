@@ -21,12 +21,18 @@ class FixBookingUrl extends Command
 
     public function handle(): void
     {
-        $updated = SiteSetting::where('key', 'calendly_url')->update([
-            'value' => 'https://link.jonoads.com/widget/booking/LzPsfw3RJpY5xtgM7sKM',
-        ]);
+        SiteSetting::updateOrCreate(
+            ['key' => 'calendly_url'],
+            [
+                'value' => 'https://link.jonoads.com/widget/booking/LzPsfw3RJpY5xtgM7sKM',
+                'group' => 'links',
+                'label' => 'Booking widget link',
+                'type' => 'url',
+            ],
+        );
 
         cache()->forget(SiteSetting::CACHE_KEY);
 
-        $this->info("calendly_url updated: {$updated} row(s).");
+        $this->info('calendly_url set.');
     }
 }

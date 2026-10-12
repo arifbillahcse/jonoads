@@ -20,12 +20,18 @@ class FixCalendlyUrl extends Command
 
     public function handle(): void
     {
-        $updated = SiteSetting::where('key', 'calendly_url')->update([
-            'value' => 'https://calendly.com/d/d2mc-3p7-qjh/digital-ads-strategy-call-w-jono-ads',
-        ]);
+        SiteSetting::updateOrCreate(
+            ['key' => 'calendly_url'],
+            [
+                'value' => 'https://calendly.com/d/d2mc-3p7-qjh/digital-ads-strategy-call-w-jono-ads',
+                'group' => 'links',
+                'label' => 'Booking widget link',
+                'type' => 'url',
+            ],
+        );
 
         cache()->forget(SiteSetting::CACHE_KEY);
 
-        $this->info("calendly_url updated: {$updated} row(s).");
+        $this->info('calendly_url set.');
     }
 }

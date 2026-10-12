@@ -91,14 +91,6 @@ class CaseStudy extends Model
         return null;
     }
 
-    /** Built from the id rather than the pasted URL, so only YouTube loads. */
-    public function videoEmbedUrl(): ?string
-    {
-        $id = $this->youtubeId();
-
-        return $id ? "https://www.youtube-nocookie.com/embed/{$id}" : null;
-    }
-
     public function scopeFeatured(Builder $query): Builder
     {
         return $query->where('is_featured', true);
