@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initCaseVideos();
   initBarCharts();
   initBackToTop();
+  initCalendlyPopup();
 });
 
 /* ---------- Sticky header shrink on scroll ---------- */
@@ -668,6 +669,26 @@ function initCaseVideos() {
       slot.replaceChildren(frame);
 
       dialog.showModal();
+    });
+  });
+}
+
+/* ---------- Calendly popup (Schedule a call) ---------- */
+function initCalendlyPopup() {
+  const triggers = [...document.querySelectorAll('.js-calendly-trigger')];
+  if (!triggers.length) return;
+
+  triggers.forEach((trigger) => {
+    trigger.addEventListener('click', (event) => {
+      const url = trigger.dataset.calendlyUrl;
+
+      // If Calendly's own script hasn't loaded (slow network, blocked
+      // script, etc), fall back to the plain link already on the element
+      // rather than leaving the click doing nothing.
+      if (!url || typeof window.Calendly === 'undefined') return;
+
+      event.preventDefault();
+      window.Calendly.initPopupWidget({ url });
     });
   });
 }

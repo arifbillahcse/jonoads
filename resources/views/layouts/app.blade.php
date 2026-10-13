@@ -9,6 +9,16 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+{{--
+    Calendly's own popup widget, loaded once site-wide since "Schedule a
+    call" appears on every page. This is Calendly's own supported embed
+    mechanism — unlike the hand-rolled iframe-in-a-dialog tried earlier
+    (which the booking page refused to render inside, via
+    X-Frame-Options), Calendly's widget.js opens the page in an overlay
+    Calendly itself controls, so it isn't subject to that same block.
+--}}
+<link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet">
+<script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async></script>
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>

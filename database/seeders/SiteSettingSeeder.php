@@ -52,9 +52,9 @@ class SiteSettingSeeder extends Seeder
             ],
             [
                 'key' => 'calendly_url',
-                'value' => 'https://link.jonoads.com/widget/booking/LzPsfw3RJpY5xtgM7sKM',
+                'value' => 'https://calendly.com/d/d2mc-3p7-qjh/digital-ads-strategy-call-w-jono-ads',
                 'group' => 'links',
-                'label' => 'Booking widget link',
+                'label' => 'Calendly booking link',
                 'type' => 'url',
             ],
             [
