@@ -1,6 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+{{--
+    As high in <head> as possible, per Google Tag Manager's own install
+    instructions — ahead of charset/viewport/everything else. Rendered
+    unescaped since this is a literal script snippet pasted into Site
+    Settings by an admin, not user-submitted content.
+--}}
+{!! \App\Models\SiteSetting::get('tracking_head_code') !!}
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>@yield('title', config('app.name'))</title>
@@ -30,6 +37,9 @@
 @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body>
+
+{{-- Immediately after <body>, per Google Tag Manager's own install instructions. --}}
+{!! \App\Models\SiteSetting::get('tracking_body_code') !!}
 
 {{-- First stop for a keyboard or screen-reader user: skip the nav. --}}
 <a href="#main" class="skip-link">Skip to content</a>

@@ -7,6 +7,7 @@ use App\Support\AppVersion;
 use BackedEnum;
 use Filament\Actions\Action;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\TextInput;
 use Filament\Notifications\Notification;
 use Filament\Pages\Page;
@@ -117,6 +118,21 @@ class ManageSiteSettings extends Page
                             ->label('Copyright line')
                             ->helperText('The year is added automatically.'),
                     ]),
+
+                Section::make('Tracking')
+                    ->description('Paste tracking/analytics snippets exactly as given (e.g. by Google Tag Manager) — each is inserted as-is, not escaped.')
+                    ->schema([
+                        Textarea::make('tracking_head_code')
+                            ->label('Head code')
+                            ->helperText('Inserted as high as possible inside <head>.')
+                            ->rows(4)
+                            ->extraInputAttributes(['class' => 'font-mono text-xs']),
+                        Textarea::make('tracking_body_code')
+                            ->label('Body code')
+                            ->helperText('Inserted immediately after the opening <body> tag.')
+                            ->rows(4)
+                            ->extraInputAttributes(['class' => 'font-mono text-xs']),
+                    ]),
             ])
             ->statePath('data');
     }
@@ -145,9 +161,23 @@ class ManageSiteSettings extends Page
     public function save(): void
     {
         foreach ($this->form->getState() as $key => $value) {
-            SiteSetting::query()
-                ->where('key', $key)
-                ->update(['value' => $value]);
+            $setting = SiteSetting::query()->firstOrNew(['key' => $key]);
+            $setting->value = $value;
+
+            // A field added to this form before its row has ever been
+            // seeded on this database (e.g. a fresh field on a live
+            // deployment that hasn't re-run SiteSettingSeeder) would
+            // otherwise silently save nothing instead of creating the
+            // row. Only fill label/group/type when the row is new —
+            // an existing row keeps whatever the seeder gave it rather
+            // than having it overwritten by a guessed label every save.
+            if (! $setting->exists) {
+                $setting->label = (string) str($key)->replace('_', ' ')->title();
+                $setting->group = 'general';
+                $setting->type = 'text';
+            }
+
+            $setting->save();
         }
 
         // The model clears its cache on save, but these are bulk updates.
