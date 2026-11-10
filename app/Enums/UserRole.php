@@ -19,7 +19,7 @@ enum UserRole: string
     {
         return match ($this) {
             self::Admin => 'Full access, including settings and user management.',
-            self::Editor => 'Same access as an admin, except admin accounts cannot be deleted or changed.',
+            self::Editor => 'Same access as an admin, except they cannot create, change, assign or remove admin accounts.',
         };
     }
 
