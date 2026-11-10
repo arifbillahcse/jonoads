@@ -22,7 +22,16 @@ class UserForm
                     ->maxLength(255)
                     ->unique(ignoreRecord: true),
                 Select::make('role')
-                    ->options(UserRole::options())
+                    ->options(fn (): array => auth()->user()?->isAdmin()
+                        ? UserRole::options()
+                        : [UserRole::Editor->value => UserRole::Editor->label()])
+                    ->rules([
+                        fn (): \Closure => function (string $attribute, mixed $value, \Closure $fail): void {
+                            if ($value === UserRole::Admin->value && ! auth()->user()?->isAdmin()) {
+                                $fail('Only admins can create or assign admin accounts.');
+                            }
+                        },
+                    ])
                     ->default(UserRole::Editor->value)
                     ->required()
                     ->native(false)
