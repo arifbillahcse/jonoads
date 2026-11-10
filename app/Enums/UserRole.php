@@ -19,14 +19,8 @@ enum UserRole: string
     {
         return match ($this) {
             self::Admin => 'Full access, including settings and user management.',
-            self::Editor => 'Can edit site content, but not settings or users.',
+            self::Editor => 'Same access as an admin, except admin accounts cannot be deleted or changed.',
         };
-    }
-
-    /** Settings, user management and anything else that reconfigures the site. */
-    public function canManageSettings(): bool
-    {
-        return $this === self::Admin;
     }
 
     public static function options(): array

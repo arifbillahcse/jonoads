@@ -37,11 +37,6 @@ class ManageSiteSettings extends Page
 
     public ?array $data = [];
 
-    public static function canAccess(): bool
-    {
-        return auth()->user()?->canManageSettings() ?? false;
-    }
-
     public function getTitle(): string
     {
         return 'Site settings';

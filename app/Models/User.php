@@ -49,9 +49,4 @@ class User extends Authenticatable implements FilamentUser
     {
         return $this->role === UserRole::Admin;
     }
-
-    public function canManageSettings(): bool
-    {
-        return $this->role?->canManageSettings() ?? false;
-    }
 }

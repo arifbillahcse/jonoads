@@ -27,12 +27,6 @@ class UserResource extends Resource
 
     protected static ?string $recordTitleAttribute = 'name';
 
-    /** Only admins manage who else can get in. */
-    public static function canAccess(): bool
-    {
-        return auth()->user()?->canManageSettings() ?? false;
-    }
-
     public static function form(Schema $schema): Schema
     {
         return UserForm::configure($schema);

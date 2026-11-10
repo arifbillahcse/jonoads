@@ -26,7 +26,7 @@ class UserForm
                     ->default(UserRole::Editor->value)
                     ->required()
                     ->native(false)
-                    ->helperText('Editors can change site content. Admins can also change settings and users.'),
+                    ->helperText('Editors and admins can change everything. Only admins can change or remove admin accounts.'),
                 TextInput::make('password')
                     ->password()
                     ->revealable()
